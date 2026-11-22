@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Ops 20h — Dashboard</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --amber: #d97706;
+      --amber-bg: #fffbeb;
+      --red: #dc2626;
+      --red-bg: #fef2f2;
+      --purple: #7c3aed;
+      --purple-bg: #f5f3ff;
+      --r: 12px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 16px 18px 40px; }
+
+    /* Slim Topbar */
+    .top {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--r);
+      padding: 12px 16px; margin-bottom: 14px;
+    }
+    .top-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .top-left h1 { margin: 0; font-size: 1rem; font-weight: 700; letter-spacing: -0.02em; }
+    .top-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+    /* Pills */
+    .tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 600;
+      border: 1px solid var(--line); background: #fff; color: var(--ink); white-space: nowrap;
+    }
+    .tag.blue { background: var(--blue-bg); color: var(--blue); border-color: #bfdbfe; }
+    .tag.green { background: var(--green-bg); color: var(--green); border-color: #bbf7d0; }
+    .tag.amber { background: var(--amber-bg); color: var(--amber); border-color: #fde68a; }
+    .tag.red { background: var(--red-bg); color: var(--red); border-color: #fecaca; }
+    .tag.purple { background: var(--purple-bg); color: var(--purple); border-color: #ddd6fe; }
+    .tag.muted { color: var(--muted); background: #f8fafc; }
+
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+    .dot.pulse { animation: pulse 1.8s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line);
+      background: #fff; color: var(--ink); font-size: 12px; font-weight: 600;
+      cursor: pointer; white-space: nowrap;
+    }
+    .btn:hover { background: #f1f5f9; }
+    .btn.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .btn.primary:hover { background: #1e293b; }
+    .btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .btn.ghost { border-color: transparent; background: transparent; color: var(--blue); padding: 4px 7px; }
+    .btn.ghost:hover { background: var(--blue-bg); }
+
+    /* Cards & Grids */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 14px; }
+    .grid-2 { display: grid; grid-template-columns: 1.15fr 1fr; gap: 14px; margin-bottom: 14px; }
+    @media (max-width: 960px) { .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--r);
+      padding: 14px 16px; margin-bottom: 14px;
+    }
+    .grid-3 .card, .grid-2 .card { margin-bottom: 0; }
+
+    .ch {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      margin-bottom: 10px;
+    }
+    .ch h2 { margin: 0; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); }
+
+    /* Bars */
+    .bar { height: 6px; background: #e2e8f0; border-radius: 99px; overflow: hidden; }
+    .bar > i { display: block; height: 100%; background: var(--blue); border-radius: 99px; }
+    .bar > i.green { background: var(--green); }
+    .bar > i.amber { background: var(--amber); }
+    .bar > i.red { background: var(--red); }
+
+    /* Top 3 Compact Cards */
+    .mini-list { margin: 8px 0 0; padding: 0 0 0 16px; font-size: 13px; color: #334155; }
+    .mini-list li { margin-bottom: 4px; }
+    .q-row { margin-bottom: 10px; }
+    .q-head { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+    .q-sub { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+    .q-edit { display: none; gap: 6px; align-items: center; flex-wrap: wrap; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line); }
+    .q-edit.open { display: flex; }
+    .q-edit input { width: 64px; padding: 4px 6px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; }
+
+    /* Calendar */
+    .day-pills { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
+    .cal-list { display: flex; flex-direction: column; gap: 6px; }
+    .cal-item {
+      display: grid; grid-template-columns: 98px 1fr auto; gap: 10px; align-items: center;
+      padding: 8px 12px; border: 1px solid var(--line); border-left: 3px solid #94a3b8;
+      border-radius: 9px; cursor: pointer; background: #fff;
+    }
+    .cal-item:hover { border-color: #cbd5e1; background: #f8fafc; }
+    .cal-item.done { border-left-color: var(--green); }
+    .cal-item.running { border-left-color: var(--blue); background: #f5f9ff; border-color: #bfdbfe; }
+    .cal-item.blocked { border-left-color: var(--amber); background: var(--amber-bg); }
+    .cal-item.rest {
+      border-left-color: var(--purple); border-color: #ddd6fe;
+      background: repeating-linear-gradient(-45deg, #faf8ff, #faf8ff 8px, #f3efff 8px, #f3efff 16px);
+    }
+    .cal-t { font-weight: 700; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+    .cal-n { font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cal-r { display: flex; gap: 6px; align-items: center; }
+
+    /* 7-Day Grid */
+    .wk-grid { display: grid; grid-template-columns: repeat(7, minmax(145px, 1fr)); gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+    .wk-col { background: #f8fafc; border: 1px solid var(--line); border-radius: 9px; padding: 6px; display: flex; flex-direction: column; gap: 5px; }
+    .wk-col.today { border-color: var(--blue); background: #f5f9ff; }
+    .wk-head { font-size: 12px; font-weight: 700; padding-bottom: 4px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; }
+    .wk-cell {
+      background: #fff; border: 1px solid var(--line); border-left: 3px solid #94a3b8;
+      border-radius: 6px; padding: 5px 7px; font-size: 11.5px; cursor: pointer;
+    }
+    .wk-cell.done { border-left-color: var(--green); }
+    .wk-cell.running { border-left-color: var(--blue); background: var(--blue-bg); }
+    .wk-cell.rest { border-left-color: var(--purple); background: var(--purple-bg); color: var(--purple); }
+    .wk-cell b { display: block; font-size: 11px; color: var(--muted); }
+    .wk-cell span { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; font-weight: 600; }
+
+    /* Compact Project Rows */
+    .p-row {
+      display: grid; grid-template-columns: 1.4fr 110px 92px auto; gap: 10px; align-items: center;
+      padding: 9px 0; border-bottom: 1px solid var(--line);
+    }
+    .p-row:last-child { border-bottom: 0; padding-bottom: 0; }
+    .p-name { font-weight: 600; font-size: 13.5px; }
+    .p-sub { font-size: 11.5px; color: var(--muted); }
+    .p-eta { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; }
+
+    /* Compact Blockers (Expand on click) */
+    .b-row {
+      border: 1px solid var(--line); border-radius: 9px; padding: 8px 11px; margin-bottom: 7px; background: #fff;
+    }
+    .b-row.done { opacity: 0.45; }
+    .b-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; cursor: pointer; }
+    .b-left { display: flex; align-items: center; gap: 7px; min-width: 0; flex: 1; }
+    .b-title { font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .b-detail {
+      display: none; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line);
+      font-size: 12.5px; color: #334155;
+    }
+    .b-row.open .b-detail { display: block; }
+    .b-ns { margin-top: 5px; color: var(--green); font-size: 12px; font-weight: 500; }
+
+    /* Modal */
+    .modal-bg {
+      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.5);
+      display: none; align-items: center; justify-content: center; padding: 18px; z-index: 999;
+    }
+    .modal-bg.open { display: flex; }
+    .modal {
+      background: #fff; border-radius: 14px; width: min(820px, 100%); max-height: 85vh;
+      display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.22);
+    }
+    .modal-h {
+      padding: 12px 16px; border-bottom: 1px solid var(--line);
+      display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    }
+    .modal-b {
+      padding: 16px 20px; overflow-y: auto; font-size: 13.5px; line-height: 1.6;
+      white-space: pre-wrap; color: #1e293b;
+    }
+
+    @media (max-width: 700px) {
+      .cal-item { grid-template-columns: 1fr; gap: 4px; }
+      .p-row { grid-template-columns: 1fr auto; }
+      .p-eta { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- TOP STRIP -->
+    <header class="top">
+      <div class="top-left">
+        <h1>AI Ops Global · 20h/Ngày</h1>
+        <span id="runnerTag" class="tag blue"><span class="dot pulse"></span> ...</span>
+        <span id="costTag" class="tag green">$0 Chi phí</span>
+        <span id="weekTag" class="tag muted">Tuần 1: --%</span>
+      </div>
+      <div class="top-right">
+        <span id="clockVn" class="tag purple">VN --:--</span>
+        <span id="clockUs" class="tag muted">US --:--</span>
+        <button class="btn" onclick="reloadData()">↻</button>
+      </div>
+    </header>
+
+    <!-- ROW 1: (5) BRIEFING + (4) QUOTA + (6) DAILY REVIEW -->
+    <div class="grid-3">
+      <!-- 5. Morning Briefing & Cost -->
+      <section class="card">
+        <div class="ch">
+          <h2>Đầu ngày &amp; Chi phí</h2>
+          <button class="btn ghost" id="btnReadBriefing">Xem đủ &rarr;</button>
+        </div>
+        <div id="briefingBox"></div>
+      </section>
+
+      <!-- 4. Token / Quota -->
+      <section class="card">
+        <div class="ch">
+          <h2>Token / Quota</h2>
+          <button class="btn ghost" onclick="toggleQuotaEdit()">Cập nhật</button>
+        </div>
+        <div id="quotaBox"></div>
+      </section>
+
+      <!-- 6. Daily Review -->
+      <section class="card">
+        <div class="ch">
+          <h2>Lượng giá cuối ngày</h2>
+          <button class="btn ghost" onclick="openReviewModal()">Chi tiết &amp; Log &rarr;</button>
+        </div>
+        <div id="reviewBox"></div>
+      </section>
+    </div>
+
+    <!-- ROW 2: (1) GOOGLE CALENDAR SCHEDULE -->
+    <section class="card">
+      <div class="ch">
+        <h2>Lịch 20h · Nghỉ cố định 20:00–24:00</h2>
+        <div style="display:flex;gap:5px">
+          <button class="btn active" id="vDay" onclick="setCalView('day')">Ngày</button>
+          <button class="btn" id="vWeek" onclick="setCalView('week')">7 Ngày</button>
+        </div>
+      </div>
+      <div class="day-pills" id="dayPills"></div>
+      <div id="calBox"></div>
+    </section>
+
+    <!-- ROW 3: (2) PROJECTS PROGRESS + (3) BLOCKERS -->
+    <div class="grid-2">
+      <section class="card">
+        <div class="ch">
+          <h2>Tiến độ, ETA &amp; Kết quả</h2>
+          <span class="tag muted" id="outCountTag">0 file</span>
+        </div>
+        <div id="projBox"></div>
+      </section>
+
+      <section class="card">
+        <div class="ch">
+          <h2>Việc AI kẹt — Cần bạn làm</h2>
+          <div style="display:flex;gap:4px;flex-wrap:wrap" id="blkFilterBar">
+            <button class="btn active" onclick="setBlkFilter('ALL',this)">Tất cả</button>
+            <button class="btn" onclick="setBlkFilter('Khẩn cấp',this)">Khẩn</button>
+            <button class="btn" onclick="setBlkFilter('Ưu tiên',this)">Ưu tiên</button>
+            <button class="btn" onclick="setBlkFilter('Bình thường',this)">Thường</button>
+            <button class="btn" onclick="setBlkFilter('Để sau',this)">Sau</button>
+          </div>
+        </div>
+        <div id="blkBox"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-bg" id="modalBg" onclick="if(event.target===this) closeModal()">
+    <div class="modal">
+      <div class="modal-h">
+        <strong id="mTitle" style="font-size:14px">Xem nhanh</strong>
+        <div style="display:flex;gap:6px">
+          <button class="btn" onclick="copyModal()">Copy</button>
+          <button class="btn primary" onclick="closeModal()">Đóng</button>
+        </div>
+      </div>
+      <div class="modal-b" id="mBody"></div>
+    </div>
+  </div>
+
+  <script src="./state.js"></script>
+  <script>
+    let STATE = null;
+    let CAL_VIEW = 'day';
+    let SEL_DAY = 1;
+    let BLK_FILTER = 'ALL';
+    const LS_Q = 'ai_ops_local_quota_v1';
+    const LS_B = 'ai_ops_resolved_blockers_v1';
+
+    const esc = (s) => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    const shortGoal = (s) => s.length > 68 ? s.slice(0, 66) + '…' : s;
+
+    function fmtClock() {
+      const now = new Date();
+      const vn = new Intl.DateTimeFormat('vi-VN', { timeZone:'Asia/Ho_Chi_Minh', hour:'2-digit', minute:'2-digit', hour12:false }).format(now);
+      const us = new Intl.DateTimeFormat('en-US', { timeZone:'America/New_York', hour:'2-digit', minute:'2-digit', hour12:false }).format(now);
+      const hr = Number(new Intl.DateTimeFormat('en-GB', { timeZone:'Asia/Ho_Chi_Minh', hour:'2-digit', hour12:false }).format(now));
+      const el = document.getElementById('clockVn');
+      el.textContent = `VN ${vn}` + (hr >= 20 ? ' · NGHỈ' : '');
+      el.className = hr >= 20 ? 'tag purple' : 'tag blue';
+      document.getElementById('clockUs').textContent = `US ${us}`;
+    }
+
+    async function loadState() {
+      let data = null;
+      if (location.protocol.startsWith('http')) {
+        try {
+          const r = await fetch(`./state.json?t=${Date.now()}`, { cache:'no-store' });
+          if (r.ok) data = await r.json();
+        } catch {}
+      }
+      if (!data && window.__AI_OPS_STATE__) data = JSON.parse(JSON.stringify(window.__AI_OPS_STATE__));
+      if (!data) {
+        document.body.innerHTML = '<p style="padding:30px">Không tải được state.json</p>';
+        return;
+      }
+      STATE = data;
+      SEL_DAY = STATE.meta?.currentDay || 1;
+      try {
+        const q = JSON.parse(localStorage.getItem(LS_Q) || 'null');
+        if (q) {
+          if (typeof q.proPct === 'number') STATE.quota.googleAiPro.estimatedRemainingPct = q.proPct;
+          if (typeof q.cloudReq === 'number') {
+            STATE.quota.cloudFreeTier.requestsUsedToday = q.cloudReq;
+            STATE.quota.cloudFreeTier.remainingPct = Math.max(0, Math.round((1 - q.cloudReq / (STATE.quota.cloudFreeTier.dailySoftCap || 150)) * 100));
+          }
+        }
+      } catch {}
+      renderAll();
+    }
+
+    function renderAll() {
+      const m = STATE.meta;
+      document.getElementById('runnerTag').innerHTML = `<span class="dot pulse"></span> ${esc(m.lastRunner)}`;
+      const cost = STATE.briefing?.costProposal?.totalUsd || 0;
+      const ct = document.getElementById('costTag');
+      ct.textContent = cost === 0 ? '$0 Chi phí' : `Đề xuất $${cost}`;
+      ct.className = cost === 0 ? 'tag green' : 'tag amber';
+      document.getElementById('weekTag').textContent = `Tuần 1: ${STATE.dailyReview.weekCompletionPct}%`;
+
+      renderBriefing();
+      renderQuota();
+      renderReview();
+      renderCalendar();
+      renderProjects();
+      renderBlockers();
+    }
+
+    function renderBriefing() {
+      const b = STATE.briefing;
+      const cp = b.costProposal || { totalUsd: 0 };
+      const costBadge = cp.totalUsd === 0
+        ? `<span class="tag green">✓ Chi phí hôm nay: $0</span>`
+        : `<span class="tag amber">⚠ Đề xuất chi: $${cp.totalUsd}</span>`;
+      document.getElementById('briefingBox').innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap">
+          ${costBadge}
+          <span style="font-size:11.5px;color:var(--muted)">Ngày ${STATE.meta.currentDay}/7</span>
+        </div>
+        <ul class="mini-list">
+          ${(b.goalsToday || []).slice(0,3).map(g => `<li>${esc(shortGoal(g))}</li>`).join('')}
+        </ul>
+      `;
+      document.getElementById('btnReadBriefing').onclick = () => openFile(b.briefingFile, `Morning Briefing — ${b.dayLabel}`);
+    }
+
+    function renderQuota() {
+      const p = STATE.quota.googleAiPro;
+      const c = STATE.quota.cloudFreeTier;
+      const pc = p.estimatedRemainingPct <= 25 ? 'red' : p.estimatedRemainingPct <= 45 ? 'amber' : 'green';
+      const cc = c.remainingPct <= 20 ? 'red' : 'green';
+      document.getElementById('quotaBox').innerHTML = `
+        <div class="q-row">
+          <div class="q-head"><span>Google AI Pro</span><span style="color:var(--${pc})">${p.estimatedRemainingPct}%</span></div>
+          <div class="bar"><i class="${pc}" style="width:${p.estimatedRemainingPct}%"></i></div>
+          <div class="q-sub">${p.estimatedRemainingPct <= 25 ? '⚠ Sắp thấp — ưu tiên task nhẹ' : `${p.checksToday} nhịp hôm nay · Báo cáo 5p`}</div>
+        </div>
+        <div class="q-row" style="margin-bottom:0">
+          <div class="q-head"><span>Cloud $0 (${esc(c.primaryModel)})</span><span style="color:var(--${cc})">${c.remainingPct}%</span></div>
+          <div class="bar"><i class="${cc}" style="width:${c.remainingPct}%"></i></div>
+          <div class="q-sub">${c.requestsUsedToday}/${c.dailySoftCap} req · ${STATE.meta.cloudActivated ? 'Đang chạy' : 'Chờ gắn key 2p'}</div>
+        </div>
+        <div class="q-edit" id="qEditForm">
+          <span style="font-size:11.5px">Pro%</span><input id="inPro" type="number" min="0" max="100" value="${p.estimatedRemainingPct}">
+          <span style="font-size:11.5px">Req</span><input id="inReq" type="number" min="0" value="${c.requestsUsedToday}">
+          <button class="btn primary" onclick="saveQuota()">Lưu</button>
+        </div>
+      `;
+    }
+
+    function toggleQuotaEdit() {
+      document.getElementById('qEditForm')?.classList.toggle('open');
+    }
+
+    function saveQuota() {
+      const proPct = Number(document.getElementById('inPro').value);
+      const cloudReq = Number(document.getElementById('inReq').value);
+      if (isNaN(proPct) || proPct < 0 || proPct > 100) return;
+      localStorage.setItem(LS_Q, JSON.stringify({ proPct, cloudReq }));
+      STATE.quota.googleAiPro.estimatedRemainingPct = proPct;
+      STATE.quota.cloudFreeTier.requestsUsedToday = cloudReq;
+      STATE.quota.cloudFreeTier.remainingPct = Math.max(0, Math.round((1 - cloudReq / (STATE.quota.cloudFreeTier.dailySoftCap || 150)) * 100));
+      renderQuota();
+    }
+
+    function renderReview() {
+      const r = STATE.dailyReview;
+      const latestLog = STATE.heartbeatLog?.[0];
+      const count = (r.realOutputsToday || []).length;
+      document.getElementById('reviewBox').innerHTML = `
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+          <span class="tag blue">${count} sản phẩm thật</span>
+          <span class="tag amber">Chốt 18:30 VN</span>
+        </div>
+        <div style="font-size:12.5px;color:#334155">
+          <div><strong>Nghẽn chính:</strong> Cần ~7p kích hoạt Cloud $0 &amp; upload Tập 1 YouTube.</div>
+          ${latestLog ? `<div style="margin-top:5px;font-size:11.5px;color:var(--muted)"><strong>Mới nhất:</strong> ${esc(shortGoal(latestLog.action))}</div>` : ''}
+        </div>
+      `;
+    }
+
+    function openReviewModal() {
+      const r = STATE.dailyReview;
+      const lines = [
+        `LƯỢNG GIÁ NGÀY ${r.date} (${r.status})`,
+        `Hoàn thành mục tiêu tuần: ${r.weekCompletionPct}%`,
+        '',
+        'SẢN PHẨM THẬT HÔM NAY:',
+        ...(r.realOutputsToday || []).map((x, i) => `${i+1}. ${x}`),
+        '',
+        'MỨC SẴN SÀNG KIẾM USD:',
+        ...Object.entries(r.usdReadiness || {}).map(([k,v]) => `- ${k}: ${v}`),
+        '',
+        'ĐIỂM NGHẼN:',
+        ...(r.bottlenecks || []).map(x => `- ${x}`),
+        '',
+        `ĐIỀU CHỈNH NGÀY MAI:\n${r.adjustmentsForTomorrow}`,
+        '',
+        '--- NHẬT KÝ 5 PHÚT GẦN NHẤT ---',
+        ...(STATE.heartbeatLog || []).slice(0, 10).map(l => `[${l.time.slice(11,16)}] ${l.runner} | ${l.action} (${l.quotaSnapshot})`)
+      ];
+      showModal('Lượng giá Cuối ngày & Nhật ký 5 phút', lines.join('\n'));
+    }
+
+    const stCls = (st) => st === 'Đã xong' ? 'done' : st === 'Đang chạy' ? 'running' : st === 'Bị kẹt' ? 'blocked' : st === 'Nghỉ 4h' ? 'rest' : '';
+    const stTag = (st) => {
+      if (st === 'Đã xong') return '<span class="tag green">Xong</span>';
+      if (st === 'Đang chạy') return '<span class="tag blue"><span class="dot pulse"></span>Chạy</span>';
+      if (st === 'Bị kẹt') return '<span class="tag amber">Kẹt</span>';
+      if (st === 'Nghỉ 4h') return '<span class="tag purple">Nghỉ 4h</span>';
+      return '<span class="tag muted">Chờ</span>';
+    };
+
+    function setCalView(v) {
+      CAL_VIEW = v;
+      document.getElementById('vDay').classList.toggle('active', v === 'day');
+      document.getElementById('vWeek').classList.toggle('active', v === 'week');
+      renderCalendar();
+    }
+
+    function renderCalendar() {
+      const pills = document.getElementById('dayPills');
+      const box = document.getElementById('calBox');
+      if (CAL_VIEW === 'day') {
+        pills.style.display = 'flex';
+        pills.innerHTML = STATE.schedule.map(d => `
+          <button class="btn ${d.dayNumber === SEL_DAY ? 'active' : ''}" onclick="SEL_DAY=${d.dayNumber};renderCalendar()">
+            ${esc(d.label)}
+          </button>
+        `).join('');
+        const day = STATE.schedule.find(d => d.dayNumber === SEL_DAY) || STATE.schedule[0];
+        box.innerHTML = `<div class="cal-list">${day.blocks.map(b => `
+          <div class="cal-item ${stCls(b.status)}" onclick='openBlock(${JSON.stringify(b.id)})'>
+            <div class="cal-t">${esc(b.start)}–${esc(b.end)}</div>
+            <div class="cal-n">${esc(b.title)}</div>
+            <div class="cal-r">
+              <span class="tag muted">${esc(b.engine === 'Tắt hoàn toàn' ? 'Khóa' : b.engine)}</span>
+              ${stTag(b.status)}
+            </div>
+          </div>
+        `).join('')}</div>`;
+      } else {
+        pills.style.display = 'none';
+        box.innerHTML = `<div class="wk-grid">${STATE.schedule.map(d => `
+          <div class="wk-col ${d.dayNumber === STATE.meta.currentDay ? 'today' : ''}">
+            <div class="wk-head"><span>${esc(d.label)}</span>${d.dayNumber===STATE.meta.currentDay?'<span style="color:var(--blue)">●</span>':''}</div>
+            ${d.blocks.map(b => `
+              <div class="wk-cell ${stCls(b.status)}" onclick='openBlock(${JSON.stringify(b.id)})'>
+                <b>${esc(b.start)}–${esc(b.end)}</b>
+                <span>${esc(b.title)}</span>
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}</div>`;
+      }
+    }
+
+    function openBlock(id) {
+      for (const d of STATE.schedule) {
+        const b = d.blocks.find(x => x.id === id);
+        if (b) {
+          if (b.outputPath) return openFile(b.outputPath, `${d.label} (${b.start}–${b.end}) · ${b.title}`);
+          return showModal(`${d.label} · ${b.start}–${b.end}`, `Dự án: ${b.project}\nGiờ thị trường: ${b.targetTimeNote}\nChạy trên: ${b.engine}\nTrạng thái: ${b.status} · ETA: ${b.eta}\n\n${b.summary}`);
+        }
+      }
+    }
+
+    function renderProjects() {
+      document.getElementById('outCountTag').textContent = `${(STATE.dailyReview.realOutputsToday || []).length} kết quả`;
+      document.getElementById('projBox').innerHTML = STATE.projects.map(p => {
+        const col = p.progressPct >= 70 ? 'green' : p.status.includes('kẹt') ? 'amber' : '';
+        return `
+          <div class="p-row">
+            <div>
+              <div class="p-name">${esc(p.name.split('(')[0].trim())}</div>
+              <div class="p-sub">${esc(p.usdTargetWeek1)}</div>
+            </div>
+            <div>
+              <div style="font-size:12px;font-weight:700;margin-bottom:3px">${p.progressPct}%</div>
+              <div class="bar"><i class="${col}" style="width:${p.progressPct}%"></i></div>
+            </div>
+            <div class="p-eta">ETA ${esc(p.eta.replace(' VN',''))}</div>
+            <div>
+              ${p.latestOutput?.path
+                ? `<button class="btn" onclick='openFile(${JSON.stringify(p.latestOutput.path)}, ${JSON.stringify(p.latestOutput.title)})'>Xem</button>`
+                : '<span class="tag muted">—</span>'}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setBlkFilter(f, btn) {
+      BLK_FILTER = f;
+      document.querySelectorAll('#blkFilterBar .btn').forEach(x => x.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderBlockers();
+    }
+
+    const pRank = (p) => ({ 'Khẩn cấp':1, 'Ưu tiên':2, 'Bình thường':3, 'Để sau':4 }[p] || 9);
+    const pTag = (p) => {
+      if (p === 'Khẩn cấp') return '<span class="tag red">Khẩn</span>';
+      if (p === 'Ưu tiên') return '<span class="tag amber">Ưu tiên</span>';
+      if (p === 'Bình thường') return '<span class="tag blue">Thường</span>';
+      return '<span class="tag muted">Sau</span>';
+    };
+
+    function getDoneMap() { try { return JSON.parse(localStorage.getItem(LS_B) || '{}'); } catch { return {}; } }
+
+    function toggleBlkDone(id, ev) {
+      ev.stopPropagation();
+      const m = getDoneMap();
+      m[id] = !m[id];
+      localStorage.setItem(LS_B, JSON.stringify(m));
+      renderBlockers();
+    }
+
+    function renderBlockers() {
+      const doneMap = getDoneMap();
+      const list = [...(STATE.blockers || [])]
+        .filter(b => BLK_FILTER === 'ALL' || b.priority === BLK_FILTER)
+        .sort((a,b) => pRank(a.priority) - pRank(b.priority));
+
+      document.getElementById('blkBox').innerHTML = list.length ? list.map(b => {
+        const isDone = b.status === 'resolved' || Boolean(doneMap[b.id]);
+        return `
+          <div class="b-row ${isDone ? 'done' : ''}" id="blk-${esc(b.id)}">
+            <div class="b-top" onclick="document.getElementById('blk-${esc(b.id)}').classList.toggle('open')">
+              <div class="b-left">
+                ${pTag(b.priority)}
+                <span class="b-title" title="${esc(b.title)}">${esc(b.title)}</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px">
+                <span style="font-size:11.5px;color:var(--muted)">${b.estMinutes}p</span>
+                <button class="btn" onclick='toggleBlkDone(${JSON.stringify(b.id)}, event)'>${isDone ? '↩' : '✓'}</button>
+              </div>
+            </div>
+            <div class="b-detail">
+              <div><strong>Cách gỡ (${esc(b.project)}):</strong> ${esc(b.exactSteps)}</div>
+              <div class="b-ns">↻ Never-Stop: ${esc(b.neverStopTask)}</div>
+            </div>
+          </div>
+        `;
+      }).join('') : '<div style="color:var(--muted);font-size:13px">Không có việc kẹt ở nhóm này.</div>';
+    }
+
+    async function openFile(relPath, title) {
+      if (relPath && relPath.endsWith('.html')) {
+        window.open('./' + relPath, '_blank');
+        return;
+      }
+      showModal(title || relPath, 'Đang tải...');
+      let txt = null;
+      if (location.protocol.startsWith('http')) {
+        try {
+          const r = await fetch(`./${relPath}?t=${Date.now()}`, { cache:'no-store' });
+          if (r.ok) txt = await r.text();
+        } catch {}
+      }
+      if (!txt && window.__AI_OPS_PREVIEWS__?.[relPath]) txt = window.__AI_OPS_PREVIEWS__[relPath];
+      document.getElementById('mBody').textContent = txt || `Mở file trực tiếp tại: ${relPath}`;
+    }
+
+    function showModal(title, body) {
+      document.getElementById('mTitle').textContent = title;
+      document.getElementById('mBody').textContent = body;
+      document.getElementById('modalBg').classList.add('open');
+    }
+
+    function closeModal() { document.getElementById('modalBg').classList.remove('open'); }
+    function copyModal() { navigator.clipboard?.writeText(document.getElementById('mBody').textContent || ''); }
+    function reloadData() { location.protocol.startsWith('http') ? loadState() : location.reload(); }
+
+    fmtClock();
+    setInterval(fmtClock, 10000);
+    setInterval(() => { if (location.protocol.startsWith('http')) loadState(); }, 60000);
+    loadState();
+  </script>
+</body>
+</html>
