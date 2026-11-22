@@ -1,0 +1,67 @@
+name: AI Ops Global 20h Runner ($0 Cloud)
+
+on:
+  schedule:
+    # Runs every 30 minutes ONLY during 00:00-19:59 GMT+7 (17:00-12:59 UTC).
+    # 20:00-23:59 GMT+7 (13:00-16:59 UTC) is completely excluded for user's 4h personal rest window.
+    - cron: '0,30 17-23,0-12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ai-ops-global-week1
+  cancel-in-progress: false
+
+jobs:
+  run-and-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Unpack initial payload bundle if present
+        run: |
+          if [ -f ai-ops-payload.tar.gz ]; then
+            tar -xzf ai-ops-payload.tar.gz
+            rm -f ai-ops-payload.tar.gz
+          fi
+
+      - name: Run 20h Cloud Worker ($0 Gemini Free Tier)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node scripts/cloud-runner.mjs
+
+      - name: Commit updated state & outputs
+        run: |
+          git config user.name "ai-ops-bot"
+          git config user.email "ai-ops-bot@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(ai-ops): autonomous cloud update $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
+
+      - name: Upload Dashboard artifact for GitHub Pages ($0)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+  deploy-dashboard:
+    needs: run-and-sync
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
