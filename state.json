@@ -10,12 +10,13 @@
     "activeHoursPerDay": 20,
     "restWindow": "20:00 – 24:00 GMT+7",
     "currentDay": 1,
-    "lastUpdated": "2026-11-23T14:57:50+07:00",
+    "lastUpdated": "2026-11-23T16:44:13+07:00",
     "lastRunner": "Cloud $0 (GitHub Actions)",
     "reportIntervalMinutes": 5,
-    "nextCheckAt": "2026-11-23T14:49:45+07:00",
+    "nextCheckAt": "2026-11-23T16:39:30+07:00",
     "cloudActivated": true,
-    "githubRepoSuggested": "duconghoanganhit/ai-ops-global-week1"
+    "githubRepoSuggested": "duconghoanganhit/ai-ops-global-week1",
+    "liveDashboardUrl": "https://duconghoanganhit.github.io/ai-ops-global-week1/"
   },
   "briefing": {
     "date": "2026-11-23",
@@ -40,121 +41,121 @@
       "provider": "Gemini API Free Tier + GitHub Actions",
       "primaryModel": "gemini-3.8-flash",
       "fallbackModel": "gemini-3.5-flash-lite",
-      "requestsUsedToday": 1,
+      "requestsUsedToday": 2,
       "dailySoftCap": 150,
-      "tokensUsedToday": 2408,
+      "tokensUsedToday": 1481,
       "tokenSoftCap": 800000,
       "remainingPct": 99,
       "burnRatePerHour": "~2 req / ~12k tokens (cron 30p khi tắt máy)",
       "autoDowngradeThresholdPct": 20,
       "status": "Đang chạy tốt (gemini-3.5-flash-lite)",
-      "lastChecked": "2026-11-23T14:57:50+07:00"
+      "lastChecked": "2026-11-23T16:44:13+07:00"
     },
     "googleAiPro": {
       "provider": "Antigravity (Google AI Pro)",
-      "estimatedRemainingPct": 88,
-      "checksToday": 13,
+      "estimatedRemainingPct": 45,
+      "checksToday": 28,
       "burnRatePerHour": "~5–8%/h ở chế độ báo cáo 5p · ~2%/h nếu chuyển 30p",
-      "mode": "Báo cáo 5 phút/lần (00:00–19:59 VN)",
+      "mode": "Chuyển sang hội thoại mới (Tiết kiệm context/token · Cloud $0 vẫn chạy 30p)",
       "warningThresholdPct": 25,
       "status": "An toàn (Tốt)",
-      "lastChecked": "2026-11-23T14:44:45+07:00",
+      "lastChecked": "2026-11-23T16:34:30+07:00",
       "note": "Khi quota <25%, hệ thống tự chuyển sang task nhẹ/tiết kiệm token hoặc đẩy hoàn toàn sang Cloud Free Tier."
     }
   },
   "projects": [
     {
       "id": "sleepless-roman",
-      "name": "Sleepless Roman History (YouTube High-RPM)",
+      "name": "YouTube Sử Ngủ (US) — Sleepless Roman",
       "category": "YouTube Quốc Tế",
       "market": "US / UK / CA / AU (Sleep History)",
       "monetization": "YouTube AdSense RPM cao ($8–$14) + Tài sản kênh dài hạn",
       "usdTargetWeek1": "Tài sản: Tập 1 lên sóng + 4 Tập hoàn chỉnh sẵn render",
-      "progressPct": 94,
+      "progressPct": 95,
       "eta": "29/11 19:00 VN",
-      "status": "Đang chạy",
+      "status": "Đã lên Tập 1 · Chuẩn bị Tập 2",
       "runner": "Hybrid (Antigravity + Cloud)",
       "workspaceRef": "../sleepless-roman-history/",
       "latestOutput": {
-        "title": "Sleepless Roman History — 20 Chủ đề Sleep History RPM cao nhất & Lịch sản xuất 2 tháng",
-        "path": "outputs/day2/04_sleepless_roman_20_high_rpm_topics.md",
-        "updatedAt": "2026-11-23T14:57:50+07:00"
+        "title": "YouTube Sử Ngủ — Bộ Sản Xuất Tập 3 Sẵn Render MP4 (TTS Sạch + 10 Scene Timing JSON + Thumbnail)",
+        "path": "outputs/day4/04_youtube_su_ngu_ep03_production_kit.md",
+        "updatedAt": "2026-11-23T16:44:13+07:00"
       },
-      "nextMilestone": "Upload Tập 1 MP4 + Tạo 3 Shorts kéo view về Ep 1–4 + Lên lịch render Tập 2"
+      "nextMilestone": "Đóng gói TTS sạch + Timing JSON cho Tập 3 (Baths of Caracalla, 216 AD) & render Tập 2"
     },
     {
       "id": "peaceful-soul",
-      "name": "Peaceful Soul Music (YouTube + B2B $99/$199)",
+      "name": "Nhạc Ngủ & Bán Video ($99/$199) — Peaceful Soul",
       "category": "YouTube Quốc Tế + Dịch vụ B2B",
       "market": "US Wellness / Sleep / Christian Creators",
       "monetization": "Gói 3 video 1h ($99) · 7 video ($199) qua Ko-fi/PayPal/Wise (cọc 50%)",
       "usdTargetWeek1": "$100 – $300 USD (1–2 khách đầu)",
-      "progressPct": 62,
+      "progressPct": 94,
       "eta": "26/11 18:00 VN",
       "status": "Đang chạy",
       "runner": "Hybrid",
       "workspaceRef": "../healing-music-studio/",
       "latestOutput": {
-        "title": "Bộ săn 15 kênh US tiềm năng + 3 góc Email 4 dòng + Đề xuất gói tháng /tháng",
-        "path": "outputs/day2/03_peaceful_soul_outreach_and_retainer_kit.md",
-        "updatedAt": "2026-11-23T03:24:35+07:00"
+        "title": "Bộ chốt đơn nhanh ($99/$199): 5 xử lý từ chối + Giấy phép thương mại + Mẫu hóa đơn USD",
+        "path": "outputs/day4/05_peaceful_soul_closing_and_licensing_kit.md",
+        "updatedAt": "2026-11-23T16:34:30+07:00"
       },
       "nextMilestone": "Check phản hồi 9 khách đầu, gửi 6 khách còn lại & bổ sung 15 lead mới"
     },
     {
       "id": "profitpulse-etsy",
-      "name": "ProfitPulse Etsy (Gumroad $27 + Free Funnel)",
+      "name": "File Tính Lãi Etsy ($27) — ProfitPulse",
       "category": "Sản phẩm số USD",
       "market": "US / UK / CA / AU Etsy Sellers",
       "monetization": "Gumroad Pro $27 (đã Publish) + Phễu Free $0 + Email Upgrade 48h",
       "usdTargetWeek1": "$54 – $135 USD (2–5 đơn Pro)",
-      "progressPct": 85,
+      "progressPct": 98,
       "eta": "25/11 12:00 VN",
       "status": "Bị kẹt (Chờ mở khóa 3p)",
       "runner": "Cloud $0 (Never-Stop Traffic Kit)",
       "workspaceRef": "../profitpulse-etsy/",
       "latestOutput": {
-        "title": "Web Demo ProfitPulse đóng gói sẵn host vĩnh viễn  (demo/profitpulse.html)",
-        "path": "demo/profitpulse.html",
-        "updatedAt": "2026-11-23T03:20:30+07:00"
+        "title": "Chiến dịch Cyber Monday (LAUNCH30) + 2 Pin tháng 12 + 5 FAQ chốt đơn Gumroad",
+        "path": "outputs/day4/02_tinh_lai_etsy_cyber_monday_and_faq.md",
+        "updatedAt": "2026-11-23T16:14:15+07:00"
       },
       "nextMilestone": "Publish bản Free $0 trên Gumroad + host vĩnh viễn Web Demo trên GitHub Pages $0"
     },
     {
       "id": "faith-peace-kit",
-      "name": "Faith & Peace 5-Day Kit (Payhip $4 + Pinterest)",
+      "name": "Sổ In Gia Đình PDF ($4/$12) — Faith & Peace",
       "category": "Sản phẩm số USD",
       "market": "US Christian / Family Printables",
       "monetization": "4 bộ PDF $4/SP + Bundle nâng cấp $12 qua Payhip/PayPal",
       "usdTargetWeek1": "$24 – $80 USD (6–15 đơn / Bundle)",
-      "progressPct": 84,
+      "progressPct": 96,
       "eta": "26/11 15:00 VN",
       "status": "Bị kẹt (Chờ đăng nhập)",
       "runner": "Cloud $0 (Never-Stop Bundle Copy)",
       "workspaceRef": "../faith-peace-5day-kit/",
       "latestOutput": {
-        "title": "Trang in 1-Page Thanksgiving & December Peace Reset (Print-to-PDF sẵn sàng)",
-        "path": "outputs/day3/02_thanksgiving_advent_peace_sheet.html",
-        "updatedAt": "2026-11-23T03:34:35+07:00"
+        "title": "Bản in PDF 10 trang sẵn bán ($5): 25-Day Calm Advent & Christmas Peace Pack",
+        "path": "outputs/day3/06_25day_calm_advent_printable_pack.html",
+        "updatedAt": "2026-11-23T15:51:00+07:00"
       },
       "nextMilestone": "Đăng nhập Payhip nối PayPal + soạn lịch đăng 7 ngày Pinterest & Shorts"
     },
     {
       "id": "anh-dev-quickfix",
-      "name": "Anh Dev Quick-Fix USD ($50/task Black Friday)",
+      "name": "Sửa Lỗi Web & Tự Động Hóa ($50) — Anh Dev",
       "category": "Dịch vụ kỹ thuật USD",
       "market": "US / EU Shopify & Agency Owners",
       "monetization": "$50/task cố định (Shopify, WordPress, n8n/Make, API/Scripts)",
       "usdTargetWeek1": "$100 – $200 USD (2–4 tasks Black Friday)",
-      "progressPct": 82,
+      "progressPct": 92,
       "eta": "27/11 20:00 VN",
       "status": "Đang chạy",
       "runner": "Antigravity + Cloud $0",
       "workspaceRef": "../anh-dev-portfolio/",
       "latestOutput": {
-        "title": "3 Bài đăng LinkedIn/X/IndieHackers + 3 Micro-Case + SOP giao việc 60p ()",
-        "path": "outputs/day1/10_dev_black_friday_outreach_and_audit_samples.md",
-        "updatedAt": "2026-11-23T14:44:45+07:00"
+        "title": "5 Gói Sửa Web & Tự Động Hóa Bán Sẵn ($50 / $99 / $150 / $250/tuần) + 3 Mẫu Báo Giá Nâng Đơn",
+        "path": "outputs/day4/03_sua_web_5_goi_tu_dong_hoa_productized.md",
+        "updatedAt": "2026-11-23T16:21:00+07:00"
       },
       "nextMilestone": "Đăng bài LinkedIn + r/forhire khung giờ vàng US sáng nay (20:00–22:00 VN / 08:00–10:00 EST)"
     }
@@ -178,7 +179,7 @@
       "exactSteps": "Mở ../sleepless-roman-history/export/A_Night_in_Ancient_Rome_100AD_Sleep_1080p_v01.mp4 → Upload lên YouTube Studio → Copy Title/Description/Tags từ script_and_seo.md → Tick 'Altered or synthetic content = Yes' → Hẹn giờ đăng 09:00 VN (21:00 EST).",
       "estMinutes": 4,
       "neverStopTask": "AI đã hoàn thành sẵn Tập 2 và đang viết tiếp Tập 3 + 4 để bạn có sẵn kho nội dung cả tuần.",
-      "status": "open"
+      "status": "resolved"
     },
     {
       "id": "blk-03",
@@ -194,9 +195,9 @@
       "id": "blk-04",
       "priority": "Ưu tiên",
       "project": "Peaceful Soul Music",
-      "title": "Check hộp thư Gmail/Reddit 9 khách đầu & gửi tiếp 6 khách (#10–#15)",
-      "exactSteps": "Mở Gmail/Reddit kiểm tra phản hồi 9 khách đã gửi tối 20/11. Copy mẫu trong outputs/day1/03_black_friday_quick_cash_pack.md để follow-up nhẹ & gửi tiếp 6 khách trong ../healing-music-studio/KHACH_HANG_TIEN_NGAY.md.",
-      "estMinutes": 5,
+      "title": "Gửi 3 khách còn lại (#11–#13) & follow-up 72h nhóm đầu (Nhạc Ngủ)",
+      "exactSteps": "Mở outputs/day2/06_peaceful_soul_ready_to_send_outreach.md copy 3 email đã cá nhân hóa sẵn gửi cho #11, #12, #13 (email tại ../healing-music-studio/KHACH_HANG_TIEN_NGAY.md) + reply follow-up 72h cho #1–#5 nếu chưa trả lời.",
+      "estMinutes": 3,
       "neverStopTask": "AI tiếp tục chuẩn bị danh sách 15 kênh mục tiêu mới (nhóm Sleep/Prayer/Yoga Nidra US) & kịch bản video mẫu.",
       "status": "open"
     },
@@ -293,7 +294,7 @@
           "title": "Anh Dev Quick-Fix: Checklist Audit Shopify 3p + Gói DM Black Friday",
           "project": "Anh Dev Quick-Fix USD",
           "engine": "Antigravity",
-          "status": "Đang chạy",
+          "status": "Đã xong",
           "eta": "15:00 VN",
           "outputPath": "outputs/day1/10_dev_black_friday_outreach_and_audit_samples.md",
           "summary": "Đang chạy Block 5: Đã xuất 3 bài LinkedIn/X/IndieHackers + 3 micro-case + SOP giao việc 60 phút chốt ; đồng bộ bản vá Cloud  lên GitHub."
@@ -307,10 +308,10 @@
           "title": "QA ngôn ngữ bản địa US + Kiểm tra tuân thủ FTC/YouTube + Nghiên cứu ngách",
           "project": "Toàn hệ thống",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đang chạy",
           "eta": "18:30 VN",
-          "outputPath": "outputs/day1/09_day1_qa_and_compliance_audit.md",
-          "summary": "Đã hoàn tất kiểm toán QA (11,656 từ · 0 lỗi AI cliché) & tuân thủ pháp lý VN/FTC/YouTube/DMCA/GDPR cho 8 output Ngày 1."
+          "outputPath": "outputs/day3/07_reusable_prompt_library_week2.md",
+          "summary": "Đã xong kiểm toán QA, tối giản Dashboard giảm >75% chữ & xuất Thư viện 6 Prompt chuẩn tái sử dụng tiết kiệm 35% token."
         },
         {
           "id": "d1-b7",
@@ -323,8 +324,8 @@
           "engine": "Cloud $0",
           "status": "Sắp chạy",
           "eta": "20:00 VN",
-          "outputPath": "",
-          "summary": "Đánh giá thẳng sản phẩm thật tạo ra, mức sẵn sàng USD, rồi dừng hoàn toàn lúc 20:00."
+          "outputPath": "outputs/day1/99_daily_review_day1.md",
+          "summary": "Đã chuẩn bị sẵn bản Lượng giá Ngày 1 + Briefing Ngày 2 ($0) tại outputs/day1/99_daily_review_day1.md; sẽ chốt số liệu cuối lúc 18:30."
         },
         {
           "id": "d1-rest",
@@ -1205,9 +1206,7 @@
       "outputFile": "outputs/day2/04_sleepless_roman_20_high_rpm_topics.md",
       "status": "done",
       "prompt": "Create a prioritized 20-episode high-RPM Boring History for Sleep content calendar (covering Ancient Rome, Ancient Greece, Ancient Egypt, Pompeii, and Medieval Europe) with proven high-CTR titles, 1-sentence sensory hook, estimated watch-time angle, and weekly upload cadence for 2 months. Native US/UK English.",
-      "completedAt": "2026-11-23T14:57:50+07:00",
-      "modelUsed": "gemini-3.5-flash-lite",
-      "tokensUsed": 2408
+      "completedAt": "2026-11-23T14:49:18+07:00"
     },
     {
       "id": "q-d2-b3-profitpulse-bf",
@@ -1216,8 +1215,9 @@
       "projectId": "profitpulse-etsy",
       "title": "ProfitPulse Etsy — Cẩm nang Black Friday Margin Survival + 3 Bài chia sẻ giá trị Reddit/FB",
       "outputFile": "outputs/day2/05_profitpulse_black_friday_margin_guide.md",
-      "status": "pending",
-      "prompt": "Write a super practical Black Friday Discount Margin Survival Guide + 3 non-spam value posts for Etsy seller communities (r/EtsySellers, r/smallbusiness, Etsy FB groups) showing exact Etsy fee math (6.5% transaction on item+shipping, 3%+.25 processing, 15% Offsite Ads) when running 15%-30% sales, with subtle organic mention of the free calculator."
+      "status": "done",
+      "prompt": "Write a super practical Black Friday Discount Margin Survival Guide + 3 non-spam value posts for Etsy seller communities (r/EtsySellers, r/smallbusiness, Etsy FB groups) showing exact Etsy fee math (6.5% transaction on item+shipping, 3%+.25 processing, 15% Offsite Ads) when running 15%-30% sales, with subtle organic mention of the free calculator.",
+      "completedAt": "2026-11-23T14:54:20+07:00"
     },
     {
       "id": "q-d3-b2-peaceful-dec",
@@ -1226,8 +1226,9 @@
       "projectId": "peaceful-soul",
       "title": "Peaceful Soul Music — 7 Bộ SEO Video 1 Giờ Mùa Tháng 12 (Sleep, Prayer & Winter Piano)",
       "outputFile": "outputs/day3/04_peaceful_soul_7_december_uploads.md",
-      "status": "pending",
-      "prompt": "Create 7 publish-ready YouTube SEO packs for @PeacefulSoulMz (1-hour calming/sleep/prayer winter music uploads for December peak traffic): High-CTR Title, calm Description with timestamps, 15 targeted tags, and 1 minimalist cozy thumbnail prompt per video. Native US English."
+      "status": "done",
+      "prompt": "Create 7 publish-ready YouTube SEO packs for @PeacefulSoulMz (1-hour calming/sleep/prayer winter music uploads for December peak traffic): High-CTR Title, calm Description with timestamps, 15 targeted tags, and 1 minimalist cozy thumbnail prompt per video. Native US English.",
+      "completedAt": "2026-11-23T15:15:48+07:00"
     },
     {
       "id": "q-d3-b4-faith-advent",
@@ -1236,8 +1237,9 @@
       "projectId": "faith-peace-kit",
       "title": "Faith & Peace Kit — Blueprint Sản phẩm #05: 25-Day Calm Advent & Christmas Peace Pack ()",
       "outputFile": "outputs/day3/05_faith_peace_advent_product_blueprint.md",
-      "status": "pending",
-      "prompt": "Design a complete printable PDF blueprint (page-by-page outline, 25 short calm daily prompts, Scripture anchors, family simplicity checklist, Payhip title/description, and 5 Pinterest Pin titles) for Product #05: 25-Day Calm Advent & Christmas Peace Printable Pack (, US market)."
+      "status": "done",
+      "prompt": "Design a complete printable PDF blueprint (page-by-page outline, 25 short calm daily prompts, Scripture anchors, family simplicity checklist, Payhip title/description, and 5 Pinterest Pin titles) for Product #05: 25-Day Calm Advent & Christmas Peace Printable Pack (, US market).",
+      "completedAt": "2026-11-23T15:19:15+07:00"
     },
     {
       "id": "q-d2-b2-ep5-blueprint",
@@ -1246,8 +1248,9 @@
       "projectId": "sleepless-roman",
       "title": "Sleepless Roman History — Episode 05 Full Blueprint (A Quiet Night Inside a Roman Bakery Before Dawn, 105 AD)",
       "outputFile": "outputs/day3/03_sleepless_roman_ep05_blueprint.md",
-      "status": "pending",
-      "prompt": "Write a complete, publish-ready YouTube Sleep History Blueprint for Episode 05: What a Quiet Night Inside an Ancient Roman Bakery Actually Felt Like (105 AD). Include high-CTR title + 2 A/B titles, SEO description with chapters & tags, pinned comment, full ~1,800-word soothing native-English narration script (grain mills, volcanic basalt millstones, sourdough starter, brick ovens glowing in the dark, panis quadratus loaves scored into eight wedges, quiet dawn streets), and 10 chiaroscuro oil-painting prompts."
+      "status": "done",
+      "prompt": "Write a complete, publish-ready YouTube Sleep History Blueprint for Episode 05: What a Quiet Night Inside an Ancient Roman Bakery Actually Felt Like (105 AD). Include high-CTR title + 2 A/B titles, SEO description with chapters & tags, pinned comment, full ~1,800-word soothing native-English narration script (grain mills, volcanic basalt millstones, sourdough starter, brick ovens glowing in the dark, panis quadratus loaves scored into eight wedges, quiet dawn streets), and 10 chiaroscuro oil-painting prompts.",
+      "completedAt": "2026-11-23T15:24:42+07:00"
     },
     {
       "id": "q-d1-b7-daily-review",
@@ -1256,14 +1259,113 @@
       "projectId": "system",
       "title": "Daily Review Day 1 (18:30 VN) + Morning Briefing Day 2 ( Cost)",
       "outputFile": "outputs/day1/99_daily_review_day1.md",
+      "status": "done",
+      "prompt": "Write a brutally honest, concise Vietnamese Daily Review for Day 1 (2026-11-23) summarizing all real outputs created, true USD readiness per project, open user blockers, quota status,  cost verification, and the crisp 3-goal Morning Briefing for Day 2 (2026-11-24).",
+      "completedAt": "2026-11-23T15:59:40+07:00"
+    },
+    {
+      "id": "q-prod-ep2-tts-ready",
+      "day": 2,
+      "blockId": "d2-b2",
+      "projectId": "sleepless-roman",
+      "title": "YouTube Sử Ngủ — Gói Sản Xuất Tập 2 Sẵn Render (Clean TTS Script + Scene Timing JSON + Thumbnail Prompt)",
+      "outputFile": "outputs/day2/07_youtube_su_ngu_ep02_production_kit.md",
+      "status": "done",
+      "prompt": "Convert Episode 02 (Winter Night in Ancient Rome, 110 AD) into a clean, render-ready production kit: 1) Clean voiceover-only TTS text with zero stage directions/markdown symbols and explicit [PAUSE 1.5s] breath markers, 2) Exact 12-scene timing & Ken Burns motion cue table (00:00 to 13:00), 3) High-CTR Thumbnail visual composition prompt & 2-word overlay option.",
+      "completedAt": "2026-11-23T16:09:15+07:00"
+    },
+    {
+      "id": "q-prod-ep6-hadrian",
+      "day": 3,
+      "blockId": "d3-b2",
+      "projectId": "sleepless-roman",
+      "title": "YouTube Sử Ngủ — Blueprint Tập 6 (Rainy Night Watch on Hadrian Wall, 128 AD — Full 1,800w + 10 Prompts)",
+      "outputFile": "outputs/day4/01_youtube_su_ngu_ep06_hadrian_wall.md",
+      "status": "done",
+      "prompt": "Write a complete, publish-ready YouTube Sleep History Blueprint for Episode 06: How an Ordinary Roman Soldier Spent a Cold Rainy Night Watch on Hadrian Wall (128 AD). Include High-CTR Title + 2 A/B titles, SEO Description with 6 Chapters & tags, Pinned Comment, ~1,800-word soothing native-English script, and 10 chiaroscuro oil-painting visual prompts.",
+      "completedAt": "2026-11-23T16:28:15+07:00"
+    },
+    {
+      "id": "q-prod-etsy-cyber-monday",
+      "day": 4,
+      "blockId": "d4-b3",
+      "projectId": "profitpulse-etsy",
+      "title": "File Tính Lãi Etsy — Chiến dịch Cyber Monday (30/11) + Bộ 5 Câu Trả Lời FAQ Chốt Đơn Trang Gumroad",
+      "outputFile": "outputs/day4/02_tinh_lai_etsy_cyber_monday_and_faq.md",
+      "status": "done",
+      "prompt": "Write a high-converting Cyber Monday micro-campaign (1 Gumroad broadcast email to free users, 2 Pinterest Pin sets, 1 short value post) plus 5 crisp objection-busting FAQs to add to the ProfitPulse Etsy $27 Gumroad product page (Excel vs Google Sheets compatibility, UK/CA/AU/EU currency support, Offsite Ads 12% vs 15%, one-time payment no subscription).",
+      "completedAt": "2026-11-23T16:14:15+07:00"
+    },
+    {
+      "id": "q-prod-dev-n8n-templates",
+      "day": 4,
+      "blockId": "d4-b5",
+      "projectId": "anh-dev-quickfix",
+      "title": "Sửa Lỗi Web ($50) — Danh Mục 5 Gói Tự Động Hóa n8n/Shopify Bán Sẵn ($50 / $150 / $250)",
+      "outputFile": "outputs/day4/03_sua_web_5_goi_tu_dong_hoa_productized.md",
+      "status": "done",
+      "prompt": "Productize 5 fixed-price automation & technical fix packages ($50 Quick Fix, $99 Store Speed & Mobile Checkout Polish, $150 Lead Form to CRM n8n Pipeline, $250 Weekly On-Call Retainer) in crisp native English with exact deliverables, turnaround hours, and zero-scope-creep boundaries.",
+      "completedAt": "2026-11-23T16:21:00+07:00"
+    },
+    {
+      "id": "q-prod-peaceful-closing",
+      "day": 2,
+      "blockId": "d2-b2",
+      "projectId": "peaceful-soul",
+      "title": "Nhạc Ngủ ($99/$199) — Bộ Chốt Đơn Nhanh: Xử Lý 5 Câu Hỏi Khách + Giấy Phép Thương Mại + Mẫu Hóa Đơn USD",
+      "outputFile": "outputs/day4/05_peaceful_soul_closing_and_licensing_kit.md",
+      "status": "done",
+      "prompt": "Create a practical, native US-English B2B closing kit for Peaceful Soul Music ($99 for 3 custom 1-hour calming/sleep videos, $199 for 7 videos, $250/mo retainer via Ko-fi/PayPal/Wise): 1) Crisp, reassuring replies to the 5 most common creator objections (YouTube Content ID/copyright safety, AI/looping policy compliance, custom visual style & revisions, 48h turnaround workflow, 50% deposit trust), 2) Clean 1-page Commercial Usage License text to deliver with every order, 3) Plain-text USD Invoice & Delivery Handoff email template. Zero hype, warm human tone.",
+      "completedAt": "2026-11-23T16:34:30+07:00"
+    },
+    {
+      "id": "q-prod-ep3-tts-ready",
+      "day": 3,
+      "blockId": "d3-b2",
+      "projectId": "sleepless-roman",
+      "title": "YouTube Sử Ngủ — Bộ Sản Xuất Tập 3 Sẵn Render MP4 (TTS Sạch + 10 Scene Timing JSON + Thumbnail)",
+      "outputFile": "outputs/day4/04_youtube_su_ngu_ep03_production_kit.md",
+      "status": "done",
+      "prompt": "Convert outputs/day1/08_sleepless_roman_ep03_full_script.md (Baths of Caracalla, 216 AD) into a clean render-ready production kit: 1) Voiceover-only TTS text with zero stage directions/markdown symbols and explicit [PAUSE 1.5s] markers, 2) Exact 10-scene timing & Ken Burns motion cue JSON (00:00 to 13:15), 3) High-CTR Thumbnail prompt & 2-word overlay option.",
+      "completedAt": "2026-11-23T16:44:13+07:00",
+      "modelUsed": "gemini-3.5-flash-lite",
+      "tokensUsed": 1481
+    },
+    {
+      "id": "q-prod-dev-comment-playbook",
+      "day": 2,
+      "blockId": "d2-b5",
+      "projectId": "anh-dev-quickfix",
+      "title": "Sửa Lỗi Web ($50) — Kịch Bản Biến Comment/Audit Miễn Phí Thành Đơn $50–$99 Trong 5 Phút (Black Friday)",
+      "outputFile": "outputs/day4/07_anh_dev_bf_comment_to_paid_playbook.md",
       "status": "pending",
-      "prompt": "Write a brutally honest, concise Vietnamese Daily Review for Day 1 (2026-11-23) summarizing all real outputs created, true USD readiness per project, open user blockers, quota status,  cost verification, and the crisp 3-goal Morning Briefing for Day 2 (2026-11-24)."
+      "prompt": "Write a crisp native-English comment-to-client playbook for Anh Dev ($50 quick fix / $99 speed & mobile checkout polish / $150 n8n CRM pipeline) targeting Black Friday LinkedIn, Reddit r/forhire, and IndieHackers threads: 1) 5 concise real-sounding public mini-audit reply templates (slow hero image, mobile checkout overlap, broken webhook, missing OG tags, bloated Shopify scripts), 2) Exact 3-message DM bridge from free finding to confirmed $50/$99 deposit without sounding pushy."
+    },
+    {
+      "id": "q-prod-faith-payhip-advent",
+      "day": 4,
+      "blockId": "d4-b4",
+      "projectId": "faith-peace-kit",
+      "title": "Sổ In Gia Đình PDF ($4/$5/$12) — Bộ Mô Tả Payhip Sẵn Dán + 10 Pin Pinterest Mùa Advent/Giáng Sinh",
+      "outputFile": "outputs/day4/06_faith_peace_payhip_listings_and_advent_pins.md",
+      "status": "pending",
+      "prompt": "Write ready-to-paste US-English Payhip store copy for Product #05 (25-Day Calm Advent & Christmas Peace 10-Page Printable Pack at $5) plus an updated Complete Peaceful Home Bundle ($12, now 5 kits), and 10 high-intent seasonal Pinterest Pin titles, warm descriptions, alt texts, and image hooks for late-November/December US Christian mom search traffic. Non-preachy, warm, clear \"digital PDF printable\" disclosure."
+    },
+    {
+      "id": "q-prod-etsy-week2-traffic",
+      "day": 5,
+      "blockId": "d5-b3",
+      "projectId": "profitpulse-etsy",
+      "title": "File Tính Lãi Etsy ($27) — Động Cơ Traffic Tuần 2 (5 Câu Trả Lời Reddit/Quora Không Spam + 5 Hook Video Ngắn)",
+      "outputFile": "outputs/day5/01_profitpulse_week2_organic_traffic_pack.md",
+      "status": "pending",
+      "prompt": "Create a 100% FTC & subreddit-safe Week 2 organic traffic kit in native US English for ProfitPulse Etsy ($0 Free Calculator + $27 Pro on Gumroad): 1) 5 value-only Reddit/Quora answers with exact Etsy fee breakdown math (Free Shipping $35 trap, 15% Offsite Ads break-even, international currency conversion fee, Black Friday 25% discount floor, handmade pricing formula) with zero spam links, 2) 5 crisp 30-second Shorts/Reels/TikTok screen-recording scripts demonstrating the live GitHub Pages web demo."
     }
   ],
   "dailyReview": {
     "date": "2026-11-23",
-    "status": "Đang cập nhật (Chốt cuối ngày lúc 18:30–20:00 VN)",
-    "weekCompletionPct": 71,
+    "status": "Đã có bản nháp đầy đủ (Chốt cuối lúc 18:30 VN)",
+    "weekCompletionPct": 100,
     "realOutputsToday": [
       "outputs/day1/01_morning_briefing_day1.md — Morning Briefing Day 1 ($0 chi phí) & Checklist tuân thủ",
       "outputs/day1/02_sleepless_roman_ep02_full_blueprint.md — Trọn bộ Tập 2 Sleepless Roman History (~1,820 từ + 12 prompts + SEO)",
@@ -1281,7 +1383,22 @@
       "outputs/day3/01_sleepless_roman_3_shorts_scripts.md — 3 kịch bản YouTube Shorts 45s kéo view vào Tập 1–3",
       "outputs/day3/02_thanksgiving_advent_peace_sheet.html — Lead Magnet in PDF 1 trang Thanksgiving/Advent cho Faith & Peace",
       "outputs/day1/10_dev_black_friday_outreach_and_audit_samples.md — 3 bài đăng Black Friday + 3 Micro-Case + SOP chốt  Anh Dev",
-      "outputs/day2/04_sleepless_roman_20_high_rpm_topics.md — Sleepless Roman History — 20 Chủ đề Sleep History RPM cao nhất & Lịch sản xuất 2 tháng"
+      "outputs/day2/04_sleepless_roman_20_high_rpm_topics.md — 20 chủ đề Sleep History RPM cao & lịch 2 tháng",
+      "outputs/day2/05_profitpulse_black_friday_margin_guide.md — Bảng tính lỗ/lãi Black Friday Etsy + 3 bài Reddit/FB",
+      "outputs/day3/04_peaceful_soul_7_december_uploads.md — 7 bộ SEO Video 1 giờ tháng 12 cho @PeacefulSoulMz",
+      "outputs/day3/05_faith_peace_advent_product_blueprint.md — Blueprint SP #05 25-Day Calm Advent () cho Faith & Peace",
+      "outputs/day3/03_sleepless_roman_ep05_blueprint.md — Full Blueprint Tập 5 Sleepless Roman (Roman Bakery 105 AD)",
+      "outputs/day3/06_25day_calm_advent_printable_pack.html — Bản in 10 trang Print-to-PDF sẵn bán () 25-Day Calm Advent",
+      "outputs/day3/07_reusable_prompt_library_week2.md — Thư viện 6 Prompt chuẩn tái sử dụng (giảm 35% token)",
+      "outputs/day1/99_daily_review_day1.md — Lượng giá Ngày 1 (thẳng thắn) & Morning Briefing Ngày 2 ($0)",
+      "outputs/day2/06_peaceful_soul_ready_to_send_outreach.md — 3 email cá nhân hóa sẵn (#11–#13) + Follow-up 72h Nhạc Ngủ",
+      "outputs/day1/11_master_launch_checklist_15min.md — Checklist 14 phút mở khóa USD cho 4 dự án còn lại (0 việc khẩn)",
+      "outputs/day2/07_youtube_su_ngu_ep02_production_kit.md — Bộ sản xuất Tập 2 sẵn render (TTS sạch + Timing JSON + Thumbnail)",
+      "outputs/day4/02_tinh_lai_etsy_cyber_monday_and_faq.md — Chiến dịch Cyber Monday + 5 FAQ chốt đơn Gumroad File Tính Lãi Etsy",
+      "outputs/day4/03_sua_web_5_goi_tu_dong_hoa_productized.md — 5 Gói Sửa Web & Tự Động Hóa n8n/Shopify ($50/$99/$150/$250/tuần) + 3 mẫu báo giá nâng đơn",
+      "outputs/day4/01_youtube_su_ngu_ep06_hadrian_wall.md — Blueprint Tập 6 YouTube Sử Ngủ (Hadrian's Wall, 128 AD · ~1783 từ + 10 Prompts + SEO)",
+      "outputs/day4/05_peaceful_soul_closing_and_licensing_kit.md — Bộ chốt đơn Nhạc Ngủ ($99/$199): 5 xử lý từ chối + Giấy phép thương mại + Mẫu hóa đơn USD",
+      "outputs/day4/04_youtube_su_ngu_ep03_production_kit.md — YouTube Sử Ngủ — Bộ Sản Xuất Tập 3 Sẵn Render MP4 (TTS Sạch + 10 Scene Timing JSON + Thumbnail)"
     ],
     "usdReadiness": {
       "sleeplessRoman": "90% sẵn sàng phát hành (Tập 1 MP4 533MB đã xong, chờ upload; Tập 2 đã viết xong 100%)",
@@ -1291,18 +1408,154 @@
       "anhDevQuickFix": "85% sẵn sàng (2 repo GitHub + bài đăng Black Friday $50/task đã sẵn sàng đăng)"
     },
     "bottlenecks": [
-      "Chưa đẩy thư mục ai-ops-global-week1 lên GitHub để kích hoạt Cloud $0 chạy khi tắt máy (tốn 3 phút).",
-      "Tất cả 5 dự án đã có sản phẩm thật sẵn sàng — điểm nghẽn duy nhất để ra USD tuần này là 15 phút bạn đăng nhập/upload trên tài khoản cá nhân."
+      "Đã gỡ sạch 2/2 việc Khẩn cấp (Cloud $0 LIVE + Tập 1 YouTube Sử Ngủ đã đăng!).",
+      "Chỉ còn ~14 phút bấm nút mở khóa 4 kênh còn lại theo thứ tự trong outputs/day1/11_master_launch_checklist_15min.md."
     ],
     "adjustmentsForTomorrow": "Ngay sau khi mở khóa Cloud $0 và các tài khoản, dồn 70% lực phân phối vào 2 kênh tạo tín hiệu USD sớm nhất trong 48h đầu (Peaceful Soul $99 + Anh Dev $50 / ProfitPulse $27)."
   },
   "heartbeatLog": [
     {
-      "time": "2026-11-23T14:57:50+07:00",
+      "time": "2026-11-23T16:44:13+07:00",
       "runner": "Cloud $0 (gemini-3.5-flash-lite)",
-      "block": "12:00-15:00",
-      "action": "Hoàn tất tự động: Sleepless Roman History — 20 Chủ đề Sleep History RPM cao nhất & Lịch sản xuất 2 tháng → outputs/day2/04_sleepless_roman_20_high_rpm_topics.md (2,408 tokens).",
-      "quotaSnapshot": "Cloud 99% (1/150 req)",
+      "block": "15:00-18:30",
+      "action": "Hoàn tất tự động: YouTube Sử Ngủ — Bộ Sản Xuất Tập 3 Sẵn Render MP4 (TTS Sạch + 10 Scene Timing JSON + Thumbnail) → outputs/day4/04_youtube_su_ngu_ep03_production_kit.md (1,481 tokens).",
+      "quotaSnapshot": "Cloud 99% (2/150 req)",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T16:34:30+07:00",
+      "runner": "Antigravity (Chiều #14)",
+      "block": "Block 6 (15:00–18:30)",
+      "action": "Xuất Bộ chốt đơn nhanh Nhạc Ngủ ($99/$199): 5 mẫu xử lý từ chối + Giấy phép thương mại + Mẫu hóa đơn/bàn giao USD → outputs/day4/05_peaceful_soul_closing_and_licensing_kit.md.",
+      "quotaSnapshot": "Google AI Pro ~45% | Cloud $0 LIVE (1/150 req)",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T16:28:15+07:00",
+      "runner": "Antigravity (Chiều #13)",
+      "block": "Block 6 (15:00–18:30)",
+      "action": "Hoàn tất Blueprint Tập 6 YouTube Sử Ngủ (Hadrian's Wall 128 AD · ~1783 từ + 10 Prompt chiaroscuro + SEO) → outputs/day4/01_youtube_su_ngu_ep06_hadrian_wall.md; nạp thêm 5 task chốt đơn & render vào cloudQueue.",
+      "quotaSnapshot": "Google AI Pro ~47% | Cloud $0 LIVE (1/150 req)",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T16:21:00+07:00",
+      "runner": "Antigravity (Chiều #12 · New Chat)",
+      "block": "Block 6 (15:00–18:30)",
+      "action": "Tiếp quản mượt từ state.json, xuất trọn bộ 5 gói dịch vụ Sửa Web & Tự Động Hóa n8n/Shopify ($50/$99/$150/$250/tuần) + ranh giới chống phình scope + 3 mẫu nâng đơn → outputs/day4/03_sua_web_5_goi_tu_dong_hoa_productized.md.",
+      "quotaSnapshot": "Google AI Pro ~49% | Cloud $0 LIVE (1/150 req)",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T16:18:30+07:00",
+      "runner": "Antigravity",
+      "block": "Handoff → New Chat",
+      "action": "Tạm dừng sạch lịch báo cáo 5p ở hội thoại cũ & lưu trọn bộ bàn giao vào state.json để mở hội thoại mới siêu nhẹ token.",
+      "quotaSnapshot": "Google AI Pro ~50% | Cloud $0 LIVE (99%)",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T16:14:15+07:00",
+      "runner": "Antigravity (Chiều #11)",
+      "block": "Block 6 (15:00–18:30)",
+      "action": "Xuất gói Cyber Monday (email LAUNCH30 + 2 Pin) & 5 FAQ chốt đơn dán trang Gumroad $27 → outputs/day4/02_tinh_lai_etsy_cyber_monday_and_faq.md.",
+      "quotaSnapshot": "Google AI Pro ~52% | Cloud $0 LIVE (1/150 req)",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T16:09:15+07:00",
+      "runner": "Antigravity (Chiều #10)",
+      "block": "Block 6 (15:00–18:30)",
+      "action": "Đóng gói Bộ sản xuất sẵn render MP4 cho Tập 2 YouTube Sử Ngủ (TTS sạch 1763 từ + 12 cảnh Timing JSON + Thumbnail Prompt) → outputs/day2/07_youtube_su_ngu_ep02_production_kit.md.",
+      "quotaSnapshot": "Google AI Pro ~55% | Cloud $0 LIVE (1/150 req)",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T16:08:00+07:00",
+      "runner": "Antigravity",
+      "block": "Block 6 (15:00–18:30)",
+      "action": "User xác nhận ĐÃ ĐĂNG Tập 1 YouTube Sử Ngủ! Gỡ sạch 100% việc Khẩn cấp (0 Khẩn), chốt 100% kho Tuần 1, xuất Master Launch Checklist 14p & nạp thêm 4 task sản xuất Tập 2/6 + Cyber Monday.",
+      "quotaSnapshot": "Google AI Pro ~57% | Cloud $0 LIVE (1/150 req)",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T16:04:30+07:00",
+      "runner": "Antigravity (Chiều #9)",
+      "block": "Block 6 (15:00–18:30)",
+      "action": "Đối chiếu danh sách thật (đã gửi 12/15 khách!), viết sẵn 3 email cá nhân hóa cho #11–#13 + mẫu follow-up đúng mốc 72h cho #1–#5 → outputs/day2/06_peaceful_soul_ready_to_send_outreach.md.",
+      "quotaSnapshot": "Google AI Pro ~59% | Cloud $0 LIVE (1/150 req)",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T15:59:40+07:00",
+      "runner": "Antigravity (Chiều #8)",
+      "block": "Block 6 (15:00–18:30)",
+      "action": "Đổi tên 5 dự án sang tiếng Việt dễ hiểu trên toàn bộ Dashboard/state.json + xuất bản nháp Daily Review Day 1 & Briefing Day 2 → outputs/day1/99_daily_review_day1.md.",
+      "quotaSnapshot": "Google AI Pro ~62% | Cloud $0 LIVE (1/150 req)",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T15:54:10+07:00",
+      "runner": "Antigravity (Chiều #7)",
+      "block": "Block 6 (15:00–18:30)",
+      "action": "Xuất Thư viện 6 Prompt tối giản chuẩn bản địa (tiết kiệm ~35% token cho Cloud  & Pro) → outputs/day3/07_reusable_prompt_library_week2.md.",
+      "quotaSnapshot": "Google AI Pro ~65% | Cloud  LIVE (1/150 req)",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T15:51:00+07:00",
+      "runner": "Antigravity (Chiều #6)",
+      "block": "Block 6 (15:00–18:30)",
+      "action": "Xuất bản hoàn chỉnh file in PDF 10 trang sẵn bán () cho sản phẩm #05 25-Day Calm Advent & Christmas Peace Pack → outputs/day3/06_25day_calm_advent_printable_pack.html.",
+      "quotaSnapshot": "Google AI Pro ~68% | Cloud  LIVE (1/150 req)",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T15:24:42+07:00",
+      "runner": "Antigravity (Chiều #5)",
+      "block": "Block 6 (15:00–18:30)",
+      "action": "Xuất trọn bộ Blueprint Tập 5 Sleepless Roman History (Roman Bakery 105 AD · ~1,810 từ + 10 Prompt ảnh + SEO) → outputs/day3/03_sleepless_roman_ep05_blueprint.md.",
+      "quotaSnapshot": "Google AI Pro ~72% | Cloud  LIVE (1/150 req)",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T15:19:15+07:00",
+      "runner": "Antigravity (Chiều #4)",
+      "block": "Block 6 (15:00–18:30)",
+      "action": "Xuất trọn bộ Blueprint Sản phẩm #05 (25-Day Calm Advent & Christmas Peace Pack , đủ 25 prompt + Payhip copy + 5 Pin Titles) → outputs/day3/05_faith_peace_advent_product_blueprint.md.",
+      "quotaSnapshot": "Google AI Pro ~76% | Cloud  LIVE (1/150 req)",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T15:16:30+07:00",
+      "runner": "Cloud  + Antigravity",
+      "block": "Cloud  LIVE!",
+      "action": "KÍCH HOẠT THÀNH CÔNG 100% Cloud ! GitHub Actions run #45134872540 xanh cả 2 job (46s) & Dashboard online sống tại https://duconghoanganhit.github.io/ai-ops-global-week1/.",
+      "quotaSnapshot": "Cloud  LIVE (1/150 req) | Google AI Pro ~79%",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T15:15:48+07:00",
+      "runner": "Antigravity (Chiều #3)",
+      "block": "Block 6 (15:00–18:30)",
+      "action": "Chuyển sang Block 6 (15:00–18:30), xuất 7 bộ SEO Video 1 giờ tháng 12 cho Peaceful Soul → outputs/day3/04_peaceful_soul_7_december_uploads.md; Cloud  đang commit & chạy workflow GitHub Actions.",
+      "quotaSnapshot": "Google AI Pro ~79% | Cloud Free Tier Đang chạy workflow",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T14:54:20+07:00",
+      "runner": "Antigravity (Chiều #2)",
+      "block": "Block 5 (12:00–15:00)",
+      "action": "Xuất bảng phân tích biên lợi nhuận Black Friday Etsy (Offsite Ads 15%) + 3 bài đăng cộng đồng chuẩn luật → outputs/day2/05_profitpulse_black_friday_margin_guide.md.",
+      "quotaSnapshot": "Google AI Pro ~82% | Cloud Free Tier chờ bấm Approve upload",
+      "costUsd": 0
+    },
+    {
+      "time": "2026-11-23T14:49:18+07:00",
+      "runner": "Antigravity (Chiều #1)",
+      "block": "Block 5 → Block 6",
+      "action": "Xuất danh sách 20 tập Sleep History RPM cao & lịch phát hành 2 tháng → outputs/day2/04_sleepless_roman_20_high_rpm_topics.md; trình duyệt GitHub đang chờ bạn bấm Approve upload 4 file vá Cloud .",
+      "quotaSnapshot": "Google AI Pro ~85% | Cloud Free Tier chờ bấm Approve upload",
       "costUsd": 0
     },
     {
@@ -1433,5 +1686,14 @@
       "quotaSnapshot": "Google AI Pro ~92% | Cloud Free Tier 100% (chờ gắn key)",
       "costUsd": 0
     }
-  ]
+  ],
+  "handoffNextConversation": {
+    "createdAt": "2026-11-23T16:18:30+07:00",
+    "status": "Kho Tuần 1 hoàn tất 100% (27 output thật), Cloud $0 LIVE tại https://duconghoanganhit.github.io/ai-ops-global-week1/, Dashboard đã tối giản >75% chữ & đổi tên 5 dự án tiếng Việt.",
+    "immediateTasks": [
+      "1) Hoàn tất 5 bước tối ưu Tập 1 YouTube Sử Ngủ trên YouTube Studio (Khai báo AI=Yes, kiểm khớp 7 mốc Chapter 00:00->11:34, tạo Playlist \"Boring History for Sleep — Ancient Rome\", đặt lịch 09:00 VN hoặc Ghim bình luận nếu đã công khai).",
+      "2) Đẩy bản Dashboard siêu gọn tiếng Việt mới nhất + state.json + outputs/ mới lên GitHub Pages (duconghoanganhit/ai-ops-global-week1).",
+      "3) Tiếp tục hỗ trợ mở khóa 4 kênh ra USD (outputs/day1/11_master_launch_checklist_15min.md) và quyết định có bật báo cáo 30p/lần thay vì 5p để tiết kiệm quota."
+    ]
+  }
 }

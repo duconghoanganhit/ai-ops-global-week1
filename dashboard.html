@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Ops 20h — Dashboard</title>
+  <title>AI Ops 20h</title>
   <style>
     :root {
       --bg: #f8fafc;
@@ -30,26 +30,25 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
       background: var(--bg);
       color: var(--ink);
-      font-size: 14px;
-      line-height: 1.45;
+      font-size: 13.5px;
+      line-height: 1.4;
     }
 
-    .wrap { max-width: 1180px; margin: 0 auto; padding: 16px 18px 40px; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 14px 16px 36px; }
 
-    /* Slim Topbar */
+    /* Top Bar */
     .top {
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
-      background: var(--card); border: 1px solid var(--line); border-radius: var(--r);
-      padding: 12px 16px; margin-bottom: 14px;
+      display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+      margin-bottom: 12px;
     }
-    .top-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .top-left h1 { margin: 0; font-size: 1rem; font-weight: 700; letter-spacing: -0.02em; }
-    .top-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .top-l { display: flex; align-items: center; gap: 8px; }
+    .top h1 { margin: 0; font-size: 16px; font-weight: 800; letter-spacing: -0.02em; }
+    .top-r { display: flex; align-items: center; gap: 6px; }
 
-    /* Pills */
+    /* Pills & Buttons */
     .tag {
       display: inline-flex; align-items: center; gap: 5px;
-      padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 600;
+      padding: 2px 8px; border-radius: 999px; font-size: 11.5px; font-weight: 600;
       border: 1px solid var(--line); background: #fff; color: var(--ink); white-space: nowrap;
     }
     .tag.blue { background: var(--blue-bg); color: var(--blue); border-color: #bfdbfe; }
@@ -59,223 +58,240 @@
     .tag.purple { background: var(--purple-bg); color: var(--purple); border-color: #ddd6fe; }
     .tag.muted { color: var(--muted); background: #f8fafc; }
 
-    .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
-    .dot.pulse { animation: pulse 1.8s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .dot.pulse { animation: p 1.8s infinite; }
+    @keyframes p { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-    /* Buttons */
     .btn {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line);
-      background: #fff; color: var(--ink); font-size: 12px; font-weight: 600;
+      padding: 4px 9px; border-radius: 7px; border: 1px solid var(--line);
+      background: #fff; color: var(--ink); font-size: 11.5px; font-weight: 600;
       cursor: pointer; white-space: nowrap;
     }
     .btn:hover { background: #f1f5f9; }
-    .btn.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
-    .btn.primary:hover { background: #1e293b; }
-    .btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
-    .btn.ghost { border-color: transparent; background: transparent; color: var(--blue); padding: 4px 7px; }
-    .btn.ghost:hover { background: var(--blue-bg); }
+    .btn.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .btn.link { border: 0; background: transparent; color: var(--blue); padding: 2px 5px; }
+    .btn.link:hover { background: var(--blue-bg); }
 
-    /* Cards & Grids */
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 14px; }
-    .grid-2 { display: grid; grid-template-columns: 1.15fr 1fr; gap: 14px; margin-bottom: 14px; }
-    @media (max-width: 960px) { .grid-3, .grid-2 { grid-template-columns: 1fr; } }
-
-    .card {
+    /* 4 KPI Tiles */
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 12px; }
+    @media (max-width: 820px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+    .kpi {
       background: var(--card); border: 1px solid var(--line); border-radius: var(--r);
-      padding: 14px 16px; margin-bottom: 14px;
+      padding: 12px 14px; display: flex; flex-direction: column; justify-content: space-between; gap: 6px;
     }
-    .grid-3 .card, .grid-2 .card { margin-bottom: 0; }
-
-    .ch {
-      display: flex; align-items: center; justify-content: space-between; gap: 8px;
-      margin-bottom: 10px;
-    }
-    .ch h2 { margin: 0; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); }
+    .kpi-h { display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+    .kpi-v { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1.1; }
+    .kpi-s { font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; align-items: center; }
 
     /* Bars */
-    .bar { height: 6px; background: #e2e8f0; border-radius: 99px; overflow: hidden; }
+    .bar { height: 5px; background: #e2e8f0; border-radius: 99px; overflow: hidden; flex: 1; }
     .bar > i { display: block; height: 100%; background: var(--blue); border-radius: 99px; }
     .bar > i.green { background: var(--green); }
     .bar > i.amber { background: var(--amber); }
     .bar > i.red { background: var(--red); }
 
-    /* Top 3 Compact Cards */
-    .mini-list { margin: 8px 0 0; padding: 0 0 0 16px; font-size: 13px; color: #334155; }
-    .mini-list li { margin-bottom: 4px; }
-    .q-row { margin-bottom: 10px; }
-    .q-head { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-    .q-sub { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
-    .q-edit { display: none; gap: 6px; align-items: center; flex-wrap: wrap; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line); }
+    .q-line { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; }
+    .q-line span:first-child { width: 38px; color: var(--muted); font-size: 11px; }
+    .q-line span:last-child { width: 32px; text-align: right; font-variant-numeric: tabular-nums; }
+    .q-edit { display: none; gap: 5px; align-items: center; margin-top: 4px; }
     .q-edit.open { display: flex; }
-    .q-edit input { width: 64px; padding: 4px 6px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; }
+    .q-edit input { width: 48px; padding: 2px 5px; border: 1px solid #cbd5e1; border-radius: 5px; font-size: 11.5px; }
+
+    /* Cards & Layout */
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--r);
+      padding: 13px 15px; margin-bottom: 12px;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1.05fr 1fr; gap: 12px; }
+    @media (max-width: 820px) { .grid-2 { grid-template-columns: 1fr; } }
+    .grid-2 .card { margin-bottom: 0; }
+    .ch { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .ch h2 { margin: 0; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
 
     /* Calendar */
-    .day-pills { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
-    .cal-list { display: flex; flex-direction: column; gap: 6px; }
-    .cal-item {
-      display: grid; grid-template-columns: 98px 1fr auto; gap: 10px; align-items: center;
-      padding: 8px 12px; border: 1px solid var(--line); border-left: 3px solid #94a3b8;
-      border-radius: 9px; cursor: pointer; background: #fff;
+    .days { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px; }
+    .cal-grid-day { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+    @media (max-width: 780px) { .cal-grid-day { grid-template-columns: repeat(2, 1fr); } }
+    .slot {
+      border: 1px solid var(--line); border-left: 3px solid #94a3b8; border-radius: 9px;
+      padding: 8px 10px; cursor: pointer; background: #fff;
+      display: flex; flex-direction: column; gap: 3px;
     }
-    .cal-item:hover { border-color: #cbd5e1; background: #f8fafc; }
-    .cal-item.done { border-left-color: var(--green); }
-    .cal-item.running { border-left-color: var(--blue); background: #f5f9ff; border-color: #bfdbfe; }
-    .cal-item.blocked { border-left-color: var(--amber); background: var(--amber-bg); }
-    .cal-item.rest {
+    .slot:hover { background: #f8fafc; }
+    .slot.done { border-left-color: var(--green); }
+    .slot.run { border-left-color: var(--blue); background: var(--blue-bg); border-color: #bfdbfe; }
+    .slot.blk { border-left-color: var(--amber); background: var(--amber-bg); }
+    .slot.rest {
       border-left-color: var(--purple); border-color: #ddd6fe;
-      background: repeating-linear-gradient(-45deg, #faf8ff, #faf8ff 8px, #f3efff 8px, #f3efff 16px);
+      background: repeating-linear-gradient(-45deg, #faf8ff, #faf8ff 7px, #f3efff 7px, #f3efff 14px);
     }
-    .cal-t { font-weight: 700; font-size: 12.5px; font-variant-numeric: tabular-nums; }
-    .cal-n { font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .cal-r { display: flex; gap: 6px; align-items: center; }
+    .slot-top { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; font-weight: 600; }
+    .slot-name { font-weight: 700; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    /* 7-Day Grid */
-    .wk-grid { display: grid; grid-template-columns: repeat(7, minmax(145px, 1fr)); gap: 6px; overflow-x: auto; padding-bottom: 4px; }
-    .wk-col { background: #f8fafc; border: 1px solid var(--line); border-radius: 9px; padding: 6px; display: flex; flex-direction: column; gap: 5px; }
-    .wk-col.today { border-color: var(--blue); background: #f5f9ff; }
-    .wk-head { font-size: 12px; font-weight: 700; padding-bottom: 4px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; }
-    .wk-cell {
+    /* 7-Day View */
+    .wk { display: grid; grid-template-columns: repeat(7, minmax(118px, 1fr)); gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+    .wk-c { background: #f8fafc; border: 1px solid var(--line); border-radius: 9px; padding: 6px; display: flex; flex-direction: column; gap: 4px; }
+    .wk-c.now { border-color: var(--blue); background: #f5f9ff; }
+    .wk-h { font-size: 11.5px; font-weight: 700; padding-bottom: 4px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; }
+    .wk-i {
       background: #fff; border: 1px solid var(--line); border-left: 3px solid #94a3b8;
-      border-radius: 6px; padding: 5px 7px; font-size: 11.5px; cursor: pointer;
+      border-radius: 5px; padding: 4px 6px; font-size: 11px; cursor: pointer;
+      display: flex; justify-content: space-between; gap: 4px;
     }
-    .wk-cell.done { border-left-color: var(--green); }
-    .wk-cell.running { border-left-color: var(--blue); background: var(--blue-bg); }
-    .wk-cell.rest { border-left-color: var(--purple); background: var(--purple-bg); color: var(--purple); }
-    .wk-cell b { display: block; font-size: 11px; color: var(--muted); }
-    .wk-cell span { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; font-weight: 600; }
+    .wk-i.done { border-left-color: var(--green); }
+    .wk-i.run { border-left-color: var(--blue); background: var(--blue-bg); }
+    .wk-i.rest { border-left-color: var(--purple); background: var(--purple-bg); color: var(--purple); }
+    .wk-i b { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .wk-i span { color: var(--muted); font-size: 10px; font-variant-numeric: tabular-nums; flex-shrink: 0; }
 
-    /* Compact Project Rows */
-    .p-row {
-      display: grid; grid-template-columns: 1.4fr 110px 92px auto; gap: 10px; align-items: center;
-      padding: 9px 0; border-bottom: 1px solid var(--line);
+    /* Projects */
+    .pr {
+      display: grid; grid-template-columns: 1.25fr 92px 54px auto; gap: 8px; align-items: center;
+      padding: 8px 0; border-bottom: 1px solid var(--line);
     }
-    .p-row:last-child { border-bottom: 0; padding-bottom: 0; }
-    .p-name { font-weight: 600; font-size: 13.5px; }
-    .p-sub { font-size: 11.5px; color: var(--muted); }
-    .p-eta { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; }
+    .pr:last-child { border-bottom: 0; padding-bottom: 0; }
+    .pr-n { font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pr-p { display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .pr-e { font-size: 11.5px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
 
-    /* Compact Blockers (Expand on click) */
-    .b-row {
-      border: 1px solid var(--line); border-radius: 9px; padding: 8px 11px; margin-bottom: 7px; background: #fff;
+    /* Blockers */
+    .bl { border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; margin-bottom: 6px; }
+    .bl:last-child { margin-bottom: 0; }
+    .bl.done { opacity: 0.4; }
+    .bl-t { display: flex; align-items: center; justify-content: space-between; gap: 7px; cursor: pointer; }
+    .bl-l { display: flex; align-items: center; gap: 6px; min-width: 0; flex: 1; }
+    .bl-n { font-weight: 600; font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bl-d { display: none; margin-top: 7px; padding-top: 7px; border-top: 1px dashed var(--line); font-size: 12px; color: #334155; }
+    .bl.open .bl-d { display: block; }
+
+    /* Minimal Live Heartbeat Report Strip */
+    .hb {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--r);
+      padding: 11px 14px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 5px;
     }
-    .b-row.done { opacity: 0.45; }
-    .b-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; cursor: pointer; }
-    .b-left { display: flex; align-items: center; gap: 7px; min-width: 0; flex: 1; }
-    .b-title { font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .b-detail {
-      display: none; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line);
-      font-size: 12.5px; color: #334155;
+    .hb-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+    .hb-meta { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .hb-done {
+      display: flex; align-items: center; gap: 7px; font-size: 13px; min-width: 0;
     }
-    .b-row.open .b-detail { display: block; }
-    .b-ns { margin-top: 5px; color: var(--green); font-size: 12px; font-weight: 500; }
+    .hb-done b { color: var(--muted); font-weight: 600; font-size: 12px; flex-shrink: 0; }
+    .hb-link {
+      border: 0; background: transparent; padding: 0; color: var(--ink); font: inherit; font-weight: 600;
+      cursor: pointer; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .hb-link:hover { color: var(--blue); text-decoration: underline; }
+    .hb-sub {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums;
+    }
+    .hb-sub strong { color: var(--ink); font-weight: 600; }
+    .hb-hist {
+      display: none; margin-top: 6px; padding-top: 8px; border-top: 1px solid var(--line);
+      flex-direction: column; gap: 5px;
+    }
+    .hb-hist.open { display: flex; }
+    .hb-row {
+      display: flex; align-items: center; gap: 8px; font-size: 12px; color: #334155;
+    }
+    .hb-row time { color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; flex-shrink: 0; width: 38px; }
+    .hb-row span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
 
     /* Modal */
-    .modal-bg {
-      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.5);
-      display: none; align-items: center; justify-content: center; padding: 18px; z-index: 999;
+    .m-bg {
+      position: fixed; inset: 0; background: rgba(15,23,42,0.48);
+      display: none; align-items: center; justify-content: center; padding: 16px; z-index: 99;
     }
-    .modal-bg.open { display: flex; }
-    .modal {
-      background: #fff; border-radius: 14px; width: min(820px, 100%); max-height: 85vh;
-      display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.22);
+    .m-bg.open { display: flex; }
+    .m {
+      background: #fff; border-radius: 13px; width: min(780px, 100%); max-height: 84vh;
+      display: flex; flex-direction: column; overflow: hidden;
     }
-    .modal-h {
-      padding: 12px 16px; border-bottom: 1px solid var(--line);
-      display: flex; justify-content: space-between; align-items: center; gap: 10px;
-    }
-    .modal-b {
-      padding: 16px 20px; overflow-y: auto; font-size: 13.5px; line-height: 1.6;
-      white-space: pre-wrap; color: #1e293b;
-    }
-
-    @media (max-width: 700px) {
-      .cal-item { grid-template-columns: 1fr; gap: 4px; }
-      .p-row { grid-template-columns: 1fr auto; }
-      .p-eta { display: none; }
-    }
+    .m-h { padding: 11px 15px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .m-b { padding: 15px 18px; overflow-y: auto; white-space: pre-wrap; font-size: 13px; line-height: 1.55; color: #1e293b; }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <!-- TOP STRIP -->
+    <!-- SLIM HEADER -->
     <header class="top">
-      <div class="top-left">
-        <h1>AI Ops Global · 20h/Ngày</h1>
-        <span id="runnerTag" class="tag blue"><span class="dot pulse"></span> ...</span>
-        <span id="costTag" class="tag green">$0 Chi phí</span>
-        <span id="weekTag" class="tag muted">Tuần 1: --%</span>
+      <div class="top-l">
+        <h1>AI Ops 20h</h1>
+        <span id="runTag" class="tag blue"><span class="dot pulse"></span> ...</span>
       </div>
-      <div class="top-right">
-        <span id="clockVn" class="tag purple">VN --:--</span>
-        <span id="clockUs" class="tag muted">US --:--</span>
+      <div class="top-r">
+        <span id="vnClk" class="tag blue">VN --:--</span>
+        <span id="usClk" class="tag muted">US --:--</span>
+        <a class="btn" href="./report.html" style="text-decoration:none">Minimal</a>
         <button class="btn" onclick="reloadData()">↻</button>
       </div>
     </header>
 
-    <!-- ROW 1: (5) BRIEFING + (4) QUOTA + (6) DAILY REVIEW -->
-    <div class="grid-3">
-      <!-- 5. Morning Briefing & Cost -->
-      <section class="card">
-        <div class="ch">
-          <h2>Đầu ngày &amp; Chi phí</h2>
-          <button class="btn ghost" id="btnReadBriefing">Xem đủ &rarr;</button>
-        </div>
-        <div id="briefingBox"></div>
-      </section>
+    <!-- LIVE 3-LINE MINIMAL HEARTBEAT REPORT -->
+    <section class="hb" id="hbBox"></section>
 
-      <!-- 4. Token / Quota -->
-      <section class="card">
-        <div class="ch">
-          <h2>Token / Quota</h2>
-          <button class="btn ghost" onclick="toggleQuotaEdit()">Cập nhật</button>
-        </div>
-        <div id="quotaBox"></div>
-      </section>
+    <!-- 4 COMPACT TILES: (5) BRIEFING/COST · (4) QUOTA · (6) REVIEW · (3) BLOCKERS COUNT -->
+    <section class="kpis">
+      <div class="kpi">
+        <div class="kpi-h"><span>Chi phí</span><button class="btn link" id="btnBrief">Briefing</button></div>
+        <div class="kpi-v" id="costVal" style="color:var(--green)">$0</div>
+        <div class="kpi-s"><span id="dayLbl">Ngày 1/7</span><span>Free Tier</span></div>
+      </div>
 
-      <!-- 6. Daily Review -->
-      <section class="card">
-        <div class="ch">
-          <h2>Lượng giá cuối ngày</h2>
-          <button class="btn ghost" onclick="openReviewModal()">Chi tiết &amp; Log &rarr;</button>
-        </div>
-        <div id="reviewBox"></div>
-      </section>
-    </div>
-
-    <!-- ROW 2: (1) GOOGLE CALENDAR SCHEDULE -->
-    <section class="card">
-      <div class="ch">
-        <h2>Lịch 20h · Nghỉ cố định 20:00–24:00</h2>
-        <div style="display:flex;gap:5px">
-          <button class="btn active" id="vDay" onclick="setCalView('day')">Ngày</button>
-          <button class="btn" id="vWeek" onclick="setCalView('week')">7 Ngày</button>
+      <div class="kpi">
+        <div class="kpi-h"><span>Quota</span><button class="btn link" onclick="document.getElementById('qEdit').classList.toggle('open')">Sửa</button></div>
+        <div id="qBars" style="display:flex;flex-direction:column;gap:6px"></div>
+        <div class="q-edit" id="qEdit">
+          <input id="inPro" type="number" min="0" max="100" title="Pro %">
+          <input id="inReq" type="number" min="0" title="Cloud req">
+          <button class="btn on" onclick="saveQ()">Lưu</button>
         </div>
       </div>
-      <div class="day-pills" id="dayPills"></div>
+
+      <div class="kpi">
+        <div class="kpi-h"><span>Tuần 1</span><button class="btn link" onclick="openReview()">Review</button></div>
+        <div class="kpi-v" id="wkPct">--%</div>
+        <div class="kpi-s"><span id="fileCnt">0 file</span><span>Chốt 18:30</span></div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-h"><span>Cần bạn</span><button class="btn link" onclick="filterBlk('Khẩn cấp')">Khẩn</button></div>
+        <div class="kpi-v" id="blkCnt">0</div>
+        <div class="kpi-s"><span id="urgCnt">0 khẩn</span><span id="minSum">0 phút</span></div>
+      </div>
+    </section>
+
+    <!-- (1) CALENDAR 20H / 4H REST -->
+    <section class="card">
+      <div class="ch">
+        <h2>Lịch 20h · Nghỉ 20:00–24:00</h2>
+        <div style="display:flex;gap:4px">
+          <button class="btn on" id="vDay" onclick="setView('day')">Ngày</button>
+          <button class="btn" id="vWk" onclick="setView('week')">7 Ngày</button>
+        </div>
+      </div>
+      <div class="days" id="dayBar"></div>
       <div id="calBox"></div>
     </section>
 
-    <!-- ROW 3: (2) PROJECTS PROGRESS + (3) BLOCKERS -->
+    <!-- (2) PROJECTS + (3) BLOCKERS -->
     <div class="grid-2">
       <section class="card">
         <div class="ch">
-          <h2>Tiến độ, ETA &amp; Kết quả</h2>
-          <span class="tag muted" id="outCountTag">0 file</span>
+          <h2>Dự án &amp; ETA</h2>
+          <span class="tag muted">Bấm Mở xem file</span>
         </div>
         <div id="projBox"></div>
       </section>
 
       <section class="card">
         <div class="ch">
-          <h2>Việc AI kẹt — Cần bạn làm</h2>
-          <div style="display:flex;gap:4px;flex-wrap:wrap" id="blkFilterBar">
-            <button class="btn active" onclick="setBlkFilter('ALL',this)">Tất cả</button>
-            <button class="btn" onclick="setBlkFilter('Khẩn cấp',this)">Khẩn</button>
-            <button class="btn" onclick="setBlkFilter('Ưu tiên',this)">Ưu tiên</button>
-            <button class="btn" onclick="setBlkFilter('Bình thường',this)">Thường</button>
-            <button class="btn" onclick="setBlkFilter('Để sau',this)">Sau</button>
+          <h2>Việc AI kẹt</h2>
+          <div style="display:flex;gap:3px;flex-wrap:wrap" id="fBar">
+            <button class="btn on" data-f="ALL" onclick="filterBlk('ALL')">Tất</button>
+            <button class="btn" data-f="Khẩn cấp" onclick="filterBlk('Khẩn cấp')">Khẩn</button>
+            <button class="btn" data-f="Ưu tiên" onclick="filterBlk('Ưu tiên')">Ưu</button>
+            <button class="btn" data-f="Bình thường" onclick="filterBlk('Bình thường')">Thường</button>
+            <button class="btn" data-f="Để sau" onclick="filterBlk('Để sau')">Sau</button>
           </div>
         </div>
         <div id="blkBox"></div>
@@ -284,229 +300,235 @@
   </div>
 
   <!-- MODAL -->
-  <div class="modal-bg" id="modalBg" onclick="if(event.target===this) closeModal()">
-    <div class="modal">
-      <div class="modal-h">
-        <strong id="mTitle" style="font-size:14px">Xem nhanh</strong>
-        <div style="display:flex;gap:6px">
-          <button class="btn" onclick="copyModal()">Copy</button>
-          <button class="btn primary" onclick="closeModal()">Đóng</button>
+  <div class="m-bg" id="mBg" onclick="if(event.target===this) closeM()">
+    <div class="m">
+      <div class="m-h">
+        <strong id="mT" style="font-size:13.5px">Chi tiết</strong>
+        <div style="display:flex;gap:5px">
+          <button class="btn" onclick="copyM()">Copy</button>
+          <button class="btn on" onclick="closeM()">Đóng</button>
         </div>
       </div>
-      <div class="modal-b" id="mBody"></div>
+      <div class="m-b" id="mB"></div>
     </div>
   </div>
 
   <script src="./state.js"></script>
   <script>
-    let STATE = null;
-    let CAL_VIEW = 'day';
-    let SEL_DAY = 1;
-    let BLK_FILTER = 'ALL';
-    const LS_Q = 'ai_ops_local_quota_v1';
-    const LS_B = 'ai_ops_resolved_blockers_v1';
+    let S = null, VIEW = 'day', DAY = 1, BF = 'ALL';
+    const LQ = 'ai_ops_local_quota_v1', LB = 'ai_ops_resolved_blockers_v1';
+    const esc = (x) => String(x ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
-    const esc = (s) => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-    const shortGoal = (s) => s.length > 68 ? s.slice(0, 66) + '…' : s;
+    const SHORT_PROJ = {
+      'sleepless-roman': 'YouTube Sử Ngủ (US)',
+      'peaceful-soul': 'Nhạc Ngủ & Bán Video',
+      'profitpulse-etsy': 'File Tính Lãi Etsy',
+      'faith-peace-kit': 'Sổ In Gia Đình (PDF)',
+      'anh-dev-quickfix': 'Sửa Lỗi Web ($50)'
+    };
 
-    function fmtClock() {
+    const SHORT_BLK = {
+      'blk-01': 'Bật Cloud $0 GitHub',
+      'blk-02': 'Đăng Tập 1 YT Sử Ngủ',
+      'blk-03': 'Mở Free File Tính Lãi Etsy',
+      'blk-04': 'Gửi 6 khách Nhạc Ngủ',
+      'blk-05': 'Đăng nhập bán Sổ In PDF',
+      'blk-06': 'Đăng bài Sửa Lỗi Web $50'
+    };
+
+    function shortSlot(b) {
+      if (b.status === 'Nghỉ 4h') return '🌙 Nghỉ 4h';
+      const g = b.group || '';
+      if (g.includes('Briefing')) return 'Đầu ngày';
+      if (g.includes('YouTube')) return 'YT Sử & Nhạc';
+      if (g.includes('#1')) return 'Tính Lãi Etsy';
+      if (g.includes('#2')) return 'Sổ In PDF';
+      if (g.includes('#3')) return 'Sửa Web $50';
+      if (g.includes('Cải tiến')) return 'Kiểm & Dự phòng';
+      if (g.includes('Review')) return 'Tổng kết';
+      return (b.title || '').slice(0, 16);
+    }
+
+    function tickClock() {
       const now = new Date();
       const vn = new Intl.DateTimeFormat('vi-VN', { timeZone:'Asia/Ho_Chi_Minh', hour:'2-digit', minute:'2-digit', hour12:false }).format(now);
       const us = new Intl.DateTimeFormat('en-US', { timeZone:'America/New_York', hour:'2-digit', minute:'2-digit', hour12:false }).format(now);
       const hr = Number(new Intl.DateTimeFormat('en-GB', { timeZone:'Asia/Ho_Chi_Minh', hour:'2-digit', hour12:false }).format(now));
-      const el = document.getElementById('clockVn');
-      el.textContent = `VN ${vn}` + (hr >= 20 ? ' · NGHỈ' : '');
+      const el = document.getElementById('vnClk');
+      el.textContent = `VN ${vn}` + (hr >= 20 ? ' · Nghỉ' : '');
       el.className = hr >= 20 ? 'tag purple' : 'tag blue';
-      document.getElementById('clockUs').textContent = `US ${us}`;
+      document.getElementById('usClk').textContent = `US ${us}`;
     }
 
-    async function loadState() {
-      let data = null;
+    async function load() {
+      let d = null;
       if (location.protocol.startsWith('http')) {
-        try {
-          const r = await fetch(`./state.json?t=${Date.now()}`, { cache:'no-store' });
-          if (r.ok) data = await r.json();
-        } catch {}
+        try { const r = await fetch(`./state.json?t=${Date.now()}`, { cache:'no-store' }); if (r.ok) d = await r.json(); } catch {}
       }
-      if (!data && window.__AI_OPS_STATE__) data = JSON.parse(JSON.stringify(window.__AI_OPS_STATE__));
-      if (!data) {
-        document.body.innerHTML = '<p style="padding:30px">Không tải được state.json</p>';
-        return;
-      }
-      STATE = data;
-      SEL_DAY = STATE.meta?.currentDay || 1;
+      if (!d && window.__AI_OPS_STATE__) d = JSON.parse(JSON.stringify(window.__AI_OPS_STATE__));
+      if (!d) return;
+      S = d;
+      DAY = S.meta?.currentDay || 1;
       try {
-        const q = JSON.parse(localStorage.getItem(LS_Q) || 'null');
+        const q = JSON.parse(localStorage.getItem(LQ) || 'null');
         if (q) {
-          if (typeof q.proPct === 'number') STATE.quota.googleAiPro.estimatedRemainingPct = q.proPct;
+          if (typeof q.proPct === 'number') S.quota.googleAiPro.estimatedRemainingPct = q.proPct;
           if (typeof q.cloudReq === 'number') {
-            STATE.quota.cloudFreeTier.requestsUsedToday = q.cloudReq;
-            STATE.quota.cloudFreeTier.remainingPct = Math.max(0, Math.round((1 - q.cloudReq / (STATE.quota.cloudFreeTier.dailySoftCap || 150)) * 100));
+            S.quota.cloudFreeTier.requestsUsedToday = q.cloudReq;
+            S.quota.cloudFreeTier.remainingPct = Math.max(0, Math.round((1 - q.cloudReq / (S.quota.cloudFreeTier.dailySoftCap || 150)) * 100));
           }
         }
       } catch {}
-      renderAll();
+      render();
     }
 
-    function renderAll() {
-      const m = STATE.meta;
-      document.getElementById('runnerTag').innerHTML = `<span class="dot pulse"></span> ${esc(m.lastRunner)}`;
-      const cost = STATE.briefing?.costProposal?.totalUsd || 0;
-      const ct = document.getElementById('costTag');
-      ct.textContent = cost === 0 ? '$0 Chi phí' : `Đề xuất $${cost}`;
-      ct.className = cost === 0 ? 'tag green' : 'tag amber';
-      document.getElementById('weekTag').textContent = `Tuần 1: ${STATE.dailyReview.weekCompletionPct}%`;
+    const doneMap = () => { try { return JSON.parse(localStorage.getItem(LB) || '{}'); } catch { return {}; } };
 
-      renderBriefing();
-      renderQuota();
-      renderReview();
-      renderCalendar();
-      renderProjects();
-      renderBlockers();
-    }
+    function render() {
+      const m = S.meta;
+      document.getElementById('runTag').innerHTML = `<span class="dot pulse"></span> ${esc(m.cloudActivated ? 'Cloud $0 + Pro' : m.lastRunner)}`;
 
-    function renderBriefing() {
-      const b = STATE.briefing;
-      const cp = b.costProposal || { totalUsd: 0 };
-      const costBadge = cp.totalUsd === 0
-        ? `<span class="tag green">✓ Chi phí hôm nay: $0</span>`
-        : `<span class="tag amber">⚠ Đề xuất chi: $${cp.totalUsd}</span>`;
-      document.getElementById('briefingBox').innerHTML = `
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap">
-          ${costBadge}
-          <span style="font-size:11.5px;color:var(--muted)">Ngày ${STATE.meta.currentDay}/7</span>
-        </div>
-        <ul class="mini-list">
-          ${(b.goalsToday || []).slice(0,3).map(g => `<li>${esc(shortGoal(g))}</li>`).join('')}
-        </ul>
-      `;
-      document.getElementById('btnReadBriefing').onclick = () => openFile(b.briefingFile, `Morning Briefing — ${b.dayLabel}`);
-    }
+      const cost = S.briefing?.costProposal?.totalUsd || 0;
+      const cv = document.getElementById('costVal');
+      cv.textContent = `$${cost}`;
+      cv.style.color = cost === 0 ? 'var(--green)' : 'var(--amber)';
+      document.getElementById('dayLbl').textContent = `Ngày ${m.currentDay}/7`;
+      document.getElementById('btnBrief').onclick = () => openFile(S.briefing.briefingFile, `Briefing Ngày ${m.currentDay}`);
 
-    function renderQuota() {
-      const p = STATE.quota.googleAiPro;
-      const c = STATE.quota.cloudFreeTier;
+      const p = S.quota.googleAiPro, c = S.quota.cloudFreeTier;
       const pc = p.estimatedRemainingPct <= 25 ? 'red' : p.estimatedRemainingPct <= 45 ? 'amber' : 'green';
       const cc = c.remainingPct <= 20 ? 'red' : 'green';
-      document.getElementById('quotaBox').innerHTML = `
-        <div class="q-row">
-          <div class="q-head"><span>Google AI Pro</span><span style="color:var(--${pc})">${p.estimatedRemainingPct}%</span></div>
-          <div class="bar"><i class="${pc}" style="width:${p.estimatedRemainingPct}%"></i></div>
-          <div class="q-sub">${p.estimatedRemainingPct <= 25 ? '⚠ Sắp thấp — ưu tiên task nhẹ' : `${p.checksToday} nhịp hôm nay · Báo cáo 5p`}</div>
+      document.getElementById('qBars').innerHTML = `
+        <div class="q-line"><span>Pro</span><div class="bar"><i class="${pc}" style="width:${p.estimatedRemainingPct}%"></i></div><span>${p.estimatedRemainingPct}%</span></div>
+        <div class="q-line"><span>Cloud</span><div class="bar"><i class="${cc}" style="width:${c.remainingPct}%"></i></div><span>${c.remainingPct}%</span></div>
+      `;
+      document.getElementById('inPro').value = p.estimatedRemainingPct;
+      document.getElementById('inReq').value = c.requestsUsedToday;
+
+      document.getElementById('wkPct').textContent = `${S.dailyReview.weekCompletionPct}%`;
+      document.getElementById('fileCnt').textContent = `${(S.dailyReview.realOutputsToday || []).length} file`;
+
+      const dm = doneMap();
+      const openB = (S.blockers || []).filter(b => b.status !== 'resolved' && !dm[b.id]);
+      document.getElementById('blkCnt').textContent = openB.length;
+      document.getElementById('urgCnt').textContent = `${openB.filter(b => b.priority === 'Khẩn cấp').length} khẩn`;
+      document.getElementById('minSum').textContent = `~${openB.reduce((a,b) => a + (b.estMinutes || 0), 0)}p`;
+
+      renderHb();
+      renderCal();
+      renderProj();
+      renderBlk();
+    }
+
+    function extractPath(txt) {
+      const m = String(txt || '').match(/((?:outputs|demo)\/[^\s,;)]+\.(?:md|html|json|txt))/i);
+      return m ? m[1] : '';
+    }
+
+    function renderHb() {
+      const box = document.getElementById('hbBox');
+      const logs = S.heartbeatLog || [];
+      const top = logs[0];
+      if (!top) { box.style.display = 'none'; return; }
+      const hhmm = (top.time || '').slice(11, 16) || '--:--';
+      const beatMatch = String(top.runner || '').match(/#\d+/);
+      const beat = beatMatch ? beatMatch[0] : (top.block || 'Live');
+      const cost = S.briefing?.costProposal?.totalUsd || 0;
+      const file = extractPath(top.action);
+      const fileLabel = file ? file.split('/').pop() : '';
+      const cleanAction = String(top.action || '').replace(/\s*→\s*(?:outputs|demo)\/[^\s,;)]+\.?/g, '').trim();
+      const pro = S.quota?.googleAiPro?.estimatedRemainingPct ?? '--';
+      const cld = S.quota?.cloudFreeTier?.remainingPct ?? '--';
+      const dm = doneMap();
+      const urg = (S.blockers || []).filter(b => b.status !== 'resolved' && !dm[b.id] && b.priority === 'Khẩn cấp').length;
+      const nextQ = (S.cloudQueue || []).find(q => q.status === 'pending');
+      const nextAt = (S.meta?.nextCheckAt || '').slice(11, 16);
+      const nextLbl = nextQ ? (nextQ.title || '').replace(/^[^—]+—\s*/, '').slice(0, 44) : 'Đủ kho · Chờ 18:30 Review';
+
+      const histHtml = logs.slice(1, 7).map(l => {
+        const f = extractPath(l.action);
+        const txt = String(l.action || '').replace(/\s*→\s*(?:outputs|demo)\/[^\s,;)]+\.?/g, '').trim();
+        return `<div class="hb-row"><time>${esc((l.time||'').slice(11,16))}</time><span>${esc(txt)}</span>${f ? `<button class="btn link" onclick='openFile(${JSON.stringify(f)}, ${JSON.stringify(f.split('/').pop())})'>Mở</button>` : ''}</div>`;
+      }).join('');
+
+      box.innerHTML = `
+        <div class="hb-top">
+          <div class="hb-meta">
+            <span class="dot pulse" style="color:var(--green)"></span>
+            <span>${esc(beat)}</span>
+            <span style="color:var(--muted)">·</span>
+            <span>${esc(hhmm)} VN</span>
+            <span style="color:var(--muted)">·</span>
+            <span style="color:var(--green)">$${cost}</span>
+          </div>
+          <div style="display:flex;gap:5px;align-items:center">
+            ${file ? `<button class="btn" onclick='openFile(${JSON.stringify(file)}, ${JSON.stringify(fileLabel)})'>Mở file</button>` : ''}
+            <button class="btn link" onclick="document.getElementById('hbHist').classList.toggle('open')">Gần đây (${Math.min(6, Math.max(0, logs.length - 1))})</button>
+          </div>
         </div>
-        <div class="q-row" style="margin-bottom:0">
-          <div class="q-head"><span>Cloud $0 (${esc(c.primaryModel)})</span><span style="color:var(--${cc})">${c.remainingPct}%</span></div>
-          <div class="bar"><i class="${cc}" style="width:${c.remainingPct}%"></i></div>
-          <div class="q-sub">${c.requestsUsedToday}/${c.dailySoftCap} req · ${STATE.meta.cloudActivated ? 'Đang chạy' : 'Chờ gắn key 2p'}</div>
+        <div class="hb-done">
+          <b>Xong:</b>
+          ${file
+            ? `<button class="hb-link" title="${esc(cleanAction)}" onclick='openFile(${JSON.stringify(file)}, ${JSON.stringify(fileLabel)})'>${esc(cleanAction)}</button>`
+            : `<span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600">${esc(cleanAction)}</span>`
+          }
         </div>
-        <div class="q-edit" id="qEditForm">
-          <span style="font-size:11.5px">Pro%</span><input id="inPro" type="number" min="0" max="100" value="${p.estimatedRemainingPct}">
-          <span style="font-size:11.5px">Req</span><input id="inReq" type="number" min="0" value="${c.requestsUsedToday}">
-          <button class="btn primary" onclick="saveQuota()">Lưu</button>
+        <div class="hb-sub">
+          <span>Pro <strong>${pro}%</strong></span>
+          <span>·</span>
+          <span>Cloud <strong>${cld}%</strong></span>
+          <span>·</span>
+          <span><strong>${urg}</strong> khẩn</span>
+          <span>·</span>
+          <span>Kế${nextAt ? ` (${esc(nextAt)})` : ''}: <strong>${esc(nextLbl)}</strong></span>
         </div>
+        <div class="hb-hist" id="hbHist">${histHtml || '<span style="color:var(--muted);font-size:11.5px">Chưa có lịch sử.</span>'}</div>
       `;
     }
 
-    function toggleQuotaEdit() {
-      document.getElementById('qEditForm')?.classList.toggle('open');
-    }
-
-    function saveQuota() {
+    function saveQ() {
       const proPct = Number(document.getElementById('inPro').value);
       const cloudReq = Number(document.getElementById('inReq').value);
       if (isNaN(proPct) || proPct < 0 || proPct > 100) return;
-      localStorage.setItem(LS_Q, JSON.stringify({ proPct, cloudReq }));
-      STATE.quota.googleAiPro.estimatedRemainingPct = proPct;
-      STATE.quota.cloudFreeTier.requestsUsedToday = cloudReq;
-      STATE.quota.cloudFreeTier.remainingPct = Math.max(0, Math.round((1 - cloudReq / (STATE.quota.cloudFreeTier.dailySoftCap || 150)) * 100));
-      renderQuota();
+      localStorage.setItem(LQ, JSON.stringify({ proPct, cloudReq }));
+      S.quota.googleAiPro.estimatedRemainingPct = proPct;
+      S.quota.cloudFreeTier.requestsUsedToday = cloudReq;
+      S.quota.cloudFreeTier.remainingPct = Math.max(0, Math.round((1 - cloudReq / (S.quota.cloudFreeTier.dailySoftCap || 150)) * 100));
+      document.getElementById('qEdit').classList.remove('open');
+      render();
     }
 
-    function renderReview() {
-      const r = STATE.dailyReview;
-      const latestLog = STATE.heartbeatLog?.[0];
-      const count = (r.realOutputsToday || []).length;
-      document.getElementById('reviewBox').innerHTML = `
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">
-          <span class="tag blue">${count} sản phẩm thật</span>
-          <span class="tag amber">Chốt 18:30 VN</span>
-        </div>
-        <div style="font-size:12.5px;color:#334155">
-          <div><strong>Nghẽn chính:</strong> Cần ~7p kích hoạt Cloud $0 &amp; upload Tập 1 YouTube.</div>
-          ${latestLog ? `<div style="margin-top:5px;font-size:11.5px;color:var(--muted)"><strong>Mới nhất:</strong> ${esc(shortGoal(latestLog.action))}</div>` : ''}
-        </div>
-      `;
+    const sCls = (st) => st === 'Đã xong' ? 'done' : st === 'Đang chạy' ? 'run' : st === 'Bị kẹt' ? 'blk' : st === 'Nghỉ 4h' ? 'rest' : '';
+    const sDot = (st) => st === 'Đã xong' ? '✓' : st === 'Đang chạy' ? '●' : st === 'Bị kẹt' ? '!' : st === 'Nghỉ 4h' ? '🔒' : '·';
+
+    function setView(v) {
+      VIEW = v;
+      document.getElementById('vDay').classList.toggle('on', v === 'day');
+      document.getElementById('vWk').classList.toggle('on', v === 'week');
+      renderCal();
     }
 
-    function openReviewModal() {
-      const r = STATE.dailyReview;
-      const lines = [
-        `LƯỢNG GIÁ NGÀY ${r.date} (${r.status})`,
-        `Hoàn thành mục tiêu tuần: ${r.weekCompletionPct}%`,
-        '',
-        'SẢN PHẨM THẬT HÔM NAY:',
-        ...(r.realOutputsToday || []).map((x, i) => `${i+1}. ${x}`),
-        '',
-        'MỨC SẴN SÀNG KIẾM USD:',
-        ...Object.entries(r.usdReadiness || {}).map(([k,v]) => `- ${k}: ${v}`),
-        '',
-        'ĐIỂM NGHẼN:',
-        ...(r.bottlenecks || []).map(x => `- ${x}`),
-        '',
-        `ĐIỀU CHỈNH NGÀY MAI:\n${r.adjustmentsForTomorrow}`,
-        '',
-        '--- NHẬT KÝ 5 PHÚT GẦN NHẤT ---',
-        ...(STATE.heartbeatLog || []).slice(0, 10).map(l => `[${l.time.slice(11,16)}] ${l.runner} | ${l.action} (${l.quotaSnapshot})`)
-      ];
-      showModal('Lượng giá Cuối ngày & Nhật ký 5 phút', lines.join('\n'));
-    }
-
-    const stCls = (st) => st === 'Đã xong' ? 'done' : st === 'Đang chạy' ? 'running' : st === 'Bị kẹt' ? 'blocked' : st === 'Nghỉ 4h' ? 'rest' : '';
-    const stTag = (st) => {
-      if (st === 'Đã xong') return '<span class="tag green">Xong</span>';
-      if (st === 'Đang chạy') return '<span class="tag blue"><span class="dot pulse"></span>Chạy</span>';
-      if (st === 'Bị kẹt') return '<span class="tag amber">Kẹt</span>';
-      if (st === 'Nghỉ 4h') return '<span class="tag purple">Nghỉ 4h</span>';
-      return '<span class="tag muted">Chờ</span>';
-    };
-
-    function setCalView(v) {
-      CAL_VIEW = v;
-      document.getElementById('vDay').classList.toggle('active', v === 'day');
-      document.getElementById('vWeek').classList.toggle('active', v === 'week');
-      renderCalendar();
-    }
-
-    function renderCalendar() {
-      const pills = document.getElementById('dayPills');
+    function renderCal() {
+      const bar = document.getElementById('dayBar');
       const box = document.getElementById('calBox');
-      if (CAL_VIEW === 'day') {
-        pills.style.display = 'flex';
-        pills.innerHTML = STATE.schedule.map(d => `
-          <button class="btn ${d.dayNumber === SEL_DAY ? 'active' : ''}" onclick="SEL_DAY=${d.dayNumber};renderCalendar()">
-            ${esc(d.label)}
-          </button>
-        `).join('');
-        const day = STATE.schedule.find(d => d.dayNumber === SEL_DAY) || STATE.schedule[0];
-        box.innerHTML = `<div class="cal-list">${day.blocks.map(b => `
-          <div class="cal-item ${stCls(b.status)}" onclick='openBlock(${JSON.stringify(b.id)})'>
-            <div class="cal-t">${esc(b.start)}–${esc(b.end)}</div>
-            <div class="cal-n">${esc(b.title)}</div>
-            <div class="cal-r">
-              <span class="tag muted">${esc(b.engine === 'Tắt hoàn toàn' ? 'Khóa' : b.engine)}</span>
-              ${stTag(b.status)}
-            </div>
+      if (VIEW === 'day') {
+        bar.style.display = 'flex';
+        bar.innerHTML = S.schedule.map(d => `<button class="btn ${d.dayNumber===DAY?'on':''}" onclick="DAY=${d.dayNumber};renderCal()">${esc(d.label.split(' ')[0])}</button>`).join('');
+        const day = S.schedule.find(d => d.dayNumber === DAY) || S.schedule[0];
+        box.innerHTML = `<div class="cal-grid-day">${day.blocks.map(b => `
+          <div class="slot ${sCls(b.status)}" onclick='openSlot(${JSON.stringify(b.id)})'>
+            <div class="slot-top"><span>${esc(b.start)}–${esc(b.end)}</span><span>${sDot(b.status)}</span></div>
+            <div class="slot-name">${esc(shortSlot(b))}</div>
           </div>
         `).join('')}</div>`;
       } else {
-        pills.style.display = 'none';
-        box.innerHTML = `<div class="wk-grid">${STATE.schedule.map(d => `
-          <div class="wk-col ${d.dayNumber === STATE.meta.currentDay ? 'today' : ''}">
-            <div class="wk-head"><span>${esc(d.label)}</span>${d.dayNumber===STATE.meta.currentDay?'<span style="color:var(--blue)">●</span>':''}</div>
+        bar.style.display = 'none';
+        box.innerHTML = `<div class="wk">${S.schedule.map(d => `
+          <div class="wk-c ${d.dayNumber===S.meta.currentDay?'now':''}">
+            <div class="wk-h"><span>${esc(d.label)}</span></div>
             ${d.blocks.map(b => `
-              <div class="wk-cell ${stCls(b.status)}" onclick='openBlock(${JSON.stringify(b.id)})'>
-                <b>${esc(b.start)}–${esc(b.end)}</b>
-                <span>${esc(b.title)}</span>
+              <div class="wk-i ${sCls(b.status)}" onclick='openSlot(${JSON.stringify(b.id)})'>
+                <b>${esc(shortSlot(b))}</b><span>${esc(b.start.slice(0,2))}h</span>
               </div>
             `).join('')}
           </div>
@@ -514,126 +536,115 @@
       }
     }
 
-    function openBlock(id) {
-      for (const d of STATE.schedule) {
+    function openSlot(id) {
+      for (const d of S.schedule) {
         const b = d.blocks.find(x => x.id === id);
         if (b) {
-          if (b.outputPath) return openFile(b.outputPath, `${d.label} (${b.start}–${b.end}) · ${b.title}`);
-          return showModal(`${d.label} · ${b.start}–${b.end}`, `Dự án: ${b.project}\nGiờ thị trường: ${b.targetTimeNote}\nChạy trên: ${b.engine}\nTrạng thái: ${b.status} · ETA: ${b.eta}\n\n${b.summary}`);
+          if (b.outputPath) return openFile(b.outputPath, `${d.label} · ${b.start}–${b.end}`);
+          return showM(`${d.label} · ${b.start}–${b.end}`, `${b.title}\n\nGiờ mục tiêu: ${b.targetTimeNote}\nChạy: ${b.engine} · ${b.status}\nETA: ${b.eta}\n\n${b.summary}`);
         }
       }
     }
 
-    function renderProjects() {
-      document.getElementById('outCountTag').textContent = `${(STATE.dailyReview.realOutputsToday || []).length} kết quả`;
-      document.getElementById('projBox').innerHTML = STATE.projects.map(p => {
-        const col = p.progressPct >= 70 ? 'green' : p.status.includes('kẹt') ? 'amber' : '';
+    function renderProj() {
+      document.getElementById('projBox').innerHTML = S.projects.map(p => {
+        const col = p.progressPct >= 75 ? 'green' : p.status.includes('kẹt') ? 'amber' : '';
+        const etaShort = (p.eta || '').split(' ')[0];
         return `
-          <div class="p-row">
-            <div>
-              <div class="p-name">${esc(p.name.split('(')[0].trim())}</div>
-              <div class="p-sub">${esc(p.usdTargetWeek1)}</div>
-            </div>
-            <div>
-              <div style="font-size:12px;font-weight:700;margin-bottom:3px">${p.progressPct}%</div>
-              <div class="bar"><i class="${col}" style="width:${p.progressPct}%"></i></div>
-            </div>
-            <div class="p-eta">ETA ${esc(p.eta.replace(' VN',''))}</div>
-            <div>
-              ${p.latestOutput?.path
-                ? `<button class="btn" onclick='openFile(${JSON.stringify(p.latestOutput.path)}, ${JSON.stringify(p.latestOutput.title)})'>Xem</button>`
-                : '<span class="tag muted">—</span>'}
-            </div>
+          <div class="pr">
+            <div class="pr-n" title="${esc(p.name)}">${esc(SHORT_PROJ[p.id] || p.name)}</div>
+            <div class="pr-p"><div class="bar"><i class="${col}" style="width:${p.progressPct}%"></i></div><span>${p.progressPct}%</span></div>
+            <div class="pr-e">${esc(etaShort)}</div>
+            <div>${p.latestOutput?.path ? `<button class="btn" onclick='openFile(${JSON.stringify(p.latestOutput.path)}, ${JSON.stringify(p.latestOutput.title)})'>Mở</button>` : '—'}</div>
           </div>
         `;
       }).join('');
     }
 
-    function setBlkFilter(f, btn) {
-      BLK_FILTER = f;
-      document.querySelectorAll('#blkFilterBar .btn').forEach(x => x.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      renderBlockers();
+    function filterBlk(f) {
+      BF = f;
+      document.querySelectorAll('#fBar .btn').forEach(b => b.classList.toggle('on', b.dataset.f === f));
+      renderBlk();
     }
 
     const pRank = (p) => ({ 'Khẩn cấp':1, 'Ưu tiên':2, 'Bình thường':3, 'Để sau':4 }[p] || 9);
-    const pTag = (p) => {
-      if (p === 'Khẩn cấp') return '<span class="tag red">Khẩn</span>';
-      if (p === 'Ưu tiên') return '<span class="tag amber">Ưu tiên</span>';
-      if (p === 'Bình thường') return '<span class="tag blue">Thường</span>';
-      return '<span class="tag muted">Sau</span>';
-    };
+    const pDot = (p) => p === 'Khẩn cấp' ? '🔴' : p === 'Ưu tiên' ? '🟠' : p === 'Bình thường' ? '🔵' : '⚪';
 
-    function getDoneMap() { try { return JSON.parse(localStorage.getItem(LS_B) || '{}'); } catch { return {}; } }
-
-    function toggleBlkDone(id, ev) {
+    function toggleDone(id, ev) {
       ev.stopPropagation();
-      const m = getDoneMap();
+      const m = doneMap();
       m[id] = !m[id];
-      localStorage.setItem(LS_B, JSON.stringify(m));
-      renderBlockers();
+      localStorage.setItem(LB, JSON.stringify(m));
+      render();
     }
 
-    function renderBlockers() {
-      const doneMap = getDoneMap();
-      const list = [...(STATE.blockers || [])]
-        .filter(b => BLK_FILTER === 'ALL' || b.priority === BLK_FILTER)
+    function renderBlk() {
+      const dm = doneMap();
+      const list = [...(S.blockers || [])]
+        .filter(b => b.status !== 'resolved')
+        .filter(b => BF === 'ALL' || b.priority === BF)
         .sort((a,b) => pRank(a.priority) - pRank(b.priority));
 
       document.getElementById('blkBox').innerHTML = list.length ? list.map(b => {
-        const isDone = b.status === 'resolved' || Boolean(doneMap[b.id]);
+        const ok = b.status === 'resolved' || Boolean(dm[b.id]);
         return `
-          <div class="b-row ${isDone ? 'done' : ''}" id="blk-${esc(b.id)}">
-            <div class="b-top" onclick="document.getElementById('blk-${esc(b.id)}').classList.toggle('open')">
-              <div class="b-left">
-                ${pTag(b.priority)}
-                <span class="b-title" title="${esc(b.title)}">${esc(b.title)}</span>
+          <div class="bl ${ok?'done':''}" id="b-${esc(b.id)}">
+            <div class="bl-t" onclick="document.getElementById('b-${esc(b.id)}').classList.toggle('open')">
+              <div class="bl-l">
+                <span>${pDot(b.priority)}</span>
+                <span class="bl-n">${esc(SHORT_BLK[b.id] || b.title)}</span>
               </div>
-              <div style="display:flex;align-items:center;gap:6px">
-                <span style="font-size:11.5px;color:var(--muted)">${b.estMinutes}p</span>
-                <button class="btn" onclick='toggleBlkDone(${JSON.stringify(b.id)}, event)'>${isDone ? '↩' : '✓'}</button>
+              <div style="display:flex;align-items:center;gap:5px">
+                <span style="font-size:11px;color:var(--muted)">${b.estMinutes}p</span>
+                <button class="btn" onclick='toggleDone(${JSON.stringify(b.id)}, event)'>${ok?'↩':'✓'}</button>
               </div>
             </div>
-            <div class="b-detail">
-              <div><strong>Cách gỡ (${esc(b.project)}):</strong> ${esc(b.exactSteps)}</div>
-              <div class="b-ns">↻ Never-Stop: ${esc(b.neverStopTask)}</div>
+            <div class="bl-d">
+              <div><strong>Làm:</strong> ${esc(b.exactSteps)}</div>
+              <div style="margin-top:4px;color:var(--green)"><strong>AI tự làm:</strong> ${esc(b.neverStopTask)}</div>
             </div>
           </div>
         `;
-      }).join('') : '<div style="color:var(--muted);font-size:13px">Không có việc kẹt ở nhóm này.</div>';
+      }).join('') : '<div style="color:var(--muted);font-size:12px">Trống.</div>';
     }
 
-    async function openFile(relPath, title) {
-      if (relPath && relPath.endsWith('.html')) {
-        window.open('./' + relPath, '_blank');
-        return;
-      }
-      showModal(title || relPath, 'Đang tải...');
-      let txt = null;
+    function openReview() {
+      const r = S.dailyReview;
+      const out = [
+        `REVIEW NGÀY ${r.date} (${r.weekCompletionPct}% Tuần 1 · Chi phí $${S.briefing.costProposal.totalUsd})`,
+        '',
+        `SẢN PHẨM (${(r.realOutputsToday||[]).length}):`,
+        ...(r.realOutputsToday||[]).map((x,i) => `${i+1}. ${x}`),
+        '',
+        'NGHẼN:',
+        ...(r.bottlenecks||[]).map(x => `- ${x}`),
+        '',
+        'NHẬT KÝ GẦN NHẤT:',
+        ...(S.heartbeatLog||[]).slice(0,8).map(l => `[${l.time.slice(11,16)}] ${l.runner}: ${l.action}`)
+      ].join('\n');
+      showM('Daily Review & Nhật ký', out);
+    }
+
+    async function openFile(rel, title) {
+      if (rel && rel.endsWith('.html')) { window.open('./' + rel, '_blank'); return; }
+      showM(title || rel, 'Đang tải...');
+      let t = null;
       if (location.protocol.startsWith('http')) {
-        try {
-          const r = await fetch(`./${relPath}?t=${Date.now()}`, { cache:'no-store' });
-          if (r.ok) txt = await r.text();
-        } catch {}
+        try { const r = await fetch(`./${rel}?t=${Date.now()}`, { cache:'no-store' }); if (r.ok) t = await r.text(); } catch {}
       }
-      if (!txt && window.__AI_OPS_PREVIEWS__?.[relPath]) txt = window.__AI_OPS_PREVIEWS__[relPath];
-      document.getElementById('mBody').textContent = txt || `Mở file trực tiếp tại: ${relPath}`;
+      if (!t && window.__AI_OPS_PREVIEWS__?.[rel]) t = window.__AI_OPS_PREVIEWS__[rel];
+      document.getElementById('mB').textContent = t || rel;
     }
 
-    function showModal(title, body) {
-      document.getElementById('mTitle').textContent = title;
-      document.getElementById('mBody').textContent = body;
-      document.getElementById('modalBg').classList.add('open');
-    }
+    function showM(t, b) { document.getElementById('mT').textContent = t; document.getElementById('mB').textContent = b; document.getElementById('mBg').classList.add('open'); }
+    function closeM() { document.getElementById('mBg').classList.remove('open'); }
+    function copyM() { navigator.clipboard?.writeText(document.getElementById('mB').textContent || ''); }
+    function reloadData() { location.protocol.startsWith('http') ? load() : location.reload(); }
 
-    function closeModal() { document.getElementById('modalBg').classList.remove('open'); }
-    function copyModal() { navigator.clipboard?.writeText(document.getElementById('mBody').textContent || ''); }
-    function reloadData() { location.protocol.startsWith('http') ? loadState() : location.reload(); }
-
-    fmtClock();
-    setInterval(fmtClock, 10000);
-    setInterval(() => { if (location.protocol.startsWith('http')) loadState(); }, 60000);
-    loadState();
+    tickClock();
+    setInterval(tickClock, 10000);
+    setInterval(() => { if (location.protocol.startsWith('http')) load(); }, 60000);
+    load();
   </script>
 </body>
 </html>

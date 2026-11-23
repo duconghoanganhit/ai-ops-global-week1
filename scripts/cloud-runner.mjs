@@ -56,6 +56,7 @@ async function callGeminiFreeTier({ apiKey, model, prompt }) {
       model,
       input: prompt,
     }),
+    signal: AbortSignal.timeout(45000),
   });
 
   const textBody = await res.text();
@@ -216,11 +217,8 @@ async function main() {
       break;
     } catch (err) {
       lastErr = err;
-      if ([429, 500, 502, 503, 504].includes(err.status)) {
-        console.log(`Model ${candidate} returned HTTP ${err.status}; trying next fallback model...`);
-        continue;
-      }
-      throw err;
+      console.log(`Model ${candidate} failed (${err.status || err.name || 'network'}): ${String(err.message || err).slice(0, 180)}; trying next fallback...`);
+      continue;
     }
   }
 

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Ops · Minimal Report</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --card: #ffffff;
+      --ink: #111827;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --green: #16a34a;
+      --blue: #2563eb;
+      --amber: #d97706;
+      --red: #dc2626;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 28px 18px 56px; }
+
+    /* Header */
+    .bar {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      margin-bottom: 18px;
+    }
+    .brand { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; letter-spacing: -0.01em; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.28} }
+    .nav { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .pill-btn {
+      padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line);
+      background: #fff; color: var(--ink); font-size: 12px; font-weight: 500;
+      cursor: pointer; text-decoration: none;
+    }
+    .pill-btn:hover { background: #f3f4f6; }
+
+    /* Hero 3-line minimal card */
+    .hero {
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      padding: 20px 22px; box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .h-top {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      font-size: 12.5px; font-weight: 700; letter-spacing: 0.01em; font-variant-numeric: tabular-nums;
+      margin-bottom: 12px;
+    }
+    .h-top-l { display: flex; align-items: center; gap: 8px; }
+    .cost { color: var(--green); }
+
+    .h-done {
+      font-size: 15.5px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.45;
+      margin: 0 0 14px; color: var(--ink);
+    }
+    .h-file {
+      display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      padding: 6px 11px; border-radius: 9px; border: 1px solid var(--line);
+      background: #f9fafb; color: var(--blue); font-size: 12.5px; font-weight: 600;
+      cursor: pointer; max-width: 100%;
+    }
+    .h-file:hover { background: #eff6ff; border-color: #bfdbfe; }
+    .h-file span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .h-foot {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+      padding-top: 12px; border-top: 1px solid var(--line);
+      font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums;
+    }
+    .h-foot strong { color: var(--ink); font-weight: 600; }
+    .sep { color: #d1d5db; }
+
+    /* Compact metrics strip */
+    .strip {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px;
+    }
+    .mini {
+      background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+      padding: 10px 12px; display: flex; flex-direction: column; gap: 5px;
+    }
+    .mini-k { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .mini-v { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; display: flex; align-items: center; justify-content: space-between; }
+    .track { height: 4px; background: #e5e7eb; border-radius: 99px; overflow: hidden; }
+    .track i { display: block; height: 100%; background: var(--green); border-radius: 99px; }
+    .track i.amber { background: var(--amber); }
+    .track i.red { background: var(--red); }
+
+    /* Minimal history feed */
+    .sec-h {
+      display: flex; align-items: center; justify-content: space-between;
+      margin: 24px 2px 10px; font-size: 11.5px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted);
+    }
+    .list {
+      background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+      overflow: hidden;
+    }
+    .item {
+      display: flex; align-items: center; gap: 12px; padding: 11px 16px;
+      border-bottom: 1px solid var(--line); transition: background 0.12s;
+    }
+    .item:last-child { border-bottom: 0; }
+    .item:hover { background: #f9fafb; }
+    .item time {
+      font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums;
+      width: 40px; flex-shrink: 0;
+    }
+    .item-t {
+      flex: 1; min-width: 0; font-size: 13px; color: #374151;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .open-btn {
+      border: 0; background: transparent; color: var(--blue); font-size: 12px; font-weight: 600;
+      cursor: pointer; padding: 2px 6px; border-radius: 6px; flex-shrink: 0;
+    }
+    .open-btn:hover { background: #eff6ff; }
+
+    /* Modal */
+    .m-bg {
+      position: fixed; inset: 0; background: rgba(17,24,39,0.42);
+      display: none; align-items: center; justify-content: center; padding: 16px; z-index: 99;
+    }
+    .m-bg.open { display: flex; }
+    .m {
+      background: #fff; border-radius: 14px; width: min(720px, 100%); max-height: 84vh;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .m-h {
+      padding: 12px 16px; border-bottom: 1px solid var(--line);
+      display: flex; justify-content: space-between; align-items: center; gap: 8px;
+    }
+    .m-b {
+      padding: 16px 20px; overflow-y: auto; white-space: pre-wrap;
+      font-size: 13px; line-height: 1.6; color: #1f2937;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="bar">
+      <div class="brand"><span class="dot" id="liveDot"></span> AI Ops · Pulse</div>
+      <div class="nav">
+        <span id="clk">--:-- VN</span>
+        <a class="pill-btn" href="./dashboard.html">Full</a>
+        <button class="pill-btn" onclick="reloadNow()">↻</button>
+      </div>
+    </header>
+
+    <section class="hero" id="hero"></section>
+    <section class="strip" id="strip"></section>
+
+    <div class="sec-h">
+      <span>Nhịp gần đây</span>
+      <span id="cntLbl"></span>
+    </div>
+    <section class="list" id="feed"></section>
+  </main>
+
+  <div class="m-bg" id="mBg" onclick="if(event.target===this) closeM()">
+    <div class="m">
+      <div class="m-h">
+        <strong id="mT" style="font-size:13.5px">File</strong>
+        <div style="display:flex;gap:6px">
+          <button class="pill-btn" onclick="copyM()">Copy</button>
+          <button class="pill-btn" style="background:#111827;color:#fff;border-color:#111827" onclick="closeM()">Đóng</button>
+        </div>
+      </div>
+      <div class="m-b" id="mB"></div>
+    </div>
+  </div>
+
+  <script src="./state.js"></script>
+  <script>
+    let S = null;
+    const esc = (x) => String(x ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    const getPath = (t) => (String(t || '').match(/((?:outputs|demo)\/[^\s,;)]+\.(?:md|html|json|txt))/i) || [])[1] || '';
+    const cleanTxt = (t) => String(t || '').replace(/\s*→\s*(?:outputs|demo)\/[^\s,;)]+\.?/g, '').trim();
+
+    function tick() {
+      const vn = new Intl.DateTimeFormat('vi-VN', { timeZone:'Asia/Ho_Chi_Minh', hour:'2-digit', minute:'2-digit', hour12:false }).format(new Date());
+      const hr = Number(new Intl.DateTimeFormat('en-GB', { timeZone:'Asia/Ho_Chi_Minh', hour:'2-digit', hour12:false }).format(new Date()));
+      document.getElementById('clk').textContent = `${vn} VN` + (hr >= 20 ? ' · Nghỉ' : '');
+      document.getElementById('liveDot').style.background = hr >= 20 ? '#7c3aed' : '#16a34a';
+    }
+
+    async function load() {
+      let d = null;
+      if (location.protocol.startsWith('http')) {
+        try { const r = await fetch(`./state.json?t=${Date.now()}`, { cache:'no-store' }); if (r.ok) d = await r.json(); } catch {}
+      }
+      if (!d && window.__AI_OPS_STATE__) d = window.__AI_OPS_STATE__;
+      if (!d) return;
+      S = d;
+      render();
+    }
+
+    function render() {
+      const logs = S.heartbeatLog || [];
+      const top = logs[0] || {};
+      const hhmm = (top.time || S.meta?.lastUpdated || '').slice(11, 16) || '--:--';
+      const beat = (String(top.runner || '').match(/#\d+/) || [top.block || 'Live'])[0];
+      const cost = S.briefing?.costProposal?.totalUsd || 0;
+      const file = getPath(top.action);
+      const fname = file ? file.split('/').pop() : '';
+      const pro = S.quota?.googleAiPro?.estimatedRemainingPct ?? 0;
+      const cld = S.quota?.cloudFreeTier?.remainingPct ?? 0;
+      const openB = (S.blockers || []).filter(b => b.status !== 'resolved');
+      const urg = openB.filter(b => b.priority === 'Khẩn cấp').length;
+      const nextQ = (S.cloudQueue || []).find(q => q.status === 'pending');
+      const nextAt = (S.meta?.nextCheckAt || '').slice(11, 16);
+      const nextName = nextQ ? (nextQ.title || '').replace(/^[^—]+—\s*/, '').slice(0, 48) : 'Chốt Review 18:30';
+
+      document.getElementById('hero').innerHTML = `
+        <div class="h-top">
+          <div class="h-top-l">
+            <span>${esc(beat)}</span>
+            <span class="sep">·</span>
+            <span>${esc(hhmm)} VN</span>
+            <span class="sep">·</span>
+            <span class="cost">$${cost}</span>
+          </div>
+          <span style="color:var(--muted);font-weight:500">Ngày ${S.meta?.currentDay || 1}/7</span>
+        </div>
+        <p class="h-done">${esc(cleanTxt(top.action) || 'Hệ thống đang sẵn sàng.')}</p>
+        ${file ? `<button class="h-file" onclick='openFile(${JSON.stringify(file)}, ${JSON.stringify(fname)})'><span>↗ ${esc(fname)}</span></button>` : ''}
+        <div class="h-foot">
+          <span>Pro <strong>${pro}%</strong></span>
+          <span class="sep">·</span>
+          <span>Cloud <strong>${cld}%</strong></span>
+          <span class="sep">·</span>
+          <span><strong>${urg}</strong> khẩn</span>
+          <span class="sep">·</span>
+          <span>Kế${nextAt ? ` (${esc(nextAt)})` : ''}: <strong>${esc(nextName)}</strong></span>
+        </div>
+      `;
+
+      const pc = pro <= 25 ? 'red' : pro <= 45 ? 'amber' : '';
+      const cc = cld <= 20 ? 'red' : '';
+      document.getElementById('strip').innerHTML = `
+        <div class="mini">
+          <div class="mini-k">Pro Quota</div>
+          <div class="mini-v"><span>${pro}%</span></div>
+          <div class="track"><i class="${pc}" style="width:${pro}%"></i></div>
+        </div>
+        <div class="mini">
+          <div class="mini-k">Cloud $0</div>
+          <div class="mini-v"><span>${cld}%</span></div>
+          <div class="track"><i class="${cc}" style="width:${cld}%"></i></div>
+        </div>
+        <div class="mini">
+          <div class="mini-k">Sản phẩm</div>
+          <div class="mini-v"><span>${(S.dailyReview?.realOutputsToday || []).length}</span><span style="font-size:11px;color:var(--muted);font-weight:500">${openB.length} chờ</span></div>
+          <div class="track"><i style="width:${S.dailyReview?.weekCompletionPct || 0}%"></i></div>
+        </div>
+      `;
+
+      const rest = logs.slice(1, 10);
+      document.getElementById('cntLbl').textContent = `${logs.length} nhịp`;
+      document.getElementById('feed').innerHTML = rest.map(l => {
+        const f = getPath(l.action);
+        return `
+          <div class="item">
+            <time>${esc((l.time || '').slice(11, 16))}</time>
+            <div class="item-t" title="${esc(cleanTxt(l.action))}">${esc(cleanTxt(l.action))}</div>
+            ${f ? `<button class="open-btn" onclick='openFile(${JSON.stringify(f)}, ${JSON.stringify(f.split('/').pop())})'>Mở</button>` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function openFile(rel, title) {
+      if (rel && rel.endsWith('.html')) { window.open('./' + rel, '_blank'); return; }
+      document.getElementById('mT').textContent = title || rel;
+      document.getElementById('mB').textContent = 'Đang tải...';
+      document.getElementById('mBg').classList.add('open');
+      let t = null;
+      if (location.protocol.startsWith('http')) {
+        try { const r = await fetch(`./${rel}?t=${Date.now()}`, { cache:'no-store' }); if (r.ok) t = await r.text(); } catch {}
+      }
+      if (!t && window.__AI_OPS_PREVIEWS__?.[rel]) t = window.__AI_OPS_PREVIEWS__[rel];
+      document.getElementById('mB').textContent = t || rel;
+    }
+
+    function closeM() { document.getElementById('mBg').classList.remove('open'); }
+    function copyM() { navigator.clipboard?.writeText(document.getElementById('mB').textContent || ''); }
+    function reloadNow() { location.protocol.startsWith('http') ? load() : location.reload(); }
+
+    tick();
+    setInterval(tick, 10000);
+    setInterval(() => { if (location.protocol.startsWith('http')) load(); }, 15000);
+    load();
+  </script>
+</body>
+</html>
