@@ -10,8 +10,8 @@ window.__AI_OPS_STATE__ = {
     "targetMarket": "US / UK / CA / AU (English · USD)",
     "activeHoursPerDay": 20,
     "restWindow": "20:00 – 24:00 GMT+7",
-    "currentDay": 1,
-    "lastUpdated": "2026-11-23T16:44:13+07:00",
+    "currentDay": 2,
+    "lastUpdated": "2026-11-24T04:38:39+07:00",
     "lastRunner": "Cloud $0 (GitHub Actions)",
     "reportIntervalMinutes": 5,
     "nextCheckAt": "2026-11-23T16:39:30+07:00",
@@ -42,15 +42,15 @@ window.__AI_OPS_STATE__ = {
       "provider": "Gemini API Free Tier + GitHub Actions",
       "primaryModel": "gemini-3.8-flash",
       "fallbackModel": "gemini-3.5-flash-lite",
-      "requestsUsedToday": 2,
+      "requestsUsedToday": 0,
       "dailySoftCap": 150,
-      "tokensUsedToday": 1481,
+      "tokensUsedToday": 0,
       "tokenSoftCap": 800000,
-      "remainingPct": 99,
+      "remainingPct": 100,
       "burnRatePerHour": "~2 req / ~12k tokens (cron 30p khi tắt máy)",
       "autoDowngradeThresholdPct": 20,
-      "status": "Đang chạy tốt (gemini-3.5-flash-lite)",
-      "lastChecked": "2026-11-23T16:44:13+07:00"
+      "status": "Tạm nghẽn upstream (HTTP 404) — tự thử lại nhịp sau",
+      "lastChecked": "2026-11-24T04:38:39+07:00"
     },
     "googleAiPro": {
       "provider": "Antigravity (Google AI Pro)",
@@ -359,7 +359,7 @@ window.__AI_OPS_STATE__ = {
           "title": "Morning Briefing Day 2 + Kiểm tra Quota & Đề xuất chi phí ($0)",
           "project": "Hệ thống AI Ops",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "24/11 01:30",
           "outputPath": "",
           "summary": "Tổng hợp tiến độ, chốt 3 đầu ra bắt buộc Day 2."
@@ -373,7 +373,7 @@ window.__AI_OPS_STATE__ = {
           "title": "Sleepless Roman Ep 03 Blueprint (Rainy Roman Bathhouse) + 15 Lead Peaceful Soul mới",
           "project": "Sleepless Roman / Peaceful Soul",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đang chạy",
           "eta": "24/11 05:30",
           "outputPath": "outputs/day2/01_sleepless_roman_ep04_blueprint.md",
           "summary": "Đã xong sớm Full Blueprint Tập 4 (1,820 từ + 10 prompts + SEO). Tiếp: Bộ chốt gói tháng /th & tìm 15 lead Peaceful Soul."
@@ -1415,6 +1415,14 @@ window.__AI_OPS_STATE__ = {
     "adjustmentsForTomorrow": "Ngay sau khi mở khóa Cloud $0 và các tài khoản, dồn 70% lực phân phối vào 2 kênh tạo tín hiệu USD sớm nhất trong 48h đầu (Peaceful Soul $99 + Anh Dev $50 / ProfitPulse $27)."
   },
   "heartbeatLog": [
+    {
+      "time": "2026-11-24T04:38:39+07:00",
+      "runner": "Cloud $0",
+      "block": "01:30-05:30",
+      "action": "Upstream Gemini API tạm nghẽn (404) trên toàn chuỗi fallback — đã bỏ qua an toàn để vẫn deploy Dashboard và tự thử lại sau 30p.",
+      "quotaSnapshot": "Cloud 100% (0/150 req)",
+      "costUsd": 0
+    },
     {
       "time": "2026-11-23T16:44:13+07:00",
       "runner": "Cloud $0 (gemini-3.5-flash-lite)",
