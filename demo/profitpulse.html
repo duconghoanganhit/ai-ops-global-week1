@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProfitPulse™ — Etsy True-Profit &amp; Break-Even Calculator</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-2: #273549;
+      --border: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #f97316;
+      --accent-soft: rgba(249, 115, 22, 0.14);
+      --green: #22c55e;
+      --green-soft: rgba(34, 197, 94, 0.14);
+      --yellow: #eab308;
+      --yellow-soft: rgba(234, 179, 8, 0.14);
+      --red: #ef4444;
+      --red-soft: rgba(239, 68, 68, 0.16);
+      --blue: #38bdf8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: radial-gradient(circle at top right, #1e293b 0%, #0f172a 55%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 16px 48px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 20px;
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(249, 115, 22, 0.35);
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .preset-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .preset-bar label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .preset-bar select {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 22px;
+    }
+
+    @media (max-width: 820px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      backdrop-filter: blur(8px);
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .input-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .input-grid { grid-template-columns: 1fr; }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #cbd5e1;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .field label span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .prefix, .suffix {
+      position: absolute;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      pointer-events: none;
+    }
+
+    .prefix { left: 12px; }
+    .suffix { right: 12px; }
+
+    input[type="number"], select.field-select {
+      width: 100%;
+      background: #0f172a;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: border-color 0.15s ease;
+    }
+
+    input.has-prefix { padding-left: 28px; }
+    input.has-suffix { padding-right: 30px; }
+
+    input[type="number"]:focus, select.field-select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .toggle-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .toggle-btn {
+      background: #0f172a;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 9px 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .toggle-btn.active {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: #fdba74;
+    }
+
+    .status-banner {
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid transparent;
+    }
+
+    .status-healthy { background: var(--green-soft); border-color: rgba(34, 197, 94, 0.35); }
+    .status-low { background: var(--yellow-soft); border-color: rgba(234, 179, 8, 0.35); }
+    .status-loss { background: var(--red-soft); border-color: rgba(239, 68, 68, 0.45); }
+
+    .big-number {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .status-badge {
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .badge-healthy { background: rgba(34, 197, 94, 0.2); color: #86efac; }
+    .badge-low { background: rgba(234, 179, 8, 0.2); color: #fde047; }
+    .badge-loss { background: rgba(239, 68, 68, 0.25); color: #fca5a5; }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .kpi-box {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .kpi-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .kpi-val {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .kpi-val.accent { color: #fdba74; }
+    .kpi-val.blue { color: var(--blue); }
+
+    .bar-wrap {
+      margin: 16px 0 18px;
+    }
+
+    .bar-track {
+      height: 12px;
+      border-radius: 999px;
+      background: #0f172a;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .bar-seg { height: 100%; transition: width 0.25s ease; }
+    .seg-cogs { background: #38bdf8; }
+    .seg-fees { background: #f97316; }
+    .seg-profit { background: #22c55e; }
+    .seg-loss { background: #ef4444; }
+
+    .bar-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+
+    .breakdown {
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      color: #cbd5e1;
+    }
+
+    .row.muted { color: var(--muted); font-size: 13px; }
+    .row.total {
+      border-top: 1px dashed var(--border);
+      padding-top: 8px;
+      margin-top: 4px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .cta-card {
+      margin-top: 24px;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.16), rgba(56, 189, 248, 0.12));
+      border: 1px solid rgba(249, 115, 22, 0.4);
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cta-card h3 {
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    .cta-card p {
+      font-size: 13px;
+      color: #cbd5e1;
+      max-width: 620px;
+    }
+
+    .cta-btn {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      white-space: nowrap;
+      box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+      transition: transform 0.15s ease;
+    }
+
+    .cta-btn:hover { transform: translateY(-1px); }
+
+    .preset-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+      align-items: center;
+    }
+
+    .preset-pills span {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
+    .pill-btn {
+      background: var(--surface);
+      color: #cbd5e1;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .pill-btn:hover {
+      border-color: var(--accent);
+      color: #fdba74;
+    }
+
+    .stress-box {
+      margin-top: 14px;
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-size: 12.5px;
+    }
+
+    .stress-col strong {
+      display: block;
+      font-size: 16px;
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">P</div>
+        <div>
+          <h1>ProfitPulse™ Etsy Calculator</h1>
+          <div class="subtitle">Real-time Etsy Fee, Offsite Ads &amp; Break-Even Simulator</div>
+        </div>
+      </div>
+      <div class="preset-bar">
+        <label for="countryPreset">Region:</label>
+        <select id="countryPreset">
+          <option value="US" selected>🇺🇸 United States ($ — 3% + $0.25)</option>
+          <option value="UK">🇬🇧 United Kingdom (£ — 4% + £0.20)</option>
+          <option value="CA">🇨🇦 Canada (C$ — 3% + $0.25)</option>
+          <option value="AU">🇦🇺 Australia (A$ — 3% + $0.25)</option>
+          <option value="EU">🇪🇺 Europe (€ — 4% + €0.30)</option>
+        </select>
+      </div>
+    </header>
+
+    <div class="preset-pills">
+      <span>Try a real Etsy scenario:</span>
+      <button type="button" class="pill-btn" onclick="loadScenario('mug')">🚨 Custom Mug $18.99 (Offsite Ad Trap)</button>
+      <button type="button" class="pill-btn" onclick="loadScenario('candle')">🕯️ Soy Candle $28</button>
+      <button type="button" class="pill-btn" onclick="loadScenario('digital')">📄 Digital Download $16</button>
+    </div>
+
+    <div class="grid">
+      <!-- LEFT: INPUTS -->
+      <div class="card">
+        <div class="card-title">
+          <span>1. Pricing &amp; Product Costs</span>
+        </div>
+
+        <div class="input-grid">
+          <div class="field">
+            <label>Item Sale Price</label>
+            <div class="input-wrap">
+              <span class="prefix curr">$</span>
+              <input id="salePrice" class="has-prefix" type="number" step="0.01" min="0" value="35.00" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Shipping Charged <span>to buyer</span></label>
+            <div class="input-wrap">
+              <span class="prefix curr">$</span>
+              <input id="shippingCharged" class="has-prefix" type="number" step="0.01" min="0" value="0.00" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Shop Discount / Promo</label>
+            <div class="input-wrap">
+              <input id="discountPct" class="has-suffix" type="number" step="1" min="0" max="90" value="0" />
+              <span class="suffix">%</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Target Profit Margin</label>
+            <div class="input-wrap">
+              <input id="targetMargin" class="has-suffix" type="number" step="1" min="5" max="80" value="35" />
+              <span class="suffix">%</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Materials / COGS</label>
+            <div class="input-wrap">
+              <span class="prefix curr">$</span>
+              <input id="cogs" class="has-prefix" type="number" step="0.01" min="0" value="9.50" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Packaging &amp; Inserts</label>
+            <div class="input-wrap">
+              <span class="prefix curr">$</span>
+              <input id="packaging" class="has-prefix" type="number" step="0.01" min="0" value="1.50" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Actual Shipping Label</label>
+            <div class="input-wrap">
+              <span class="prefix curr">$</span>
+              <input id="actualShipping" class="has-prefix" type="number" step="0.01" min="0" value="5.80" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Labor + Etsy Ads / Unit</label>
+            <div class="input-wrap">
+              <span class="prefix curr">$</span>
+              <input id="laborAds" class="has-prefix" type="number" step="0.01" min="0" value="2.00" />
+            </div>
+          </div>
+
+          <div class="field full">
+            <label>Offsite Ads Fee <span>Etsy charges 15% (&lt;$10k/yr) or 12% (&gt;$10k/yr)</span></label>
+            <div class="toggle-group" id="offsiteGroup">
+              <button type="button" class="toggle-btn active" data-rate="0">No (0%)</button>
+              <button type="button" class="toggle-btn" data-rate="0.15">Yes (15%)</button>
+              <button type="button" class="toggle-btn" data-rate="0.12">Yes (12%)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: RESULTS -->
+      <div class="card">
+        <div class="card-title">
+          <span>2. True Profit Analysis</span>
+        </div>
+
+        <div id="statusBanner" class="status-banner status-healthy">
+          <div>
+            <div style="font-size:12px; color:#cbd5e1; margin-bottom:2px;">True Net Profit / Order</div>
+            <div id="netProfitDisplay" class="big-number">$12.42</div>
+            <div id="marginDisplay" style="font-size:13px; color:#cbd5e1; margin-top:4px;">Profit Margin: 35.5%</div>
+          </div>
+          <div id="statusBadge" class="status-badge badge-healthy">🔥 Healthy</div>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-box">
+            <div class="kpi-label">Exact Break-Even Price</div>
+            <div id="breakEvenDisplay" class="kpi-val blue">$21.25</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-label">Recommended Price (<span id="targetLabel">35</span>% Margin)</div>
+            <div id="recPriceDisplay" class="kpi-val accent">$34.48</div>
+          </div>
+        </div>
+
+        <div class="bar-wrap">
+          <div class="bar-track">
+            <div id="segCogs" class="bar-seg seg-cogs" style="width: 50%"></div>
+            <div id="segFees" class="bar-seg seg-fees" style="width: 15%"></div>
+            <div id="segProfit" class="bar-seg seg-profit" style="width: 35%"></div>
+          </div>
+          <div class="bar-legend">
+            <span><i class="dot" style="background:#38bdf8"></i>Costs: <strong id="pctCogs">54%</strong></span>
+            <span><i class="dot" style="background:#f97316"></i>Etsy Fees: <strong id="pctFees">11%</strong></span>
+            <span><i class="dot" style="background:#22c55e"></i>Net Profit: <strong id="pctProfit">35%</strong></span>
+          </div>
+        </div>
+
+        <div class="breakdown">
+          <div class="row"><span>Total Buyer Pays (After Discount)</span><strong id="revDisplay">$35.00</strong></div>
+          <div class="row muted"><span>Listing Fee</span><span id="feeListing">-$0.20</span></div>
+          <div class="row muted"><span>Transaction Fee (6.5% on item + ship)</span><span id="feeTrans">-$2.28</span></div>
+          <div class="row muted"><span>Payment Processing Fee</span><span id="feePay">-$1.30</span></div>
+          <div class="row muted"><span>Offsite Ads Fee</span><span id="feeOffsite">-$0.00</span></div>
+          <div class="row total"><span>Total Etsy Fees (<span id="feePctTotal">10.8%</span>)</span><span id="feeTotal">-$3.78</span></div>
+          <div class="row total"><span>Total Product &amp; Shipping Costs</span><span id="costTotal">-$18.80</span></div>
+        </div>
+
+        <div class="stress-box">
+          <div class="stress-col">
+            <span style="color:var(--muted);">Normal Order Profit (0% Offsite)</span>
+            <strong id="stressNormal" style="color:var(--green);">$12.42</strong>
+          </div>
+          <div class="stress-col">
+            <span style="color:var(--muted);">If 15% Offsite Ad Hits</span>
+            <strong id="stressOffsite" style="color:var(--yellow);">$7.17</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPSELL BANNER FOR LEAD MAGNET USE -->
+    <div class="cta-card">
+      <div>
+        <h3>Want to track your entire Etsy shop automatically?</h3>
+        <p>Get <strong>ProfitPulse™ Pro OS (Google Sheets + Excel)</strong> — Unlimited SKUs, Live 12-Month P&amp;L Dashboard, Order Profit Log, Inventory Reorder Alerts, and 1-Click Margin Audit Automation.</p>
+      </div>
+      <!-- Gumroad product link synced from config.json -->
+      <a class="cta-btn" href="https://melodypeace3.gumroad.com/l/profitpulse-etsy" target="_blank" rel="noopener">Get Full Pro OS ($27) →</a>
+    </div>
+  </div>
+
+  <script>
+    const PRESETS = {
+      US: { symbol: '$', listing: 0.20, trans: 0.065, payPct: 0.03, payFix: 0.25 },
+      UK: { symbol: '£', listing: 0.16, trans: 0.065, payPct: 0.04, payFix: 0.20 },
+      CA: { symbol: 'C$', listing: 0.27, trans: 0.065, payPct: 0.03, payFix: 0.25 },
+      AU: { symbol: 'A$', listing: 0.30, trans: 0.065, payPct: 0.03, payFix: 0.25 },
+      EU: { symbol: '€', listing: 0.19, trans: 0.065, payPct: 0.04, payFix: 0.30 }
+    };
+
+    let offsiteRate = 0;
+
+    const $ = (id) => document.getElementById(id);
+
+    function fmt(val, sym) {
+      const sign = val < 0 ? '-' : '';
+      return `${sign}${sym}${Math.abs(val).toFixed(2)}`;
+    }
+
+    function calculate() {
+      const preset = PRESETS[$('countryPreset').value];
+      const sym = preset.symbol;
+
+      document.querySelectorAll('.curr').forEach((el) => (el.textContent = sym));
+
+      const salePrice = Math.max(0, parseFloat($('salePrice').value) || 0);
+      const shippingCharged = Math.max(0, parseFloat($('shippingCharged').value) || 0);
+      const discountPct = Math.min(95, Math.max(0, parseFloat($('discountPct').value) || 0)) / 100;
+      const targetMargin = Math.min(85, Math.max(1, parseFloat($('targetMargin').value) || 35)) / 100;
+
+      const cogs = Math.max(0, parseFloat($('cogs').value) || 0);
+      const packaging = Math.max(0, parseFloat($('packaging').value) || 0);
+      const actualShipping = Math.max(0, parseFloat($('actualShipping').value) || 0);
+      const laborAds = Math.max(0, parseFloat($('laborAds').value) || 0);
+
+      const effectiveItemPrice = salePrice * (1 - discountPct);
+      const totalRev = effectiveItemPrice + shippingCharged;
+
+      const feeListing = totalRev > 0 ? preset.listing : 0;
+      const feeTrans = totalRev * preset.trans;
+      const feePay = totalRev > 0 ? totalRev * preset.payPct + preset.payFix : 0;
+      const feeOffsite = totalRev * offsiteRate;
+      const totalFees = feeListing + feeTrans + feePay + feeOffsite;
+
+      const totalCosts = cogs + packaging + actualShipping + laborAds;
+      const netProfit = totalRev - totalFees - totalCosts;
+      const margin = totalRev > 0 ? netProfit / totalRev : 0;
+
+      const variableFeeRate = preset.trans + preset.payPct + offsiteRate;
+      const fixedCostsAndFees = totalCosts + preset.listing + preset.payFix;
+
+      // Exact Break-Even Total Revenue -> subtract shippingCharged & adjust for discount
+      const breakEvenRev = fixedCostsAndFees / Math.max(0.01, 1 - variableFeeRate);
+      const breakEvenPrice = Math.max(0, (breakEvenRev - shippingCharged) / Math.max(0.05, 1 - discountPct));
+
+      // Recommended Price to hit Target Margin
+      const denomTarget = 1 - variableFeeRate - targetMargin;
+      const recRev = denomTarget > 0.02 ? fixedCostsAndFees / denomTarget : 0;
+      const recPrice = denomTarget > 0.02 ? Math.max(0, (recRev - shippingCharged) / Math.max(0.05, 1 - discountPct)) : 0;
+
+      // Update UI
+      $('netProfitDisplay').textContent = fmt(netProfit, sym);
+      $('marginDisplay').textContent = `Profit Margin: ${(margin * 100).toFixed(1)}%`;
+      $('targetLabel').textContent = Math.round(targetMargin * 100);
+
+      $('breakEvenDisplay').textContent = fmt(breakEvenPrice, sym);
+      $('recPriceDisplay').textContent = denomTarget > 0.02 ? fmt(recPrice, sym) : 'Margin too high';
+
+      $('revDisplay').textContent = fmt(totalRev, sym);
+      $('feeListing').textContent = `-${fmt(feeListing, sym)}`;
+      $('feeTrans').textContent = `-${fmt(feeTrans, sym)}`;
+      $('feePay').textContent = `-${fmt(feePay, sym)}`;
+      $('feeOffsite').textContent = `-${fmt(feeOffsite, sym)}`;
+      $('feeTotal').textContent = `-${fmt(totalFees, sym)}`;
+      $('feePctTotal').textContent = `${totalRev > 0 ? ((totalFees / totalRev) * 100).toFixed(1) : '0.0'}%`;
+      $('costTotal').textContent = `-${fmt(totalCosts, sym)}`;
+
+      // Status banner styling
+      const banner = $('statusBanner');
+      const badge = $('statusBadge');
+      banner.classList.remove('status-healthy', 'status-low', 'status-loss');
+      badge.classList.remove('badge-healthy', 'badge-low', 'badge-loss');
+
+      if (netProfit <= 0) {
+        banner.classList.add('status-loss');
+        badge.classList.add('badge-loss');
+        badge.textContent = '🚨 LOSING MONEY';
+      } else if (margin < 0.2) {
+        banner.classList.add('status-low');
+        badge.classList.add('badge-low');
+        badge.textContent = '⚠️ Low Margin';
+      } else {
+        banner.classList.add('status-healthy');
+        badge.classList.add('badge-healthy');
+        badge.textContent = '🔥 Healthy';
+      }
+
+      // Breakdown bar
+      const base = Math.max(totalRev, totalCosts + totalFees, 0.01);
+      const pctC = (totalCosts / base) * 100;
+      const pctF = (totalFees / base) * 100;
+      const pctP = Math.max(0, (netProfit / base) * 100);
+
+      $('segCogs').style.width = `${pctC}%`;
+      $('segFees').style.width = `${pctF}%`;
+      $('segProfit').style.width = `${pctP}%`;
+
+      $('pctCogs').textContent = `${totalRev > 0 ? Math.round((totalCosts / totalRev) * 100) : 0}%`;
+      $('pctFees').textContent = `${totalRev > 0 ? Math.round((totalFees / totalRev) * 100) : 0}%`;
+      $('pctProfit').textContent = `${totalRev > 0 ? Math.round(margin * 100) : 0}%`;
+
+      // Stress-test comparison (Normal vs 15% Offsite Ads)
+      const normalFees = feeListing + feeTrans + feePay;
+      const normalProfit = totalRev - normalFees - totalCosts;
+      const offsite15Profit = normalProfit - totalRev * 0.15;
+
+      $('stressNormal').textContent = fmt(normalProfit, sym);
+      $('stressNormal').style.color = normalProfit <= 0 ? 'var(--red)' : 'var(--green)';
+      $('stressOffsite').textContent = fmt(offsite15Profit, sym);
+      $('stressOffsite').style.color = offsite15Profit <= 0 ? 'var(--red)' : offsite15Profit / Math.max(totalRev, 1) < 0.2 ? 'var(--yellow)' : 'var(--green)';
+    }
+
+    function loadScenario(type) {
+      const presets = {
+        mug: { salePrice: 18.99, shippingCharged: 0, discountPct: 10, cogs: 5.20, packaging: 1.80, actualShipping: 5.90, laborAds: 3.50, offsite: 0.15 },
+        candle: { salePrice: 28.00, shippingCharged: 4.95, discountPct: 0, cogs: 6.50, packaging: 1.40, actualShipping: 5.40, laborAds: 3.50, offsite: 0 },
+        digital: { salePrice: 16.00, shippingCharged: 0, discountPct: 0, cogs: 0, packaging: 0, actualShipping: 0, laborAds: 1.70, offsite: 0 }
+      };
+      const p = presets[type];
+      if (!p) return;
+      $('salePrice').value = p.salePrice;
+      $('shippingCharged').value = p.shippingCharged;
+      $('discountPct').value = p.discountPct;
+      $('cogs').value = p.cogs;
+      $('packaging').value = p.packaging;
+      $('actualShipping').value = p.actualShipping;
+      $('laborAds').value = p.laborAds;
+      offsiteRate = p.offsite;
+      document.querySelectorAll('#offsiteGroup .toggle-btn').forEach((b) => {
+        b.classList.toggle('active', parseFloat(b.dataset.rate) === offsiteRate);
+      });
+      calculate();
+    }
+
+    document.querySelectorAll('input, select').forEach((el) => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+
+    document.querySelectorAll('#offsiteGroup .toggle-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#offsiteGroup .toggle-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        offsiteRate = parseFloat(btn.dataset.rate) || 0;
+        calculate();
+      });
+    });
+
+    calculate();
+  </script>
+</body>
+</html>

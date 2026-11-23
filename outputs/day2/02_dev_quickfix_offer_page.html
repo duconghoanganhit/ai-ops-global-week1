@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Same-Day $50 Dev Quick-Fixes | Shopify, WordPress, n8n &amp; APIs — Anh Dev</title>
+  <meta name="description" content="Fixed $50 same-day 60-minute technical fixes for founders and store owners: Shopify checkout/layout bugs, WordPress issues, n8n/Make webhooks, and Python/Node automation scripts." />
+  <style>
+    :root {
+      --bg: #0b1120;
+      --surface: #111827;
+      --surface-2: #1e293b;
+      --ink: #f8fafc;
+      --muted: #94a3b8;
+      --line: #243044;
+      --accent: #38bdf8;
+      --green: #22c55e;
+      --amber: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at top right, #172554 0%, var(--bg) 52%);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 28px 20px 64px; }
+    .nav {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+      padding-bottom: 20px; border-bottom: 1px solid var(--line); margin-bottom: 34px;
+    }
+    .logo { font-weight: 800; letter-spacing: -0.02em; font-size: 1.05rem; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 5px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 600;
+      background: rgba(34, 197, 94, 0.14); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.35);
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+    .hero h1 {
+      font-size: clamp(1.9rem, 4vw, 2.85rem);
+      line-height: 1.15; letter-spacing: -0.03em; margin: 14px 0 14px;
+    }
+    .hero p { color: var(--muted); font-size: 1.05rem; max-width: 680px; margin: 0 0 24px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 20px; border-radius: 10px; font-weight: 700; font-size: 0.92rem;
+      text-decoration: none; cursor: pointer; border: 1px solid var(--line);
+      background: var(--surface-2); color: var(--ink); transition: transform 0.12s ease, border-color 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); border-color: var(--accent); }
+    .btn.primary { background: var(--accent); color: #082f49; border-color: var(--accent); }
+    .btn.primary:hover { background: #7dd3fc; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; margin: 34px 0; }
+    .card {
+      background: rgba(17, 24, 39, 0.85);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .card h3 { margin: 0 0 8px; font-size: 1rem; color: var(--accent); }
+    .card ul { margin: 8px 0 0 18px; padding: 0; color: #cbd5e1; font-size: 0.9rem; }
+    .card li { margin-bottom: 5px; }
+
+    .section-title { font-size: 1.25rem; letter-spacing: -0.02em; margin: 36px 0 14px; }
+    .proof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+    .proof-card a { color: var(--accent); font-weight: 700; text-decoration: none; }
+    .proof-card a:hover { text-decoration: underline; }
+    .proof-card p { color: var(--muted); font-size: 0.88rem; margin: 6px 0 10px; }
+
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .step-num {
+      display: inline-flex; width: 26px; height: 26px; align-items: center; justify-content: center;
+      border-radius: 8px; background: rgba(56, 189, 248, 0.16); color: var(--accent);
+      font-weight: 800; font-size: 0.82rem; margin-bottom: 8px;
+    }
+
+    .brief-box {
+      background: var(--surface); border: 1px solid var(--accent); border-radius: 14px; padding: 22px; margin-top: 34px;
+    }
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 14px 0; }
+    label { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 5px; font-weight: 600; }
+    select, input, textarea {
+      width: 100%; padding: 10px 12px; border-radius: 9px; border: 1px solid var(--line);
+      background: #0b1120; color: var(--ink); font-family: inherit; font-size: 0.9rem;
+    }
+    textarea { min-height: 76px; resize: vertical; }
+    .preview-out {
+      margin-top: 12px; padding: 12px; border-radius: 9px; background: #020617;
+      border: 1px dashed var(--line); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.82rem; white-space: pre-wrap; color: #e2e8f0;
+    }
+    .retainer {
+      margin-top: 26px; padding: 16px 20px; border-radius: 12px;
+      background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.35);
+      font-size: 0.9rem; color: #fde68a;
+    }
+    footer {
+      margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--line);
+      color: var(--muted); font-size: 0.8rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <div class="logo">Anh Dev · Quick-Fix Studio</div>
+      <span class="badge"><span class="dot"></span> 2 Same-Day Slots Open Today · Flat $50</span>
+    </nav>
+
+    <section class="hero">
+      <h1>Clear Your Urgent Store or Automation Blocker Today — Flat $50.</h1>
+      <p>
+        Need a stubborn Shopify layout bug fixed, a broken n8n/Make webhook repaired, or a messy CSV/API script knocked out fast without hiring an agency?
+        Send your blocker — I confirm scope in <strong>5 minutes</strong> and deliver within <strong>1 focused 60-minute slot</strong>.
+      </p>
+      <div class="cta-row">
+        <a href="#brief-builder" class="btn primary">Build 30-Second Task Brief ($50 Flat)</a>
+        <a href="https://github.com/duconghoanganhit" target="_blank" rel="noopener" class="btn">View Public GitHub Code</a>
+      </div>
+    </section>
+
+    <section class="grid-3">
+      <div class="card">
+        <h3>Shopify &amp; WordPress Fixes</h3>
+        <ul>
+          <li>Mobile Add-to-Cart &amp; sticky bar overlap bugs</li>
+          <li>Checkout, cart drawer &amp; promo stacking issues</li>
+          <li>Uninstalled app script cleanup &amp; LCP speed wins</li>
+          <li>Theme Liquid/CSS tweaks &amp; broken links</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>n8n / Make / Webhook Ops</h3>
+        <ul>
+          <li>Lead form → CRM / Slack / Sheets instant routing</li>
+          <li>Fixing 400/401/CORS webhook payload failures</li>
+          <li>GoHighLevel, HubSpot &amp; Stripe event triggers</li>
+          <li>Retry logic &amp; error alerting setups</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Python / Node &amp; Data Scripts</h3>
+        <ul>
+          <li>Product catalog / Shopify CSV cleanup scripts</li>
+          <li>Quick REST API sync &amp; scheduled reports</li>
+          <li>Store health &amp; SEO meta/OG audits</li>
+          <li>Clean, documented code you own 100%</li>
+        </ul>
+      </div>
+    </section>
+
+    <h2 class="section-title">How the Flat $50 Slot Works (Zero Surprise Billing)</h2>
+    <section class="steps">
+      <div class="card">
+        <div class="step-num">1</div>
+        <strong>Send Your Blocker</strong>
+        <p style="color:var(--muted);font-size:0.86rem;margin:6px 0 0">Share your URL, screenshot, or error log. No sales call needed.</p>
+      </div>
+      <div class="card">
+        <div class="step-num">2</div>
+        <strong>5-Minute Scope Check</strong>
+        <p style="color:var(--muted);font-size:0.86rem;margin:6px 0 0">I confirm upfront if it fits the flat $50 fixed scope — before you pay a cent.</p>
+      </div>
+      <div class="card">
+        <div class="step-num">3</div>
+        <strong>Same-Day Fix + Proof</strong>
+        <p style="color:var(--muted);font-size:0.86rem;margin:6px 0 0">50% deposit (Wise / PayPal / Ko-fi), tested live on desktop &amp; mobile, 50% on verification.</p>
+      </div>
+    </section>
+
+    <h2 class="section-title">Recent Public Code Samples</h2>
+    <section class="proof-grid">
+      <div class="card proof-card">
+        <a href="https://github.com/duconghoanganhit/shopify-health-auditor" target="_blank" rel="noopener">
+          github.com/duconghoanganhit/shopify-health-auditor &rarr;
+        </a>
+        <p>Automated Python health auditor that scans Shopify storefronts for heavy hero assets, missing meta/OG tags, and conversion-hurting front-end issues.</p>
+      </div>
+      <div class="card proof-card">
+        <a href="https://github.com/duconghoanganhit/ghl-n8n-lead-followup" target="_blank" rel="noopener">
+          github.com/duconghoanganhit/ghl-n8n-lead-followup &rarr;
+        </a>
+        <p>Production-ready n8n workflow automating inbound lead enrichment, GoHighLevel CRM sync, and rapid follow-up alerts with clean error handling.</p>
+      </div>
+    </section>
+
+    <section class="brief-box" id="brief-builder">
+      <h2 style="margin:0 0 6px;font-size:1.15rem">30-Second Task Brief Builder</h2>
+      <p style="margin:0;color:var(--muted);font-size:0.86rem">Fill in 3 quick fields and copy your ready-to-send brief to paste into LinkedIn DM or Reddit DM for a 5-minute confirmation.</p>
+      <div class="form-grid">
+        <div>
+          <label for="cat">Platform / Area</label>
+          <select id="cat" onchange="buildBrief()">
+            <option>Shopify Store / Theme / Checkout</option>
+            <option>WordPress / WooCommerce</option>
+            <option>n8n / Make / Webhook Automation</option>
+            <option>Python / Node / CSV / API Script</option>
+          </select>
+        </div>
+        <div>
+          <label for="url">Store URL or Tool (Optional)</label>
+          <input id="url" type="text" placeholder="e.g. https://mystore.com" oninput="buildBrief()" />
+        </div>
+        <div>
+          <label for="urg">Target Turnaround</label>
+          <select id="urg" onchange="buildBrief()">
+            <option>Today (Same-Day $50 Slot)</option>
+            <option>Within 24 Hours</option>
+            <option>Free 3-Min Pre-Black-Friday Audit First</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label for="desc">Exact Blocker / Desired Result (1–2 sentences)</label>
+        <textarea id="desc" placeholder="e.g. Sticky chat bubble overlaps Checkout button on iPhone, or n8n webhook returning 400 on form submit." oninput="buildBrief()"></textarea>
+      </div>
+      <div class="preview-out" id="briefPreview"></div>
+      <div class="cta-row" style="margin-top:14px">
+        <button class="btn primary" onclick="copyBrief()">Copy Brief to Clipboard</button>
+        <span id="copyMsg" style="font-size:0.82rem;color:#86efac"></span>
+      </div>
+    </section>
+
+    <div class="retainer">
+      <strong>Need ongoing weekly support after your first fix?</strong> Two light <em>On-Call Fix &amp; Automation</em> spots are available at <strong>$250/week</strong> (up to 5 focused fixes or 1 complete n8n/API workflow per week, cancel anytime).
+    </div>
+
+    <footer>
+      <span>&copy; 2026 Anh Dev · Full-Stack &amp; Automation Engineer</span>
+      <span>Zero cookies · Zero trackers · Pure static HTML (GDPR-clean)</span>
+    </footer>
+  </div>
+
+  <script>
+    function buildBrief() {
+      const cat = document.getElementById('cat').value;
+      const url = document.getElementById('url').value.trim() || '[Insert store/workflow URL]';
+      const urg = document.getElementById('urg').value;
+      const desc = document.getElementById('desc').value.trim() || '[Describe the bug or goal in 1–2 lines]';
+      document.getElementById('briefPreview').textContent =
+`Hi Anh — quick $50 slot check:
+• Area: ${cat}
+• URL / Tool: ${url}
+• Timing: ${urg}
+• Blocker: ${desc}
+
+Can you confirm if this fits a flat $50 fixed slot today?`;
+    }
+    function copyBrief() {
+      const txt = document.getElementById('briefPreview').textContent;
+      navigator.clipboard?.writeText(txt);
+      const el = document.getElementById('copyMsg');
+      el.textContent = 'Copied! Paste into LinkedIn or Reddit DM for a 5-min scope check.';
+      setTimeout(() => { el.textContent = ''; }, 4000);
+    }
+    buildBrief();
+  </script>
+</body>
+</html>

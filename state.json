@@ -10,8 +10,8 @@
     "activeHoursPerDay": 20,
     "restWindow": "20:00 – 24:00 GMT+7",
     "currentDay": 1,
-    "lastUpdated": "2026-11-23T14:44:45+07:00",
-    "lastRunner": "Antigravity",
+    "lastUpdated": "2026-11-23T14:57:50+07:00",
+    "lastRunner": "Cloud $0 (GitHub Actions)",
     "reportIntervalMinutes": 5,
     "nextCheckAt": "2026-11-23T14:49:45+07:00",
     "cloudActivated": true,
@@ -40,15 +40,15 @@
       "provider": "Gemini API Free Tier + GitHub Actions",
       "primaryModel": "gemini-3.8-flash",
       "fallbackModel": "gemini-3.5-flash-lite",
-      "requestsUsedToday": 0,
+      "requestsUsedToday": 1,
       "dailySoftCap": 150,
-      "tokensUsedToday": 0,
+      "tokensUsedToday": 2408,
       "tokenSoftCap": 800000,
-      "remainingPct": 100,
+      "remainingPct": 99,
       "burnRatePerHour": "~2 req / ~12k tokens (cron 30p khi tắt máy)",
       "autoDowngradeThresholdPct": 20,
-      "status": "Đang đẩy bản vá chống 503/429 & chạy xanh GitHub Pages",
-      "lastChecked": "2026-11-23T03:31:20+07:00"
+      "status": "Đang chạy tốt (gemini-3.5-flash-lite)",
+      "lastChecked": "2026-11-23T14:57:50+07:00"
     },
     "googleAiPro": {
       "provider": "Antigravity (Google AI Pro)",
@@ -70,15 +70,15 @@
       "market": "US / UK / CA / AU (Sleep History)",
       "monetization": "YouTube AdSense RPM cao ($8–$14) + Tài sản kênh dài hạn",
       "usdTargetWeek1": "Tài sản: Tập 1 lên sóng + 4 Tập hoàn chỉnh sẵn render",
-      "progressPct": 86,
+      "progressPct": 94,
       "eta": "29/11 19:00 VN",
       "status": "Đang chạy",
       "runner": "Hybrid (Antigravity + Cloud)",
       "workspaceRef": "../sleepless-roman-history/",
       "latestOutput": {
-        "title": "3 Kịch bản YouTube Shorts 45s kéo traffic thẳng vào Tập 1–3 Sleepless Roman",
-        "path": "outputs/day3/01_sleepless_roman_3_shorts_scripts.md",
-        "updatedAt": "2026-11-23T03:29:35+07:00"
+        "title": "Sleepless Roman History — 20 Chủ đề Sleep History RPM cao nhất & Lịch sản xuất 2 tháng",
+        "path": "outputs/day2/04_sleepless_roman_20_high_rpm_topics.md",
+        "updatedAt": "2026-11-23T14:57:50+07:00"
       },
       "nextMilestone": "Upload Tập 1 MP4 + Tạo 3 Shorts kéo view về Ep 1–4 + Lên lịch render Tập 2"
     },
@@ -1203,8 +1203,11 @@
       "projectId": "sleepless-roman",
       "title": "Sleepless Roman History — 20 Chủ đề Sleep History RPM cao nhất & Lịch sản xuất 2 tháng",
       "outputFile": "outputs/day2/04_sleepless_roman_20_high_rpm_topics.md",
-      "status": "pending",
-      "prompt": "Create a prioritized 20-episode high-RPM Boring History for Sleep content calendar (covering Ancient Rome, Ancient Greece, Ancient Egypt, Pompeii, and Medieval Europe) with proven high-CTR titles, 1-sentence sensory hook, estimated watch-time angle, and weekly upload cadence for 2 months. Native US/UK English."
+      "status": "done",
+      "prompt": "Create a prioritized 20-episode high-RPM Boring History for Sleep content calendar (covering Ancient Rome, Ancient Greece, Ancient Egypt, Pompeii, and Medieval Europe) with proven high-CTR titles, 1-sentence sensory hook, estimated watch-time angle, and weekly upload cadence for 2 months. Native US/UK English.",
+      "completedAt": "2026-11-23T14:57:50+07:00",
+      "modelUsed": "gemini-3.5-flash-lite",
+      "tokensUsed": 2408
     },
     {
       "id": "q-d2-b3-profitpulse-bf",
@@ -1260,7 +1263,7 @@
   "dailyReview": {
     "date": "2026-11-23",
     "status": "Đang cập nhật (Chốt cuối ngày lúc 18:30–20:00 VN)",
-    "weekCompletionPct": 68,
+    "weekCompletionPct": 71,
     "realOutputsToday": [
       "outputs/day1/01_morning_briefing_day1.md — Morning Briefing Day 1 ($0 chi phí) & Checklist tuân thủ",
       "outputs/day1/02_sleepless_roman_ep02_full_blueprint.md — Trọn bộ Tập 2 Sleepless Roman History (~1,820 từ + 12 prompts + SEO)",
@@ -1277,7 +1280,8 @@
       "outputs/day2/03_peaceful_soul_outreach_and_retainer_kit.md — Bộ săn lead US & Retainer /tháng Peaceful Soul",
       "outputs/day3/01_sleepless_roman_3_shorts_scripts.md — 3 kịch bản YouTube Shorts 45s kéo view vào Tập 1–3",
       "outputs/day3/02_thanksgiving_advent_peace_sheet.html — Lead Magnet in PDF 1 trang Thanksgiving/Advent cho Faith & Peace",
-      "outputs/day1/10_dev_black_friday_outreach_and_audit_samples.md — 3 bài đăng Black Friday + 3 Micro-Case + SOP chốt  Anh Dev"
+      "outputs/day1/10_dev_black_friday_outreach_and_audit_samples.md — 3 bài đăng Black Friday + 3 Micro-Case + SOP chốt  Anh Dev",
+      "outputs/day2/04_sleepless_roman_20_high_rpm_topics.md — Sleepless Roman History — 20 Chủ đề Sleep History RPM cao nhất & Lịch sản xuất 2 tháng"
     ],
     "usdReadiness": {
       "sleeplessRoman": "90% sẵn sàng phát hành (Tập 1 MP4 533MB đã xong, chờ upload; Tập 2 đã viết xong 100%)",
@@ -1293,6 +1297,14 @@
     "adjustmentsForTomorrow": "Ngay sau khi mở khóa Cloud $0 và các tài khoản, dồn 70% lực phân phối vào 2 kênh tạo tín hiệu USD sớm nhất trong 48h đầu (Peaceful Soul $99 + Anh Dev $50 / ProfitPulse $27)."
   },
   "heartbeatLog": [
+    {
+      "time": "2026-11-23T14:57:50+07:00",
+      "runner": "Cloud $0 (gemini-3.5-flash-lite)",
+      "block": "12:00-15:00",
+      "action": "Hoàn tất tự động: Sleepless Roman History — 20 Chủ đề Sleep History RPM cao nhất & Lịch sản xuất 2 tháng → outputs/day2/04_sleepless_roman_20_high_rpm_topics.md (2,408 tokens).",
+      "quotaSnapshot": "Cloud 99% (1/150 req)",
+      "costUsd": 0
+    },
     {
       "time": "2026-11-23T14:44:45+07:00",
       "runner": "Antigravity (Resume Block 5)",
