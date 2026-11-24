@@ -10,7 +10,7 @@
     "activeHoursPerDay": 20,
     "restWindow": "20:00 – 24:00 GMT+7",
     "currentDay": 2,
-    "lastUpdated": "2026-11-24T04:38:39+07:00",
+    "lastUpdated": "2026-11-24T12:43:44+07:00",
     "lastRunner": "Cloud $0 (GitHub Actions)",
     "reportIntervalMinutes": 5,
     "nextCheckAt": "2026-11-23T16:39:30+07:00",
@@ -41,15 +41,15 @@
       "provider": "Gemini API Free Tier + GitHub Actions",
       "primaryModel": "gemini-3.8-flash",
       "fallbackModel": "gemini-3.5-flash-lite",
-      "requestsUsedToday": 0,
+      "requestsUsedToday": 1,
       "dailySoftCap": 150,
-      "tokensUsedToday": 0,
+      "tokensUsedToday": 1021,
       "tokenSoftCap": 800000,
-      "remainingPct": 100,
+      "remainingPct": 99,
       "burnRatePerHour": "~2 req / ~12k tokens (cron 30p khi tắt máy)",
       "autoDowngradeThresholdPct": 20,
-      "status": "Tạm nghẽn upstream (HTTP 404) — tự thử lại nhịp sau",
-      "lastChecked": "2026-11-24T04:38:39+07:00"
+      "status": "Đang chạy tốt (gemini-3.5-flash-lite)",
+      "lastChecked": "2026-11-24T12:43:44+07:00"
     },
     "googleAiPro": {
       "provider": "Antigravity (Google AI Pro)",
@@ -147,15 +147,15 @@
       "market": "US / EU Shopify & Agency Owners",
       "monetization": "$50/task cố định (Shopify, WordPress, n8n/Make, API/Scripts)",
       "usdTargetWeek1": "$100 – $200 USD (2–4 tasks Black Friday)",
-      "progressPct": 92,
+      "progressPct": 95,
       "eta": "27/11 20:00 VN",
       "status": "Đang chạy",
       "runner": "Antigravity + Cloud $0",
       "workspaceRef": "../anh-dev-portfolio/",
       "latestOutput": {
-        "title": "5 Gói Sửa Web & Tự Động Hóa Bán Sẵn ($50 / $99 / $150 / $250/tuần) + 3 Mẫu Báo Giá Nâng Đơn",
-        "path": "outputs/day4/03_sua_web_5_goi_tu_dong_hoa_productized.md",
-        "updatedAt": "2026-11-23T16:21:00+07:00"
+        "title": "Sửa Lỗi Web ($50) — Kịch Bản Biến Comment/Audit Miễn Phí Thành Đơn $50–$99 Trong 5 Phút (Black Friday)",
+        "path": "outputs/day4/07_anh_dev_bf_comment_to_paid_playbook.md",
+        "updatedAt": "2026-11-24T12:43:44+07:00"
       },
       "nextMilestone": "Đăng bài LinkedIn + r/forhire khung giờ vàng US sáng nay (20:00–22:00 VN / 08:00–10:00 EST)"
     }
@@ -372,7 +372,7 @@
           "title": "Sleepless Roman Ep 03 Blueprint (Rainy Roman Bathhouse) + 15 Lead Peaceful Soul mới",
           "project": "Sleepless Roman / Peaceful Soul",
           "engine": "Cloud $0",
-          "status": "Đang chạy",
+          "status": "Đã xong",
           "eta": "24/11 05:30",
           "outputPath": "outputs/day2/01_sleepless_roman_ep04_blueprint.md",
           "summary": "Đã xong sớm Full Blueprint Tập 4 (1,820 từ + 10 prompts + SEO). Tiếp: Bộ chốt gói tháng /th & tìm 15 lead Peaceful Soul."
@@ -386,7 +386,7 @@
           "title": "ProfitPulse Etsy: Email Funnel 3 bước sau khi tải bản Free + 5 Pinterest Pins mới",
           "project": "ProfitPulse Etsy",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "24/11 09:00",
           "outputPath": "",
           "summary": "Tối ưu tỷ lệ chuyển đổi Free → Pro $27 trước dịp Black Friday."
@@ -400,7 +400,7 @@
           "title": "Faith & Peace Kit: 10 Caption Shorts/Reels/TikTok + FAQ trang bán Payhip",
           "project": "Faith & Peace 5-Day Kit",
           "engine": "Antigravity",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "24/11 12:00",
           "outputPath": "",
           "summary": "Chuẩn hóa hook 3 giây tự nhiên cho thị trường US."
@@ -414,7 +414,7 @@
           "title": "Anh Dev Quick-Fix: Trang 1-page Micro-Offer HTML ($50/task) host $0",
           "project": "Anh Dev Quick-Fix USD",
           "engine": "Antigravity",
-          "status": "Đã xong",
+          "status": "Đang chạy",
           "eta": "24/11 15:00",
           "outputPath": "outputs/day2/02_dev_quickfix_offer_page.html",
           "summary": "Đã hoàn thành sớm: Trang 1-Page Offer /task (0 cookie/tracker, có bộ tạo Brief 30s, sẵn host  trên GitHub Pages)."
@@ -1338,8 +1338,11 @@
       "projectId": "anh-dev-quickfix",
       "title": "Sửa Lỗi Web ($50) — Kịch Bản Biến Comment/Audit Miễn Phí Thành Đơn $50–$99 Trong 5 Phút (Black Friday)",
       "outputFile": "outputs/day4/07_anh_dev_bf_comment_to_paid_playbook.md",
-      "status": "pending",
-      "prompt": "Write a crisp native-English comment-to-client playbook for Anh Dev ($50 quick fix / $99 speed & mobile checkout polish / $150 n8n CRM pipeline) targeting Black Friday LinkedIn, Reddit r/forhire, and IndieHackers threads: 1) 5 concise real-sounding public mini-audit reply templates (slow hero image, mobile checkout overlap, broken webhook, missing OG tags, bloated Shopify scripts), 2) Exact 3-message DM bridge from free finding to confirmed $50/$99 deposit without sounding pushy."
+      "status": "done",
+      "prompt": "Write a crisp native-English comment-to-client playbook for Anh Dev ($50 quick fix / $99 speed & mobile checkout polish / $150 n8n CRM pipeline) targeting Black Friday LinkedIn, Reddit r/forhire, and IndieHackers threads: 1) 5 concise real-sounding public mini-audit reply templates (slow hero image, mobile checkout overlap, broken webhook, missing OG tags, bloated Shopify scripts), 2) Exact 3-message DM bridge from free finding to confirmed $50/$99 deposit without sounding pushy.",
+      "completedAt": "2026-11-24T12:43:44+07:00",
+      "modelUsed": "gemini-3.5-flash-lite",
+      "tokensUsed": 1021
     },
     {
       "id": "q-prod-faith-payhip-advent",
@@ -1398,7 +1401,8 @@
       "outputs/day4/03_sua_web_5_goi_tu_dong_hoa_productized.md — 5 Gói Sửa Web & Tự Động Hóa n8n/Shopify ($50/$99/$150/$250/tuần) + 3 mẫu báo giá nâng đơn",
       "outputs/day4/01_youtube_su_ngu_ep06_hadrian_wall.md — Blueprint Tập 6 YouTube Sử Ngủ (Hadrian's Wall, 128 AD · ~1783 từ + 10 Prompts + SEO)",
       "outputs/day4/05_peaceful_soul_closing_and_licensing_kit.md — Bộ chốt đơn Nhạc Ngủ ($99/$199): 5 xử lý từ chối + Giấy phép thương mại + Mẫu hóa đơn USD",
-      "outputs/day4/04_youtube_su_ngu_ep03_production_kit.md — YouTube Sử Ngủ — Bộ Sản Xuất Tập 3 Sẵn Render MP4 (TTS Sạch + 10 Scene Timing JSON + Thumbnail)"
+      "outputs/day4/04_youtube_su_ngu_ep03_production_kit.md — YouTube Sử Ngủ — Bộ Sản Xuất Tập 3 Sẵn Render MP4 (TTS Sạch + 10 Scene Timing JSON + Thumbnail)",
+      "outputs/day4/07_anh_dev_bf_comment_to_paid_playbook.md — Sửa Lỗi Web ($50) — Kịch Bản Biến Comment/Audit Miễn Phí Thành Đơn $50–$99 Trong 5 Phút (Black Friday)"
     ],
     "usdReadiness": {
       "sleeplessRoman": "90% sẵn sàng phát hành (Tập 1 MP4 533MB đã xong, chờ upload; Tập 2 đã viết xong 100%)",
@@ -1414,6 +1418,14 @@
     "adjustmentsForTomorrow": "Ngay sau khi mở khóa Cloud $0 và các tài khoản, dồn 70% lực phân phối vào 2 kênh tạo tín hiệu USD sớm nhất trong 48h đầu (Peaceful Soul $99 + Anh Dev $50 / ProfitPulse $27)."
   },
   "heartbeatLog": [
+    {
+      "time": "2026-11-24T12:43:44+07:00",
+      "runner": "Cloud $0 (gemini-3.5-flash-lite)",
+      "block": "12:00-15:00",
+      "action": "Hoàn tất tự động: Sửa Lỗi Web ($50) — Kịch Bản Biến Comment/Audit Miễn Phí Thành Đơn $50–$99 Trong 5 Phút (Black Friday) → outputs/day4/07_anh_dev_bf_comment_to_paid_playbook.md (1,021 tokens).",
+      "quotaSnapshot": "Cloud 99% (1/150 req)",
+      "costUsd": 0
+    },
     {
       "time": "2026-11-24T04:38:39+07:00",
       "runner": "Cloud $0",
