@@ -9,8 +9,8 @@
     "targetMarket": "US / UK / CA / AU (English · USD)",
     "activeHoursPerDay": 20,
     "restWindow": "20:00 – 24:00 GMT+7",
-    "currentDay": 3,
-    "lastUpdated": "2026-11-25T17:08:38+07:00",
+    "currentDay": 4,
+    "lastUpdated": "2026-11-26T03:02:06+07:00",
     "lastRunner": "Cloud $0 (GitHub Actions)",
     "reportIntervalMinutes": 5,
     "nextCheckAt": "2026-11-23T16:39:30+07:00",
@@ -43,13 +43,13 @@
       "fallbackModel": "gemini-3.5-flash-lite",
       "requestsUsedToday": 1,
       "dailySoftCap": 150,
-      "tokensUsedToday": 2643,
+      "tokensUsedToday": 3270,
       "tokenSoftCap": 800000,
       "remainingPct": 99,
       "burnRatePerHour": "~2 req / ~12k tokens (cron 30p khi tắt máy)",
       "autoDowngradeThresholdPct": 20,
-      "status": "Tạm nghẽn upstream (HTTP 404) — tự thử lại nhịp sau",
-      "lastChecked": "2026-11-25T17:08:38+07:00"
+      "status": "Đang chạy tốt (gemini-3.5-flash-lite)",
+      "lastChecked": "2026-11-26T03:02:06+07:00"
     },
     "googleAiPro": {
       "provider": "Antigravity (Google AI Pro)",
@@ -109,15 +109,15 @@
       "market": "US / UK / CA / AU Etsy Sellers",
       "monetization": "Gumroad Pro $27 (đã Publish) + Phễu Free $0 + Email Upgrade 48h",
       "usdTargetWeek1": "$54 – $135 USD (2–5 đơn Pro)",
-      "progressPct": 98,
+      "progressPct": 95,
       "eta": "25/11 12:00 VN",
       "status": "Bị kẹt (Chờ mở khóa 3p)",
       "runner": "Cloud $0 (Never-Stop Traffic Kit)",
       "workspaceRef": "../profitpulse-etsy/",
       "latestOutput": {
-        "title": "Chiến dịch Cyber Monday (LAUNCH30) + 2 Pin tháng 12 + 5 FAQ chốt đơn Gumroad",
-        "path": "outputs/day4/02_tinh_lai_etsy_cyber_monday_and_faq.md",
-        "updatedAt": "2026-11-23T16:14:15+07:00"
+        "title": "File Tính Lãi Etsy ($27) — Động Cơ Traffic Tuần 2 (5 Câu Trả Lời Reddit/Quora Không Spam + 5 Hook Video Ngắn)",
+        "path": "outputs/day5/01_profitpulse_week2_organic_traffic_pack.md",
+        "updatedAt": "2026-11-26T03:02:06+07:00"
       },
       "nextMilestone": "Publish bản Free $0 trên Gumroad + host vĩnh viễn Web Demo trên GitHub Pages $0"
     },
@@ -598,7 +598,7 @@
           "title": "Morning Briefing Day 4 + Quota Check ($0)",
           "project": "Hệ thống AI Ops",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "26/11 01:30",
           "outputPath": "",
           "summary": "Chốt mục tiêu Ngày 4."
@@ -612,9 +612,9 @@
           "title": "Sleepless Roman Ep 05 Blueprint + Tối ưu Thumbnail CTR A/B + Peaceful Soul Sample Scripts",
           "project": "Sleepless Roman / Peaceful Soul",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đang chạy",
           "eta": "26/11 05:30",
-          "outputPath": "",
+          "outputPath": "outputs/day5/01_profitpulse_week2_organic_traffic_pack.md",
           "summary": "Hoàn thiện Tập 5 + gói mô tả bán hàng tháng 12 cho Peaceful Soul."
         },
         {
@@ -1364,8 +1364,11 @@
       "projectId": "profitpulse-etsy",
       "title": "File Tính Lãi Etsy ($27) — Động Cơ Traffic Tuần 2 (5 Câu Trả Lời Reddit/Quora Không Spam + 5 Hook Video Ngắn)",
       "outputFile": "outputs/day5/01_profitpulse_week2_organic_traffic_pack.md",
-      "status": "pending",
-      "prompt": "Create a 100% FTC & subreddit-safe Week 2 organic traffic kit in native US English for ProfitPulse Etsy ($0 Free Calculator + $27 Pro on Gumroad): 1) 5 value-only Reddit/Quora answers with exact Etsy fee breakdown math (Free Shipping $35 trap, 15% Offsite Ads break-even, international currency conversion fee, Black Friday 25% discount floor, handmade pricing formula) with zero spam links, 2) 5 crisp 30-second Shorts/Reels/TikTok screen-recording scripts demonstrating the live GitHub Pages web demo."
+      "status": "done",
+      "prompt": "Create a 100% FTC & subreddit-safe Week 2 organic traffic kit in native US English for ProfitPulse Etsy ($0 Free Calculator + $27 Pro on Gumroad): 1) 5 value-only Reddit/Quora answers with exact Etsy fee breakdown math (Free Shipping $35 trap, 15% Offsite Ads break-even, international currency conversion fee, Black Friday 25% discount floor, handmade pricing formula) with zero spam links, 2) 5 crisp 30-second Shorts/Reels/TikTok screen-recording scripts demonstrating the live GitHub Pages web demo.",
+      "completedAt": "2026-11-26T03:02:06+07:00",
+      "modelUsed": "gemini-3.5-flash-lite",
+      "tokensUsed": 3270
     }
   ],
   "dailyReview": {
@@ -1406,7 +1409,8 @@
       "outputs/day4/05_peaceful_soul_closing_and_licensing_kit.md — Bộ chốt đơn Nhạc Ngủ ($99/$199): 5 xử lý từ chối + Giấy phép thương mại + Mẫu hóa đơn USD",
       "outputs/day4/04_youtube_su_ngu_ep03_production_kit.md — YouTube Sử Ngủ — Bộ Sản Xuất Tập 3 Sẵn Render MP4 (TTS Sạch + 10 Scene Timing JSON + Thumbnail)",
       "outputs/day4/07_anh_dev_bf_comment_to_paid_playbook.md — Sửa Lỗi Web ($50) — Kịch Bản Biến Comment/Audit Miễn Phí Thành Đơn $50–$99 Trong 5 Phút (Black Friday)",
-      "outputs/day4/06_faith_peace_payhip_listings_and_advent_pins.md — Sổ In Gia Đình PDF ($4/$5/$12) — Bộ Mô Tả Payhip Sẵn Dán + 10 Pin Pinterest Mùa Advent/Giáng Sinh"
+      "outputs/day4/06_faith_peace_payhip_listings_and_advent_pins.md — Sổ In Gia Đình PDF ($4/$5/$12) — Bộ Mô Tả Payhip Sẵn Dán + 10 Pin Pinterest Mùa Advent/Giáng Sinh",
+      "outputs/day5/01_profitpulse_week2_organic_traffic_pack.md — File Tính Lãi Etsy ($27) — Động Cơ Traffic Tuần 2 (5 Câu Trả Lời Reddit/Quora Không Spam + 5 Hook Video Ngắn)"
     ],
     "usdReadiness": {
       "sleeplessRoman": "90% sẵn sàng phát hành (Tập 1 MP4 533MB đã xong, chờ upload; Tập 2 đã viết xong 100%)",
@@ -1422,6 +1426,14 @@
     "adjustmentsForTomorrow": "Ngay sau khi mở khóa Cloud $0 và các tài khoản, dồn 70% lực phân phối vào 2 kênh tạo tín hiệu USD sớm nhất trong 48h đầu (Peaceful Soul $99 + Anh Dev $50 / ProfitPulse $27)."
   },
   "heartbeatLog": [
+    {
+      "time": "2026-11-26T03:02:06+07:00",
+      "runner": "Cloud $0 (gemini-3.5-flash-lite)",
+      "block": "01:30-05:30",
+      "action": "Hoàn tất tự động: File Tính Lãi Etsy ($27) — Động Cơ Traffic Tuần 2 (5 Câu Trả Lời Reddit/Quora Không Spam + 5 Hook Video Ngắn) → outputs/day5/01_profitpulse_week2_organic_traffic_pack.md (3,270 tokens).",
+      "quotaSnapshot": "Cloud 99% (1/150 req)",
+      "costUsd": 0
+    },
     {
       "time": "2026-11-25T17:08:38+07:00",
       "runner": "Cloud $0",
