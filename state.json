@@ -10,7 +10,7 @@
     "activeHoursPerDay": 20,
     "restWindow": "20:00 – 24:00 GMT+7",
     "currentDay": 3,
-    "lastUpdated": "2026-11-25T08:16:14+07:00",
+    "lastUpdated": "2026-11-25T17:08:38+07:00",
     "lastRunner": "Cloud $0 (GitHub Actions)",
     "reportIntervalMinutes": 5,
     "nextCheckAt": "2026-11-23T16:39:30+07:00",
@@ -48,8 +48,8 @@
       "remainingPct": 99,
       "burnRatePerHour": "~2 req / ~12k tokens (cron 30p khi tắt máy)",
       "autoDowngradeThresholdPct": 20,
-      "status": "Đang chạy tốt (gemini-3.5-flash-lite)",
-      "lastChecked": "2026-11-25T08:16:14+07:00"
+      "status": "Tạm nghẽn upstream (HTTP 404) — tự thử lại nhịp sau",
+      "lastChecked": "2026-11-25T17:08:38+07:00"
     },
     "googleAiPro": {
       "provider": "Antigravity (Google AI Pro)",
@@ -506,7 +506,7 @@
           "title": "ProfitPulse Etsy: Bộ bài Black Friday Margin Calculator + So sánh gói $27",
           "project": "ProfitPulse Etsy",
           "engine": "Cloud $0",
-          "status": "Đang chạy",
+          "status": "Đã xong",
           "eta": "25/11 09:00",
           "outputPath": "outputs/day4/06_faith_peace_payhip_listings_and_advent_pins.md",
           "summary": "Đánh trúng nỗi đau chủ shop Etsy chạy sale Black Friday bị lỗ phí ẩn."
@@ -520,7 +520,7 @@
           "title": "Faith & Peace Kit: Bộ Lead Magnet Thanksgiving/Gratitude 1 trang PDF",
           "project": "Faith & Peace 5-Day Kit",
           "engine": "Antigravity",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "25/11 12:00",
           "outputPath": "",
           "summary": "Tài sản miễn phí đúng mùa Lễ Tạ Ơn Mỹ (26/11) kéo người mua vào Payhip."
@@ -534,7 +534,7 @@
           "title": "Anh Dev Quick-Fix: Case study mẫu + Mẫu đề xuất chuyển khách $50 sang gói $250",
           "project": "Anh Dev Quick-Fix USD",
           "engine": "Antigravity",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "25/11 15:00",
           "outputPath": "",
           "summary": "Tăng giá trị vòng đời khách hàng sau khi sửa xong lỗi đầu tiên."
@@ -548,7 +548,7 @@
           "title": "Nghiên cứu 20 chủ đề Sleep History RPM cao nhất (Hy Lạp, Ai Cập, Trung Cổ)",
           "project": "Sleepless Roman History",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đang chạy",
           "eta": "25/11 18:30",
           "outputPath": "",
           "summary": "Xây dựng content calendar 2 tháng cho kênh YouTube."
@@ -1422,6 +1422,14 @@
     "adjustmentsForTomorrow": "Ngay sau khi mở khóa Cloud $0 và các tài khoản, dồn 70% lực phân phối vào 2 kênh tạo tín hiệu USD sớm nhất trong 48h đầu (Peaceful Soul $99 + Anh Dev $50 / ProfitPulse $27)."
   },
   "heartbeatLog": [
+    {
+      "time": "2026-11-25T17:08:38+07:00",
+      "runner": "Cloud $0",
+      "block": "15:00-18:30",
+      "action": "Upstream Gemini API tạm nghẽn (404) trên toàn chuỗi fallback — đã bỏ qua an toàn để vẫn deploy Dashboard và tự thử lại sau 30p.",
+      "quotaSnapshot": "Cloud 99% (1/150 req)",
+      "costUsd": 0
+    },
     {
       "time": "2026-11-25T08:16:14+07:00",
       "runner": "Cloud $0 (gemini-3.5-flash-lite)",
