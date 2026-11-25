@@ -9,8 +9,8 @@
     "targetMarket": "US / UK / CA / AU (English · USD)",
     "activeHoursPerDay": 20,
     "restWindow": "20:00 – 24:00 GMT+7",
-    "currentDay": 2,
-    "lastUpdated": "2026-11-24T12:43:44+07:00",
+    "currentDay": 3,
+    "lastUpdated": "2026-11-25T08:16:14+07:00",
     "lastRunner": "Cloud $0 (GitHub Actions)",
     "reportIntervalMinutes": 5,
     "nextCheckAt": "2026-11-23T16:39:30+07:00",
@@ -43,13 +43,13 @@
       "fallbackModel": "gemini-3.5-flash-lite",
       "requestsUsedToday": 1,
       "dailySoftCap": 150,
-      "tokensUsedToday": 1021,
+      "tokensUsedToday": 2643,
       "tokenSoftCap": 800000,
       "remainingPct": 99,
       "burnRatePerHour": "~2 req / ~12k tokens (cron 30p khi tắt máy)",
       "autoDowngradeThresholdPct": 20,
       "status": "Đang chạy tốt (gemini-3.5-flash-lite)",
-      "lastChecked": "2026-11-24T12:43:44+07:00"
+      "lastChecked": "2026-11-25T08:16:14+07:00"
     },
     "googleAiPro": {
       "provider": "Antigravity (Google AI Pro)",
@@ -128,15 +128,15 @@
       "market": "US Christian / Family Printables",
       "monetization": "4 bộ PDF $4/SP + Bundle nâng cấp $12 qua Payhip/PayPal",
       "usdTargetWeek1": "$24 – $80 USD (6–15 đơn / Bundle)",
-      "progressPct": 96,
+      "progressPct": 95,
       "eta": "26/11 15:00 VN",
       "status": "Bị kẹt (Chờ đăng nhập)",
       "runner": "Cloud $0 (Never-Stop Bundle Copy)",
       "workspaceRef": "../faith-peace-5day-kit/",
       "latestOutput": {
-        "title": "Bản in PDF 10 trang sẵn bán ($5): 25-Day Calm Advent & Christmas Peace Pack",
-        "path": "outputs/day3/06_25day_calm_advent_printable_pack.html",
-        "updatedAt": "2026-11-23T15:51:00+07:00"
+        "title": "Sổ In Gia Đình PDF ($4/$5/$12) — Bộ Mô Tả Payhip Sẵn Dán + 10 Pin Pinterest Mùa Advent/Giáng Sinh",
+        "path": "outputs/day4/06_faith_peace_payhip_listings_and_advent_pins.md",
+        "updatedAt": "2026-11-25T08:16:14+07:00"
       },
       "nextMilestone": "Đăng nhập Payhip nối PayPal + soạn lịch đăng 7 ngày Pinterest & Shorts"
     },
@@ -478,7 +478,7 @@
           "title": "Morning Briefing Day 3 + Quota Check ($0)",
           "project": "Hệ thống AI Ops",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "25/11 01:30",
           "outputPath": "",
           "summary": "Đánh giá phản hồi khách & tiến độ tuần."
@@ -492,7 +492,7 @@
           "title": "Sleepless Roman: Script Shorts cắt từ Ep 1–2 + Blueprint Ep 04 (Roman Merchant Ship)",
           "project": "Sleepless Roman / Peaceful Soul",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "25/11 05:30",
           "outputPath": "",
           "summary": "Tạo 3 Shorts dẫn traffic về video dài + trọn bộ Ep 04."
@@ -506,9 +506,9 @@
           "title": "ProfitPulse Etsy: Bộ bài Black Friday Margin Calculator + So sánh gói $27",
           "project": "ProfitPulse Etsy",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đang chạy",
           "eta": "25/11 09:00",
-          "outputPath": "",
+          "outputPath": "outputs/day4/06_faith_peace_payhip_listings_and_advent_pins.md",
           "summary": "Đánh trúng nỗi đau chủ shop Etsy chạy sale Black Friday bị lỗ phí ẩn."
         },
         {
@@ -1351,8 +1351,11 @@
       "projectId": "faith-peace-kit",
       "title": "Sổ In Gia Đình PDF ($4/$5/$12) — Bộ Mô Tả Payhip Sẵn Dán + 10 Pin Pinterest Mùa Advent/Giáng Sinh",
       "outputFile": "outputs/day4/06_faith_peace_payhip_listings_and_advent_pins.md",
-      "status": "pending",
-      "prompt": "Write ready-to-paste US-English Payhip store copy for Product #05 (25-Day Calm Advent & Christmas Peace 10-Page Printable Pack at $5) plus an updated Complete Peaceful Home Bundle ($12, now 5 kits), and 10 high-intent seasonal Pinterest Pin titles, warm descriptions, alt texts, and image hooks for late-November/December US Christian mom search traffic. Non-preachy, warm, clear \"digital PDF printable\" disclosure."
+      "status": "done",
+      "prompt": "Write ready-to-paste US-English Payhip store copy for Product #05 (25-Day Calm Advent & Christmas Peace 10-Page Printable Pack at $5) plus an updated Complete Peaceful Home Bundle ($12, now 5 kits), and 10 high-intent seasonal Pinterest Pin titles, warm descriptions, alt texts, and image hooks for late-November/December US Christian mom search traffic. Non-preachy, warm, clear \"digital PDF printable\" disclosure.",
+      "completedAt": "2026-11-25T08:16:14+07:00",
+      "modelUsed": "gemini-3.5-flash-lite",
+      "tokensUsed": 2643
     },
     {
       "id": "q-prod-etsy-week2-traffic",
@@ -1402,7 +1405,8 @@
       "outputs/day4/01_youtube_su_ngu_ep06_hadrian_wall.md — Blueprint Tập 6 YouTube Sử Ngủ (Hadrian's Wall, 128 AD · ~1783 từ + 10 Prompts + SEO)",
       "outputs/day4/05_peaceful_soul_closing_and_licensing_kit.md — Bộ chốt đơn Nhạc Ngủ ($99/$199): 5 xử lý từ chối + Giấy phép thương mại + Mẫu hóa đơn USD",
       "outputs/day4/04_youtube_su_ngu_ep03_production_kit.md — YouTube Sử Ngủ — Bộ Sản Xuất Tập 3 Sẵn Render MP4 (TTS Sạch + 10 Scene Timing JSON + Thumbnail)",
-      "outputs/day4/07_anh_dev_bf_comment_to_paid_playbook.md — Sửa Lỗi Web ($50) — Kịch Bản Biến Comment/Audit Miễn Phí Thành Đơn $50–$99 Trong 5 Phút (Black Friday)"
+      "outputs/day4/07_anh_dev_bf_comment_to_paid_playbook.md — Sửa Lỗi Web ($50) — Kịch Bản Biến Comment/Audit Miễn Phí Thành Đơn $50–$99 Trong 5 Phút (Black Friday)",
+      "outputs/day4/06_faith_peace_payhip_listings_and_advent_pins.md — Sổ In Gia Đình PDF ($4/$5/$12) — Bộ Mô Tả Payhip Sẵn Dán + 10 Pin Pinterest Mùa Advent/Giáng Sinh"
     ],
     "usdReadiness": {
       "sleeplessRoman": "90% sẵn sàng phát hành (Tập 1 MP4 533MB đã xong, chờ upload; Tập 2 đã viết xong 100%)",
@@ -1418,6 +1422,14 @@
     "adjustmentsForTomorrow": "Ngay sau khi mở khóa Cloud $0 và các tài khoản, dồn 70% lực phân phối vào 2 kênh tạo tín hiệu USD sớm nhất trong 48h đầu (Peaceful Soul $99 + Anh Dev $50 / ProfitPulse $27)."
   },
   "heartbeatLog": [
+    {
+      "time": "2026-11-25T08:16:14+07:00",
+      "runner": "Cloud $0 (gemini-3.5-flash-lite)",
+      "block": "05:30-09:00",
+      "action": "Hoàn tất tự động: Sổ In Gia Đình PDF ($4/$5/$12) — Bộ Mô Tả Payhip Sẵn Dán + 10 Pin Pinterest Mùa Advent/Giáng Sinh → outputs/day4/06_faith_peace_payhip_listings_and_advent_pins.md (2,643 tokens).",
+      "quotaSnapshot": "Cloud 99% (1/150 req)",
+      "costUsd": 0
+    },
     {
       "time": "2026-11-24T12:43:44+07:00",
       "runner": "Cloud $0 (gemini-3.5-flash-lite)",
