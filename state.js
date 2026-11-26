@@ -10,8 +10,8 @@ window.__AI_OPS_STATE__ = {
     "targetMarket": "US / UK / CA / AU (English · USD)",
     "activeHoursPerDay": 20,
     "restWindow": "20:00 – 24:00 GMT+7",
-    "currentDay": 4,
-    "lastUpdated": "2026-11-26T19:08:35+07:00",
+    "currentDay": 5,
+    "lastUpdated": "2026-11-27T04:49:11+07:00",
     "lastRunner": "Cloud $0 (GitHub Actions)",
     "reportIntervalMinutes": 5,
     "nextCheckAt": "2026-11-23T16:39:30+07:00",
@@ -42,15 +42,15 @@ window.__AI_OPS_STATE__ = {
       "provider": "Gemini API Free Tier + GitHub Actions",
       "primaryModel": "gemini-3.8-flash",
       "fallbackModel": "gemini-3.5-flash-lite",
-      "requestsUsedToday": 2,
+      "requestsUsedToday": 0,
       "dailySoftCap": 150,
-      "tokensUsedToday": 4271,
+      "tokensUsedToday": 0,
       "tokenSoftCap": 800000,
-      "remainingPct": 99,
+      "remainingPct": 100,
       "burnRatePerHour": "~2 req / ~12k tokens (cron 30p khi tắt máy)",
       "autoDowngradeThresholdPct": 20,
-      "status": "Đang chạy tốt (gemini-3.5-flash-lite)",
-      "lastChecked": "2026-11-26T19:08:35+07:00"
+      "status": "Hoạt động tốt (Hết hàng đợi — chờ nạp task mới)",
+      "lastChecked": "2026-11-27T04:49:11+07:00"
     },
     "googleAiPro": {
       "provider": "Antigravity (Google AI Pro)",
@@ -719,7 +719,7 @@ window.__AI_OPS_STATE__ = {
           "title": "Morning Briefing Day 5 (Black Friday) + Quota Check ($0)",
           "project": "Hệ thống AI Ops",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "27/11 01:30",
           "outputPath": "",
           "summary": "Ưu tiên cao nhất cho kênh chuyển đổi tiền nhanh trong ngày Black Friday."
@@ -733,7 +733,7 @@ window.__AI_OPS_STATE__ = {
           "title": "Sleepless Roman: Lên khung Tập 6 + Phân tích chỉ số CTR/Retention Tập 1–2",
           "project": "Sleepless Roman / Peaceful Soul",
           "engine": "Antigravity",
-          "status": "Sắp chạy",
+          "status": "Đang chạy",
           "eta": "27/11 05:30",
           "outputPath": "",
           "summary": "Tối ưu tiêu đề/thumbnail dựa trên dữ liệu thực tế nếu Tập 1 đã đăng."
@@ -1429,6 +1429,14 @@ window.__AI_OPS_STATE__ = {
   },
   "heartbeatLog": [
     {
+      "time": "2026-11-27T04:49:11+07:00",
+      "runner": "Cloud $0",
+      "block": "01:30-05:30",
+      "action": "Heartbeat $0: Tất cả task trong cloudQueue đã hoàn thành, lịch và trạng thái đã đồng bộ.",
+      "quotaSnapshot": "Cloud 100% (0/150 req)",
+      "costUsd": 0
+    },
+    {
       "time": "2026-11-26T19:08:35+07:00",
       "runner": "Cloud $0 (gemini-3.5-flash-lite)",
       "block": "18:30-20:00",
@@ -1738,14 +1746,6 @@ window.__AI_OPS_STATE__ = {
       "block": "Block 2 → Never-Stop (ProfitPulse)",
       "action": "Xuất trọn bộ 5 Pinterest Pins (Title/Desc/Alt/Hook) + 3-Email Gumroad Funnel (UPGRADE20) cho ProfitPulse Etsy → outputs/day1/05_profitpulse_pinterest_and_email_funnel.md.",
       "quotaSnapshot": "Google AI Pro ~86% (3 checks) | Cloud Free Tier 100%",
-      "costUsd": 0
-    },
-    {
-      "time": "2026-11-23T02:40:25+07:00",
-      "runner": "Antigravity (Nhịp 5p #1)",
-      "block": "Block 2 (01:30–05:30)",
-      "action": "Xuất hoàn chỉnh Tập 3 Outline, 6-Chapter Historical Beats, SEO & 10 Prompt ảnh cho Sleepless Roman History → outputs/day1/04_sleepless_roman_ep03_outline_and_seo.md.",
-      "quotaSnapshot": "Google AI Pro ~89% (2 checks) | Cloud Free Tier 100%",
       "costUsd": 0
     }
   ],
