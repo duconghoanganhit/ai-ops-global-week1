@@ -10,7 +10,7 @@
     "activeHoursPerDay": 20,
     "restWindow": "20:00 – 24:00 GMT+7",
     "currentDay": 4,
-    "lastUpdated": "2026-11-26T09:58:27+07:00",
+    "lastUpdated": "2026-11-26T19:08:35+07:00",
     "lastRunner": "Cloud $0 (GitHub Actions)",
     "reportIntervalMinutes": 5,
     "nextCheckAt": "2026-11-23T16:39:30+07:00",
@@ -41,15 +41,15 @@
       "provider": "Gemini API Free Tier + GitHub Actions",
       "primaryModel": "gemini-3.8-flash",
       "fallbackModel": "gemini-3.5-flash-lite",
-      "requestsUsedToday": 1,
+      "requestsUsedToday": 2,
       "dailySoftCap": 150,
-      "tokensUsedToday": 3270,
+      "tokensUsedToday": 4271,
       "tokenSoftCap": 800000,
       "remainingPct": 99,
       "burnRatePerHour": "~2 req / ~12k tokens (cron 30p khi tắt máy)",
       "autoDowngradeThresholdPct": 20,
-      "status": "Hoạt động tốt (Hết hàng đợi — chờ nạp task mới)",
-      "lastChecked": "2026-11-26T09:58:27+07:00"
+      "status": "Đang chạy tốt (gemini-3.5-flash-lite)",
+      "lastChecked": "2026-11-26T19:08:35+07:00"
     },
     "googleAiPro": {
       "provider": "Antigravity (Google AI Pro)",
@@ -640,7 +640,7 @@
           "title": "Faith & Peace Kit: Thiết kế cấu trúc SP #05 (Advent / December Quiet Time Journal)",
           "project": "Faith & Peace 5-Day Kit",
           "engine": "Antigravity",
-          "status": "Đang chạy",
+          "status": "Đã xong",
           "eta": "26/11 12:00",
           "outputPath": "",
           "summary": "Đón đầu sóng tìm kiếm Advent / Giáng Sinh tháng 12 tại Mỹ."
@@ -654,7 +654,7 @@
           "title": "Anh Dev Quick-Fix: Chuẩn bị bài đăng Black Friday Emergency Fix (mở slot sáng 27/11)",
           "project": "Anh Dev Quick-Fix USD",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "26/11 15:00",
           "outputPath": "",
           "summary": "Sẵn sàng đón khách lỗi checkout/webhook ngay ngày Black Friday."
@@ -668,7 +668,7 @@
           "title": "Tự động hóa bộ tạo metadata SEO YouTube + QA chất lượng",
           "project": "Toàn hệ thống",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "26/11 18:30",
           "outputPath": "",
           "summary": "Rút ngắn 50% thời gian đóng gói mỗi video."
@@ -682,9 +682,9 @@
           "title": "Daily Review Day 4",
           "project": "Hệ thống AI Ops",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đang chạy",
           "eta": "26/11 20:00",
-          "outputPath": "",
+          "outputPath": "outputs/day4/99_daily_review_day4.md",
           "summary": "Tổng kết tài sản ngày 4 & kế hoạch Black Friday."
         },
         {
@@ -1410,7 +1410,8 @@
       "outputs/day4/04_youtube_su_ngu_ep03_production_kit.md — YouTube Sử Ngủ — Bộ Sản Xuất Tập 3 Sẵn Render MP4 (TTS Sạch + 10 Scene Timing JSON + Thumbnail)",
       "outputs/day4/07_anh_dev_bf_comment_to_paid_playbook.md — Sửa Lỗi Web ($50) — Kịch Bản Biến Comment/Audit Miễn Phí Thành Đơn $50–$99 Trong 5 Phút (Black Friday)",
       "outputs/day4/06_faith_peace_payhip_listings_and_advent_pins.md — Sổ In Gia Đình PDF ($4/$5/$12) — Bộ Mô Tả Payhip Sẵn Dán + 10 Pin Pinterest Mùa Advent/Giáng Sinh",
-      "outputs/day5/01_profitpulse_week2_organic_traffic_pack.md — File Tính Lãi Etsy ($27) — Động Cơ Traffic Tuần 2 (5 Câu Trả Lời Reddit/Quora Không Spam + 5 Hook Video Ngắn)"
+      "outputs/day5/01_profitpulse_week2_organic_traffic_pack.md — File Tính Lãi Etsy ($27) — Động Cơ Traffic Tuần 2 (5 Câu Trả Lời Reddit/Quora Không Spam + 5 Hook Video Ngắn)",
+      "outputs/day4/99_daily_review_day4.md — Daily Review — Day 4 (2026-11-26)"
     ],
     "usdReadiness": {
       "sleeplessRoman": "90% sẵn sàng phát hành (Tập 1 MP4 533MB đã xong, chờ upload; Tập 2 đã viết xong 100%)",
@@ -1426,6 +1427,14 @@
     "adjustmentsForTomorrow": "Ngay sau khi mở khóa Cloud $0 và các tài khoản, dồn 70% lực phân phối vào 2 kênh tạo tín hiệu USD sớm nhất trong 48h đầu (Peaceful Soul $99 + Anh Dev $50 / ProfitPulse $27)."
   },
   "heartbeatLog": [
+    {
+      "time": "2026-11-26T19:08:35+07:00",
+      "runner": "Cloud $0 (gemini-3.5-flash-lite)",
+      "block": "18:30-20:00",
+      "action": "Hoàn tất tự động: Daily Review — Day 4 (2026-11-26) → outputs/day4/99_daily_review_day4.md (1,001 tokens).",
+      "quotaSnapshot": "Cloud 99% (2/150 req)",
+      "costUsd": 0
+    },
     {
       "time": "2026-11-26T09:58:27+07:00",
       "runner": "Cloud $0",
@@ -1736,14 +1745,6 @@
       "block": "Block 2 (01:30–05:30)",
       "action": "Xuất hoàn chỉnh Tập 3 Outline, 6-Chapter Historical Beats, SEO & 10 Prompt ảnh cho Sleepless Roman History → outputs/day1/04_sleepless_roman_ep03_outline_and_seo.md.",
       "quotaSnapshot": "Google AI Pro ~89% (2 checks) | Cloud Free Tier 100%",
-      "costUsd": 0
-    },
-    {
-      "time": "2026-11-23T02:30:00+07:00",
-      "runner": "Antigravity",
-      "block": "Block 1 → Block 2",
-      "action": "Khởi tạo toàn bộ hệ thống ai-ops-global-week1 ($0), hoàn tất Morning Briefing Day 1, xuất sản phẩm thật đầu tiên (Sleepless Roman Ep 02 Full Blueprint 1,820 từ) & Gói tiền nhanh tuần Black Friday.",
-      "quotaSnapshot": "Google AI Pro ~92% | Cloud Free Tier 100% (chờ gắn key)",
       "costUsd": 0
     }
   ],
