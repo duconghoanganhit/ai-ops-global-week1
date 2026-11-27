@@ -11,7 +11,7 @@ window.__AI_OPS_STATE__ = {
     "activeHoursPerDay": 20,
     "restWindow": "20:00 – 24:00 GMT+7",
     "currentDay": 5,
-    "lastUpdated": "2026-11-27T04:49:11+07:00",
+    "lastUpdated": "2026-11-27T10:55:41+07:00",
     "lastRunner": "Cloud $0 (GitHub Actions)",
     "reportIntervalMinutes": 5,
     "nextCheckAt": "2026-11-23T16:39:30+07:00",
@@ -50,7 +50,7 @@ window.__AI_OPS_STATE__ = {
       "burnRatePerHour": "~2 req / ~12k tokens (cron 30p khi tắt máy)",
       "autoDowngradeThresholdPct": 20,
       "status": "Hoạt động tốt (Hết hàng đợi — chờ nạp task mới)",
-      "lastChecked": "2026-11-27T04:49:11+07:00"
+      "lastChecked": "2026-11-27T10:55:41+07:00"
     },
     "googleAiPro": {
       "provider": "Antigravity (Google AI Pro)",
@@ -733,7 +733,7 @@ window.__AI_OPS_STATE__ = {
           "title": "Sleepless Roman: Lên khung Tập 6 + Phân tích chỉ số CTR/Retention Tập 1–2",
           "project": "Sleepless Roman / Peaceful Soul",
           "engine": "Antigravity",
-          "status": "Đang chạy",
+          "status": "Đã xong",
           "eta": "27/11 05:30",
           "outputPath": "",
           "summary": "Tối ưu tiêu đề/thumbnail dựa trên dữ liệu thực tế nếu Tập 1 đã đăng."
@@ -747,7 +747,7 @@ window.__AI_OPS_STATE__ = {
           "title": "ProfitPulse Etsy: Đẩy chiến dịch mã LAUNCH30 Black Friday + Follow-up cộng đồng",
           "project": "ProfitPulse Etsy",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "27/11 09:00",
           "outputPath": "",
           "summary": "Tạo bài chia sẻ giá trị kiểm tra biên lợi nhuận ngay giữa mùa sale."
@@ -761,7 +761,7 @@ window.__AI_OPS_STATE__ = {
           "title": "Faith & Peace Kit: Đóng gói ưu đãi Bundle $12 cuối tuần + 5 Pin Giáng Sinh",
           "project": "Faith & Peace 5-Day Kit",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đang chạy",
           "eta": "27/11 12:00",
           "outputPath": "",
           "summary": "Tối đa hóa chuyển đổi giỏ hàng dịp mua sắm cuối tuần."
@@ -1429,6 +1429,14 @@ window.__AI_OPS_STATE__ = {
   },
   "heartbeatLog": [
     {
+      "time": "2026-11-27T10:55:41+07:00",
+      "runner": "Cloud $0",
+      "block": "09:00-12:00",
+      "action": "Heartbeat $0: Tất cả task trong cloudQueue đã hoàn thành, lịch và trạng thái đã đồng bộ.",
+      "quotaSnapshot": "Cloud 100% (0/150 req)",
+      "costUsd": 0
+    },
+    {
       "time": "2026-11-27T04:49:11+07:00",
       "runner": "Cloud $0",
       "block": "01:30-05:30",
@@ -1738,14 +1746,6 @@ window.__AI_OPS_STATE__ = {
       "block": "Block 2 → Never-Stop (Faith & Peace)",
       "action": "Xuất lịch phân phối 7 ngày Pinterest/Shorts/Reels (đúng mùa Thanksgiving/Black Friday) + trang bán gói Bundle  → outputs/day1/06_faith_peace_7day_calendar_and_bundle.md.",
       "quotaSnapshot": "Google AI Pro ~83% (4 checks) | Cloud Free Tier 100%",
-      "costUsd": 0
-    },
-    {
-      "time": "2026-11-23T02:44:40+07:00",
-      "runner": "Antigravity (Nhịp 5p #2)",
-      "block": "Block 2 → Never-Stop (ProfitPulse)",
-      "action": "Xuất trọn bộ 5 Pinterest Pins (Title/Desc/Alt/Hook) + 3-Email Gumroad Funnel (UPGRADE20) cho ProfitPulse Etsy → outputs/day1/05_profitpulse_pinterest_and_email_funnel.md.",
-      "quotaSnapshot": "Google AI Pro ~86% (3 checks) | Cloud Free Tier 100%",
       "costUsd": 0
     }
   ],
