@@ -10,7 +10,7 @@
     "activeHoursPerDay": 20,
     "restWindow": "20:00 – 24:00 GMT+7",
     "currentDay": 6,
-    "lastUpdated": "2026-11-28T07:21:00+07:00",
+    "lastUpdated": "2026-11-28T15:15:54+07:00",
     "lastRunner": "Cloud $0 (GitHub Actions)",
     "reportIntervalMinutes": 5,
     "nextCheckAt": "2026-11-23T16:39:30+07:00",
@@ -49,7 +49,7 @@
       "burnRatePerHour": "~2 req / ~12k tokens (cron 30p khi tắt máy)",
       "autoDowngradeThresholdPct": 20,
       "status": "Hoạt động tốt (Hết hàng đợi — chờ nạp task mới)",
-      "lastChecked": "2026-11-28T07:21:00+07:00"
+      "lastChecked": "2026-11-28T15:15:54+07:00"
     },
     "googleAiPro": {
       "provider": "Antigravity (Google AI Pro)",
@@ -866,7 +866,7 @@
           "title": "ProfitPulse Etsy: Chuẩn bị gói nâng cấp Cyber Monday + Cập nhật FAQ trang Gumroad",
           "project": "ProfitPulse Etsy",
           "engine": "Cloud $0",
-          "status": "Đang chạy",
+          "status": "Đã xong",
           "eta": "28/11 09:00",
           "outputPath": "",
           "summary": "Tăng tỷ lệ chốt tự nhiên trên trang sản phẩm."
@@ -880,7 +880,7 @@
           "title": "Faith & Peace Kit: Hoàn thiện nội dung Advent Quiet Time Pack",
           "project": "Faith & Peace 5-Day Kit",
           "engine": "Antigravity",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "28/11 12:00",
           "outputPath": "",
           "summary": "Bổ sung sản phẩm đúng mùa tháng 12."
@@ -894,7 +894,7 @@
           "title": "Anh Dev Quick-Fix: Tái sử dụng script/case study thành bài viết LinkedIn hút khách tuần 2",
           "project": "Anh Dev Quick-Fix USD",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "28/11 15:00",
           "outputPath": "",
           "summary": "Xây uy tín chuyên gia bền vững thay vì chỉ săn task lẻ."
@@ -908,7 +908,7 @@
           "title": "Kiểm toán toàn bộ thư mục outputs/ + làm gọn repo & kiểm tra giới hạn Free Tier",
           "project": "Toàn hệ thống",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đang chạy",
           "eta": "28/11 18:30",
           "outputPath": "",
           "summary": "Đảm bảo hệ thống luôn sạch, nhẹ, 0 lỗi."
@@ -1428,6 +1428,14 @@
   },
   "heartbeatLog": [
     {
+      "time": "2026-11-28T15:15:54+07:00",
+      "runner": "Cloud $0",
+      "block": "15:00-18:30",
+      "action": "Heartbeat $0: Tất cả task trong cloudQueue đã hoàn thành, lịch và trạng thái đã đồng bộ.",
+      "quotaSnapshot": "Cloud 100% (0/150 req)",
+      "costUsd": 0
+    },
+    {
       "time": "2026-11-28T07:21:00+07:00",
       "runner": "Cloud $0",
       "block": "05:30-09:00",
@@ -1737,14 +1745,6 @@
       "block": "Block 2 (01:30–05:30)",
       "action": "Xuất hoàn chỉnh Full Narration Script Tập 3 (~1,860 từ bản địa, 13.5 phút) cho Sleepless Roman History → outputs/day1/08_sleepless_roman_ep03_full_script.md.",
       "quotaSnapshot": "Google AI Pro ~76% (6 checks) | Cloud Free Tier 100%",
-      "costUsd": 0
-    },
-    {
-      "time": "2026-11-23T02:54:35+07:00",
-      "runner": "Antigravity (Nhịp 5p #4)",
-      "block": "Block 2 → Never-Stop (Anh Dev Quick-Fix)",
-      "action": "Xuất bộ Checklist 10-điểm Audit Shopify Black Friday + 4 mẫu DM chốt  + Upsell /tuần → outputs/day1/07_dev_shopify_black_friday_audit_kit.md; nạp thêm 4 task mới vào cloudQueue.",
-      "quotaSnapshot": "Google AI Pro ~80% (5 checks) | Cloud Free Tier 100%",
       "costUsd": 0
     }
   ],
