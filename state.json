@@ -9,8 +9,8 @@
     "targetMarket": "US / UK / CA / AU (English · USD)",
     "activeHoursPerDay": 20,
     "restWindow": "20:00 – 24:00 GMT+7",
-    "currentDay": 6,
-    "lastUpdated": "2026-11-28T15:15:54+07:00",
+    "currentDay": 7,
+    "lastUpdated": "2026-11-29T00:04:54+07:00",
     "lastRunner": "Cloud $0 (GitHub Actions)",
     "reportIntervalMinutes": 5,
     "nextCheckAt": "2026-11-23T16:39:30+07:00",
@@ -49,7 +49,7 @@
       "burnRatePerHour": "~2 req / ~12k tokens (cron 30p khi tắt máy)",
       "autoDowngradeThresholdPct": 20,
       "status": "Hoạt động tốt (Hết hàng đợi — chờ nạp task mới)",
-      "lastChecked": "2026-11-28T15:15:54+07:00"
+      "lastChecked": "2026-11-29T00:04:54+07:00"
     },
     "googleAiPro": {
       "provider": "Antigravity (Google AI Pro)",
@@ -958,7 +958,7 @@
           "title": "Morning Briefing Day 7 (Ngày cuối Tuần 1) + Quota Check ($0)",
           "project": "Hệ thống AI Ops",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đang chạy",
           "eta": "29/11 01:30",
           "outputPath": "",
           "summary": "Đặt mục tiêu đóng gói 100% cam kết Tuần 1."
@@ -1428,6 +1428,14 @@
   },
   "heartbeatLog": [
     {
+      "time": "2026-11-29T00:04:54+07:00",
+      "runner": "Cloud $0",
+      "block": "00:00-01:30",
+      "action": "Heartbeat $0: Tất cả task trong cloudQueue đã hoàn thành, lịch và trạng thái đã đồng bộ.",
+      "quotaSnapshot": "Cloud 100% (0/150 req)",
+      "costUsd": 0
+    },
+    {
       "time": "2026-11-28T15:15:54+07:00",
       "runner": "Cloud $0",
       "block": "15:00-18:30",
@@ -1737,14 +1745,6 @@
       "block": "Block 2 → Never-Stop (QA & Compliance)",
       "action": "Chạy quét tự động 8 file Ngày 1 (11,656 từ · 0 AI cliché) + xuất báo cáo tuân thủ pháp lý VN/FTC/YouTube/DMCA/GDPR → outputs/day1/09_day1_qa_and_compliance_audit.md.",
       "quotaSnapshot": "Google AI Pro ~73% (7 checks) | Cloud Free Tier 100%",
-      "costUsd": 0
-    },
-    {
-      "time": "2026-11-23T02:59:55+07:00",
-      "runner": "Antigravity (Nhịp 5p #5)",
-      "block": "Block 2 (01:30–05:30)",
-      "action": "Xuất hoàn chỉnh Full Narration Script Tập 3 (~1,860 từ bản địa, 13.5 phút) cho Sleepless Roman History → outputs/day1/08_sleepless_roman_ep03_full_script.md.",
-      "quotaSnapshot": "Google AI Pro ~76% (6 checks) | Cloud Free Tier 100%",
       "costUsd": 0
     }
   ],
