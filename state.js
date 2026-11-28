@@ -10,8 +10,8 @@ window.__AI_OPS_STATE__ = {
     "targetMarket": "US / UK / CA / AU (English · USD)",
     "activeHoursPerDay": 20,
     "restWindow": "20:00 – 24:00 GMT+7",
-    "currentDay": 5,
-    "lastUpdated": "2026-11-27T10:55:41+07:00",
+    "currentDay": 6,
+    "lastUpdated": "2026-11-28T07:21:00+07:00",
     "lastRunner": "Cloud $0 (GitHub Actions)",
     "reportIntervalMinutes": 5,
     "nextCheckAt": "2026-11-23T16:39:30+07:00",
@@ -50,7 +50,7 @@ window.__AI_OPS_STATE__ = {
       "burnRatePerHour": "~2 req / ~12k tokens (cron 30p khi tắt máy)",
       "autoDowngradeThresholdPct": 20,
       "status": "Hoạt động tốt (Hết hàng đợi — chờ nạp task mới)",
-      "lastChecked": "2026-11-27T10:55:41+07:00"
+      "lastChecked": "2026-11-28T07:21:00+07:00"
     },
     "googleAiPro": {
       "provider": "Antigravity (Google AI Pro)",
@@ -839,7 +839,7 @@ window.__AI_OPS_STATE__ = {
           "title": "Morning Briefing Day 6 + Quota Check ($0)",
           "project": "Hệ thống AI Ops",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "28/11 01:30",
           "outputPath": "",
           "summary": "Tập trung vào top 2 dự án có phản hồi tốt nhất từ ngày 1–5."
@@ -853,7 +853,7 @@ window.__AI_OPS_STATE__ = {
           "title": "Sleepless Roman: Chốt kho 4 Tập chuẩn hóa + Peaceful Soul Monthly Retainer Proposal ($250/th)",
           "project": "Sleepless Roman / Peaceful Soul",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đã xong",
           "eta": "28/11 05:30",
           "outputPath": "",
           "summary": "Chuyển đổi khách lẻ sang hợp đồng tháng ổn định."
@@ -867,7 +867,7 @@ window.__AI_OPS_STATE__ = {
           "title": "ProfitPulse Etsy: Chuẩn bị gói nâng cấp Cyber Monday + Cập nhật FAQ trang Gumroad",
           "project": "ProfitPulse Etsy",
           "engine": "Cloud $0",
-          "status": "Sắp chạy",
+          "status": "Đang chạy",
           "eta": "28/11 09:00",
           "outputPath": "",
           "summary": "Tăng tỷ lệ chốt tự nhiên trên trang sản phẩm."
@@ -1429,6 +1429,14 @@ window.__AI_OPS_STATE__ = {
   },
   "heartbeatLog": [
     {
+      "time": "2026-11-28T07:21:00+07:00",
+      "runner": "Cloud $0",
+      "block": "05:30-09:00",
+      "action": "Heartbeat $0: Tất cả task trong cloudQueue đã hoàn thành, lịch và trạng thái đã đồng bộ.",
+      "quotaSnapshot": "Cloud 100% (0/150 req)",
+      "costUsd": 0
+    },
+    {
       "time": "2026-11-27T10:55:41+07:00",
       "runner": "Cloud $0",
       "block": "09:00-12:00",
@@ -1738,14 +1746,6 @@ window.__AI_OPS_STATE__ = {
       "block": "Block 2 → Never-Stop (Anh Dev Quick-Fix)",
       "action": "Xuất bộ Checklist 10-điểm Audit Shopify Black Friday + 4 mẫu DM chốt  + Upsell /tuần → outputs/day1/07_dev_shopify_black_friday_audit_kit.md; nạp thêm 4 task mới vào cloudQueue.",
       "quotaSnapshot": "Google AI Pro ~80% (5 checks) | Cloud Free Tier 100%",
-      "costUsd": 0
-    },
-    {
-      "time": "2026-11-23T02:49:35+07:00",
-      "runner": "Antigravity (Nhịp 5p #3)",
-      "block": "Block 2 → Never-Stop (Faith & Peace)",
-      "action": "Xuất lịch phân phối 7 ngày Pinterest/Shorts/Reels (đúng mùa Thanksgiving/Black Friday) + trang bán gói Bundle  → outputs/day1/06_faith_peace_7day_calendar_and_bundle.md.",
-      "quotaSnapshot": "Google AI Pro ~83% (4 checks) | Cloud Free Tier 100%",
       "costUsd": 0
     }
   ],
